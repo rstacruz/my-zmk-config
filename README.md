@@ -1,21 +1,21 @@
-# hmm
+# my zmk config
 
 ```sh
-# install zephyr-sdk (archlinux aur)
-# this installs west
+# installs west + zephyr SDK on arch linux
 yay zephyr-sdk
 
-# creates .west/
-west init -l config
-
-# checks out zmk/ and zephyr/
-west update
-
-# Writes to ~/.cmake/packages/Zephyr
-west zephyr-export
-
-west build -s zmk/app -b nice_nano_v2 -- -DSHIELD=microdox_left -DZMK_CONFIG=(pwd)"/config"
+# builds left and right
+make
 ```
+
+## Other commands
+
+```sh
+make -B  # force rebuild
+make update # updates zmk/ and zephyr/
+```
+
+<!--
 
 ## Docker
 

@@ -1,3 +1,7 @@
-/zmk
-/zephyr
+/*.uf2
+/.west
 /build
+/modules
+/tools
+/zephyr
+/zmk
