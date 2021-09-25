@@ -1,7 +1,2 @@
-/*.uf2
-/.west
 /build
-/modules
-/tools
-/zephyr
-/zmk
+/.cache

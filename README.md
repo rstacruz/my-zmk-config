@@ -1,29 +1,11 @@
 # my zmk config
 
-```sh
-# installs west + zephyr SDK on arch linux
-yay zephyr-sdk
-
-# builds left and right
-make
-```
-
-## Other commands
+Builds and flashes zmk firmware via Docker.
 
 ```sh
-make -B  # force rebuild
-make update # updates zmk/ and zephyr/
+make build        # Build only [alias: make b]
+make flash-left   # Build and flash left [alias: make l]
+make flash-right  # Build and flash right [alias: make r]
 ```
 
-<!--
-
-## Docker
-
-```sh
-docker run --rm -it \
-  zmkfirmware/zmk-build-arm:2.5 \
-  /bin/bash
-west init -l config
-west update
-west zephyr-export
-```
+![](./docs/reference.png)

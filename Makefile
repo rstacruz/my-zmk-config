@@ -1,42 +1,41 @@
 PWD = $(shell pwd)
 
 # zmk config
-shield_left = microdox_left
-shield_right = microdox_right
+shield_l = microdox_left
+shield_r = microdox_right
 board = nice_nano_v2
 
 # output files
-left_file = microdox_left.uf2
-right_file = microdox_right.uf2
+file_l = build/${shield_l}_${board}.uf2
+file_r = build/${shield_r}_${board}.uf2
 
-default: build
+# where to flash
+device = /dev/disk/by-label/NICENANO
 
-init: .west zmk
+default:
+	@echo
+	@echo "Available targets:"
+	@grep -E '^[a-zA-Z_-].*?: .*?## .*$$' Makefile | sed 's#\\:#:#g' | awk 'BEGIN {FS = ": .*?## "}; {printf "\033[36m  %-20s\033[0m %s\n", $$1, $$2}'
+	@echo
 
-.west:
-	@# creates .west/config
-	west init -l config || true
+build: build/${shield_l}_${board}.uf2 ## Build the firmware [alias: b]
 
-zmk:
-	@# checks out zmk/ and zephyr/, then writes to ~/.cmake/packages/Zephyr
-	west update && west zephyr-export
+flash-left: ${file_l} ## Flash left [alias: l]
+	@sudo bash flash.sh --file ${file_l}
 
-update: ## Forces an update of zmk/ and zephyr/
-	@make -B init
+flash-right: ${file_r} ## Flash right [alias: r]
+	@sudo bash flash.sh --file ${file_r}
 
-build: init ${left_file} ${right_file} ## Builds .uf2 files
+clean: ## Clean cache to rebuild from scratch
+	sudo rm -rf .cache build/*.uf2
 
-${left_file}: $(wildcard config/*)
-	west build -s zmk/app -b ${board} -- -DSHIELD=${shield_left} -DZMK_CONFIG=${PWD}/config
-	rm -f "${left_file}"
-	cp build/zephyr/zmk.uf2 "${left_file}"
+${file_l}: config/*
+	bash build.sh --board ${board} --left ${shield_l} --right ${shield_r}
 
-${right_file}: $(wildcard config/*)
-	west build --pristine -s zmk/app -b ${board} -- -DSHIELD=${shield_right} -DZMK_CONFIG=${PWD}/config
-	rm -f "${right_file}"
-	cp build/zephyr/zmk.uf2 "${right_file}"
+${file_r}: ${file_l}
 
-clean:
-	rm -rf zmk zephyr build modules tools .west
+b: build
+l: flash-left
+r: flash-right
 
-.PHONY: init build clean
+.PHONY: build b clean c flash-left l flash-right r
