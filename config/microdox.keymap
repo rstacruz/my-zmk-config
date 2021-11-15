@@ -51,27 +51,33 @@
     };
   };
 
-  /* combos {
+  combos {
     compatible = "zmk,combos";
     combo_quot {
       timeout-ms = <15>;
-      key-positions = <26 27>;
+      key-positions = <26 27>; // [h ,] => [']
       bindings = <&kp QUOT>;
       layers = <0>;
     };
-  }; */
+    combo_minus {
+      timeout-ms = <15>;
+      key-positions = <27 28>; // [, .] => [-]
+      bindings = <&kp MINUS>;
+      layers = <0>;
+    };
+  };
 
   keymap {
     compatible = "zmk,keymap";
 
     default_layer { // Base (Colemak-DH)
-      // ┌───────────────────────┬──────────────────────┐
-      // │   q^  w   f   p   b   │ j   l   u   y   ⌫    │
-      // │   a   r   s   t   g   │ m   n   e   i   o    │
-      // │   z   x   c   d   v   │ k   h   ,_  .?  ↵    │
-      // └───────────────────────┴──────────────────────┘
-      //           │ ⌘   Sym ⇧   │ ␣   Nav ⌥   │
-      //           └─────────────┴─────────────┘ 
+      // ┌─────────────────────┬─────────────────────┐
+      // │ q^  w   f   p   b   │ j   l   u   y   ⌫   │
+      // │ a   r   s   t   g   │ m   n   e   i   o   │
+      // │ z   x   c   d   v   │ k   h   ,_  .?  ↵   │
+      // └─────────────────────┴─────────────────────┘
+      //         │ ⌘   Sym ⇧   │ ␣   Nav ⌥   │
+      //         └─────────────┴─────────────┘ 
       bindings = <
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &kp BSPC
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M     &kp N     &kp E     &kp I     &kp O
@@ -81,45 +87,45 @@
     };
 
     nav_layer { // Navigation
-      // ┌───────────────────────┬──────────────────────┐
-      // │   ^   ⌘   ⇤   ⇥   ⌥   │ p↑  hom ▲   end      │
-      // │   1   2   3   4   5   │ p↓  ◀   ▼   ▶   ↵    │
-      // │   6   7   8   9   0   │ esc .   .   .   del  │
-      // └───────────────────────┴──────────────────────┘
-      //           │ .   Fn  .   │ .   Fn  .   │
-      //           └─────────────┴─────────────┘ 
+      // ┌─────────────────────┬─────────────────────┐
+      // │ ^   ⌘   ⇤   ⇥   ⌥   │ p↑  hom ▲   end ⌫   │
+      // │ 1   2   3   4   5   │ p↓  ◀   ▼   ▶   ↵   │
+      // │ 6   7   8   9   0   │ esc ‹   ›   .   del │
+      // └─────────────────────┴─────────────────────┘
+      //         │ .   Fn  .   │ .   Fn  .   │
+      //         └─────────────┴─────────────┘ 
       bindings = <
-        &kp LCTRL &kp LGUI  &kp LS(TAB) &kp TAB   &kp LALT     &kp PGUP  &kp HOME  &kp UP    &kp END   &trans
+        &kp LCTRL &kp LGUI  &kp LS(TAB) &kp TAB   &kp LALT     &kp PGUP  &kp HOME  &kp UP    &kp END   &lt HEX BSPC
         &kp N1    &kp N2    &kp N3      &kp N4    &kp N5       &kp PGDN  &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
-        &kp N6    &kp N7    &kp N8      &kp N9    &kp N0       &kp ESC   &kp ESC   &none     &kp DOT   &lt HEX DEL
+        &kp N6    &kp N7    &kp N8      &kp N9    &kp N0       &kp ESC   &kp ESC   &none     &kp DOT   &th LCTL DEL
                             &trans      &mo FUN   &trans       &trans    &mo FUN   &trans
       >;
     };
 
     hex_layer { // Hex input
-      // ┌───────────────────────┬──────────────────────┐
-      // │       1   2   3   ,   │ a   b   c   #   ⌫    │
-      // │       4   5   6   .   │ d   e   f   :        │
-      // │       7   8   9   0   │ /   *   -   +        │
-      // └───────────────────────┴──────────────────────┘
-      //           │ ·   0   ·   │ ␣   ·   ·   │
-      //           └─────────────┴─────────────┘ 
+      // ┌─────────────────────┬─────────────────────┐
+      // │     ,   .   :   #   │ 7   8   9   ⌫   ▓▓  │
+      // │ a   b   c   d   e   │ 4   5   6           │
+      // │ f   +   -   *   /   │ 1   2   3           │
+      // └─────────────────────┴─────────────────────┘
+      //         │         ␣   │ 0   ↵       │
+      //         └─────────────┴─────────────┘ 
       bindings = <
-        &none     &kp N1    &kp N2      &kp N3    &kp COMMA    &kp A     &kp B     &kp C     &kp HASH  &kp BSPC
-        &none     &kp N4    &kp N5      &kp N6    &kp DOT      &kp D     &kp E     &kp F     &kp COLON &trans
-        &none     &kp N7    &kp N8      &kp N9    &kp N0       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &trans
-                            &trans      &kp N0    &kp N0       &kp SPACE &trans    &trans
+        &none     &kp COMMA &kp DOT     &kp COLON &kp HASH     &kp N7    &kp N8    &kp N9    &kp BSPC  &none
+        &kp A     &kp B     &kp C       &kp D     &kp E        &kp N4    &kp N5    &kp N6    &none     &none
+        &kp F     &kp PLUS  &kp MINUS   &kp STAR  &kp SLASH    &kp N1    &kp N2    &kp N3    &none     &none
+                            &trans      &trans    &kp SPACE    &kp N0    &kp RET   &kp COMMA
       >;
     };
 
     sym_layer { // Symbols
-      // ┌───────────────────────┬──────────────────────┐
-      // │   '   "   ^   ?   `   │ [   <   =   >   ]    │
-      // │   !   @   #   $   %   │ {   (   :   )   }    │
-      // │   \   ~   |   &   ;   │ /   *   -   +   _    │
-      // └───────────────────────┴──────────────────────┘
-      //           │ ·   Fn  Adj │ ·   Fn  ·   │
-      //           └─────────────┴─────────────┘
+      // ┌─────────────────────┬─────────────────────┐
+      // │ '   "   ^   ?   `   │ [   <   =   >   ]   │
+      // │ !   @   #   $   %   │ {   (   :   )   }   │
+      // │ \   ~   |   &   ;   │ /   *   -   +   _   │
+      // └─────────────────────┴─────────────────────┘
+      //         │ ·   Fn  Adj │ ·   Fn  ·   │
+      //         └─────────────┴─────────────┘
       bindings = <
         &kp QUOT  &kp DQT   &kp CARET &kp QMARK &kp GRAVE   &kp LBKT  &kp LT    &kp EQUAL &kp GT    &kp RBKT
         &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT   &kp LBRC  &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
@@ -129,11 +135,11 @@
     };
 
     fn_layer { // Function
-      // ┌───────────────────────┬──────────────────────┐
-      // │   f11 f12 .   .   .   │ .   .   .   .   b⁺   │
-      // │   f1  f2  f3  f4  f5  │ .   .   .   .   b⁻   │
-      // │   f6  f7  f8  f9  f6  │ v⁻  v⁺  ply nxt .    │
-      // └───────────────────────┴──────────────────────┘
+      // ┌─────────────────────┬─────────────────────┐
+      // │ f11 f12 .   .   .   │ .   .   .   .   b⁺  │
+      // │ f1  f2  f3  f4  f5  │ .   .   .   .   b⁻  │
+      // │ f6  f7  f8  f9  f6  │ v⁻  v⁺  ply nxt .   │
+      // └─────────────────────┴─────────────────────┘
       bindings = <
         &kp F11   &kp F12   &none     &none     &none       &none        &none        &none      &none      &kp C_BRI_UP
         &kp F1    &kp F2    &kp F3    &kp F4    &kp F5      &none        &none        &none      &none      &kp C_BRI_DN
@@ -143,13 +149,13 @@
     };
 
     adjust_layer { // Adjust
-      // ┌───────────────────────┬──────────────────────┐
-      // │   loc .   .   .   clr │ p↑  hom ▲   end .    │
-      // │   .   b1  b2  usb .   │ p↓  ◀   ▼   ▶   ent  │
-      // │   .   b3  b4  bt  .   │ .   .   .   .   boot │
-      // └───────────────────────┴──────────────────────┘
-      //           │ ·   ·   Fv  │ Fv  ·   ·   │
-      //           └─────────────┴─────────────┘
+      // ┌─────────────────────┬─────────────────────┐
+      // │ loc .   .   .   clr │ p↑  hom ▲   end .   │
+      // │ .   b1  b2  usb .   │ p↓  ◀   ▼   ▶   ent │
+      // │ .   b3  b4  bt  .   │ .   .   .   .   boot│
+      // └─────────────────────┴─────────────────────┘
+      //         │ ·   ·   Fv  │ Fv  ·   ·   │
+      //         └─────────────┴─────────────┘
       bindings = <
         &tog LOCK    &none        &none        &none        &bt BT_CLR     &kp PGUP    &kp HOME  &kp UP    &kp END   &none
         &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB &none          &kp PGDN    &kp LEFT  &kp DOWN  &kp RIGHT &th LCTL RET
