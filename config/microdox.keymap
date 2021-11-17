@@ -54,14 +54,14 @@
   combos {
     compatible = "zmk,combos";
     combo_quot {
-      timeout-ms = <15>;
-      key-positions = <26 27>; // [h ,] => [']
+      timeout-ms = <25>;
+      key-positions = <26 28>; // [h .] => [']
       bindings = <&kp QUOT>;
       layers = <0>;
     };
     combo_minus {
-      timeout-ms = <15>;
-      key-positions = <27 28>; // [, .] => [-]
+      timeout-ms = <25>;
+      key-positions = <27 28>; // [. ,] => [-]
       bindings = <&kp MINUS>;
       layers = <0>;
     };
