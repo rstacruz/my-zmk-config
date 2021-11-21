@@ -17,6 +17,14 @@
 #define LOCK   11
 #define ULOC   12
 
+#define NTAB LC(PGDN) /* Next tab */
+#define PTAB LC(PGUP) /* Previous tab */
+#define SFTAB LS(TAB) /* Shift-tab */
+
+&sk {
+  release-after-ms = <250>;
+};
+
 / {
   behaviors {
     hm: homerow_mods {
@@ -82,23 +90,23 @@
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &kp BSPC
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M     &kp N     &kp E     &kp I     &kp O
         &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
-                              &kp LGUI  &mo SYM   &kp LSHFT   &kp SPACE &mo NAV   &kp RALT
+                              &kp LGUI  &mo SYM   &sk LSHFT   &kp SPACE &mo NAV   &kp RALT
       >;
     };
 
     nav_layer { // Navigation
       // ┌─────────────────────┬─────────────────────┐
-      // │ ^   ⌘   ⇤   ⇥   ⌥   │ p↑  hom ▲   end ⌫   │
+      // │ ^   ⌘   ⌥   ⇤   ⇥   │ p↑  hom ▲   end ⌫   │
       // │ 1   2   3   4   5   │ p↓  ◀   ▼   ▶   ↵   │
       // │ 6   7   8   9   0   │ esc ‹   ›   .   del │
       // └─────────────────────┴─────────────────────┘
       //         │ .   Fn  .   │ .   Fn  .   │
-      //         └─────────────┴─────────────┘ 
+      //i        └─────────────┴─────────────┘ 
       bindings = <
-        &kp LCTRL &kp LGUI  &kp LS(TAB) &kp TAB   &kp LALT     &kp PGUP  &kp HOME  &kp UP    &kp END   &lt HEX BSPC
-        &kp N1    &kp N2    &kp N3      &kp N4    &kp N5       &kp PGDN  &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
-        &kp N6    &kp N7    &kp N8      &kp N9    &kp N0       &kp ESC   &kp ESC   &none     &kp DOT   &th LCTL DEL
-                            &trans      &mo FUN   &trans       &trans    &mo FUN   &trans
+        &kp LCTRL &kp LGUI  &kp LALT  &kp TAB   &kp SFTAB    &kp PGUP  &kp HOME  &kp UP    &kp END   &lt HEX BSPC
+        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp PGDN  &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
+        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC   &kp PTAB  &kp NTAB  &kp DOT   &th LCTL DEL
+                            &trans    &mo FUN   &trans       &trans    &mo FUN   &trans
       >;
     };
 
@@ -160,7 +168,7 @@
         &tog LOCK    &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &none
         &none        &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
         &none        &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bootloader
-                                  &trans       &tog FVBASE  &none          &tog FVBASE  &out OUT_BLE &out OUT_USB
+                                  &trans       &tog FVBASE  &none          &none        &out OUT_BLE &out OUT_USB
       >;
     };
 
