@@ -21,10 +21,6 @@
 #define PTAB LC(PGUP) /* Previous tab */
 #define SFTAB LS(TAB) /* Shift-tab */
 
-&sk {
-  release-after-ms = <250>;
-};
-
 / {
   behaviors {
     hm: homerow_mods {
@@ -90,39 +86,39 @@
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &kp BSPC
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M     &kp N     &kp E     &kp I     &kp O
         &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
-                              &kp LGUI  &mo SYM   &sk LSHFT   &kp SPACE &mo NAV   &kp RALT
+                              &kp LGUI  &mo SYM   &kp LSHFT   &kp SPACE &mo NAV   &kp RALT
       >;
     };
 
     nav_layer { // Navigation
       // ┌─────────────────────┬─────────────────────┐
-      // │ ^   ⌘   ⌥   ⇤   ⇥   │ p↑  hom ▲   end ⌫   │
+      // │ ^   ⌘   ⇤   ⇥   ⌥   │ p↑  hom ▲   end ⌫   │
       // │ 1   2   3   4   5   │ p↓  ◀   ▼   ▶   ↵   │
-      // │ 6   7   8   9   0   │ esc ‹   ›   .   del │
+      // │ 6   7   8   9   0   │         esc .   del │
       // └─────────────────────┴─────────────────────┘
-      //         │ .   Fn  .   │ .   Fn  .   │
+      //         │     Fn      │     Fn      │
       //i        └─────────────┴─────────────┘ 
       bindings = <
-        &kp LCTRL &kp LGUI  &kp LALT  &kp TAB   &kp SFTAB    &kp PGUP  &kp HOME  &kp UP    &kp END   &lt HEX BSPC
+        &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP  &kp HOME  &kp UP    &kp END   &lt HEX BSPC
         &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp PGDN  &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
-        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC   &kp PTAB  &kp NTAB  &kp DOT   &th LCTL DEL
+        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC   &kp PTAB  &kp ESC   &kp DOT   &th LCTL DEL
                             &trans    &mo FUN   &trans       &trans    &mo FUN   &trans
       >;
     };
 
-    hex_layer { // Hex input
+    hex_layer { // Numeric input (southpaw)
       // ┌─────────────────────┬─────────────────────┐
-      // │     ,   .   :   #   │ 1   2   3   ⌫   ▓▓  │
-      // │ a   b   c   d   e   │ 4   5   6           │
-      // │ f   +   -   *   /   │ 7   8   9           │
+      // │ a   b ┆ 1   2   3   │ ⌫       ,   .   ▓▓  │
+      // │ c   d ┆ 4   5   6   │ #   :               │
+      // │ e   f ┆ 7   8   9   │ /   *   -   +       │
       // └─────────────────────┴─────────────────────┘
-      //         │         ␣   │ 0   ↵       │
+      //         │ ,   0   .   │ ␣           │
       //         └─────────────┴─────────────┘ 
       bindings = <
-        &none     &kp COMMA &kp DOT     &kp COLON &kp HASH     &kp N1    &kp N2    &kp N3    &kp BSPC  &none
-        &kp A     &kp B     &kp C       &kp D     &kp E        &kp N4    &kp N5    &kp N6    &none     &none
-        &kp F     &kp PLUS  &kp MINUS   &kp STAR  &kp SLASH    &kp N7    &kp N8    &kp N9    &none     &none
-                            &trans      &trans    &kp SPACE    &kp N0    &kp RET   &kp COMMA
+        &kp A     &kp B     &kp N1    &kp N2    &kp N3       &kp BSPC  &kp BSPC  &kp COMMA &kp DOT   &none
+        &kp C     &kp D     &kp N4    &kp N5    &kp N6       &kp HASH  &kp COLON &none     &none     &none
+        &kp E     &kp F     &kp N7    &kp N8    &kp N9       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &none
+                            &kp COMMA &kp N0    &kp DOT      &kp SPC   &kp RET   &none
       >;
     };
 
@@ -132,7 +128,7 @@
       // │ !   @   #   $   %   │ {   (   :   )   }   │
       // │ \   ~   |   &   ;   │ /   *   -   +   _   │
       // └─────────────────────┴─────────────────────┘
-      //         │ ·   Fn  Adj │ ·   Fn  ·   │
+      //         │         Adj │     Fn      │
       //         └─────────────┴─────────────┘
       bindings = <
         &kp QUOT  &kp DQT   &kp CARET &kp QMARK &kp GRAVE   &kp LBKT  &kp LT    &kp EQUAL &kp GT    &kp RBKT
