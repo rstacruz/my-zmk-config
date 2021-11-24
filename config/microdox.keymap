@@ -21,6 +21,7 @@
 #define PTAB LC(PGUP) /* Previous tab */
 #define SFTAB LS(TAB) /* Shift-tab */
 
+
 / {
   behaviors {
     hm: homerow_mods {
@@ -59,14 +60,20 @@
     compatible = "zmk,combos";
     combo_quot {
       timeout-ms = <25>;
-      key-positions = <26 27>; // [h ,] => [']
-      bindings = <&kp QUOT>;
+      key-positions = <26 27>; // [ k h , . ^ ]
+      bindings = <&kp QUOT>;   //     └─┴───────› [ ' ]
+      layers = <0>;
+    };
+    combo_under {
+      timeout-ms = <25>;
+      key-positions = <26 28>; // [ k h , . ^ ]
+      bindings = <&kp UNDER>;  //     └───┴─────› [ _ ]
       layers = <0>;
     };
     combo_minus {
       timeout-ms = <25>;
-      key-positions = <27 28>; // [. ,] => [-]
-      bindings = <&kp MINUS>;
+      key-positions = <27 28>; // [ k h , . ^ ]
+      bindings = <&kp MINUS>;  //       └─┴─────› [ - ]
       layers = <0>;
     };
   };
