@@ -58,22 +58,34 @@
 
   combos {
     compatible = "zmk,combos";
+    combo_esc {
+      timeout-ms = <25>;
+      key-positions = <25 26>; // [ k h , . ^ ]
+      bindings = <&kp ESC>;    //   └─┴─────────› esc
+      layers = <0>;
+    };
     combo_quot {
       timeout-ms = <25>;
       key-positions = <26 27>; // [ k h , . ^ ]
-      bindings = <&kp QUOT>;   //     └─┴───────› [ ' ]
+      bindings = <&kp QUOT>;   //     └─┴───────› '
+      layers = <0>;
+    };
+    combo_ret {
+      timeout-ms = <25>;
+      key-positions = <27 28>; // [ k h , . ^ ]
+      bindings = <&kp RET>;    //       └─┴─────› enter
+      layers = <0>;
+    };
+    combo_minus {
+      timeout-ms = <25>;
+      key-positions = <27 27>; // [ k h , . ^ ]
+      bindings = <&kp MINUS>;  //   └───┴───────› -
       layers = <0>;
     };
     combo_under {
       timeout-ms = <25>;
       key-positions = <26 28>; // [ k h , . ^ ]
-      bindings = <&kp UNDER>;  //     └───┴─────› [ _ ]
-      layers = <0>;
-    };
-    combo_minus {
-      timeout-ms = <25>;
-      key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp MINUS>;  //       └─┴─────› [ - ]
+      bindings = <&kp UNDER>;  //     └───┴─────› _
       layers = <0>;
     };
   };
@@ -119,13 +131,13 @@
       // │ c   d ┆ 4   5   6   │ #   :               │
       // │ e   f ┆ 7   8   9   │ /   *   -   +       │
       // └─────────────────────┴─────────────────────┘
-      //         │ ,   0   .   │ ␣           │
+      //         │ ,   .   0   │ ␣           │
       //         └─────────────┴─────────────┘ 
       bindings = <
         &kp A     &kp B     &kp N1    &kp N2    &kp N3       &kp BSPC  &kp BSPC  &kp COMMA &kp DOT   &none
         &kp C     &kp D     &kp N4    &kp N5    &kp N6       &kp HASH  &kp COLON &none     &none     &none
         &kp E     &kp F     &kp N7    &kp N8    &kp N9       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &none
-                            &kp COMMA &kp N0    &kp DOT      &kp SPC   &kp RET   &none
+                            &kp COMMA &kp DOT   &kp N0       &kp SPC   &kp RET   &none
       >;
     };
 
