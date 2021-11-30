@@ -78,7 +78,7 @@
     };
     combo_minus {
       timeout-ms = <25>;
-      key-positions = <27 27>; // [ k h , . ^ ]
+      key-positions = <25 27>; // [ k h , . ^ ]
       bindings = <&kp MINUS>;  //   └───┴───────› -
       layers = <0>;
     };
@@ -116,7 +116,7 @@
       // │ 6   7   8   9   0   │         esc .   del │
       // └─────────────────────┴─────────────────────┘
       //         │     Fn      │     Fn      │
-      //i        └─────────────┴─────────────┘ 
+      //         └─────────────┴─────────────┘ 
       bindings = <
         &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP  &kp HOME  &kp UP    &kp END   &lt HEX BSPC
         &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp PGDN  &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
