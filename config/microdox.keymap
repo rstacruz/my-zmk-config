@@ -177,13 +177,13 @@
       // │ .   .   .   .   .   │ p↓  ◀   ▼   ▶   ent │
       // │ .   .   .   .   .   │ b1  b2  b3  b4  boot│
       // └─────────────────────┴─────────────────────┘
-      //         │ ·   Fv  .   │ .   bt  usb │
+      //         │ ·   Fv  .   │ tog bt  usb │
       //         └─────────────┴─────────────┘
       bindings = <
         &tog LOCK    &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &none
         &none        &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
         &none        &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bootloader
-                                  &trans       &tog FVBASE  &none          &none        &out OUT_BLE &out OUT_USB
+                                  &trans       &tog FVBASE  &none          &out OUT_TOG &out OUT_BLE &out OUT_USB
       >;
     };
 
