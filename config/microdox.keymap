@@ -61,7 +61,7 @@
     combo_esc {
       timeout-ms = <25>;
       key-positions = <25 26>; // [ k h , . ^ ]
-      bindings = <&kp ESC>;    //   └─┴─────────› esc
+      bindings = <&kp SEMI>;   //   └─┴─────────› ;
       layers = <0>;
     };
     combo_quot {
@@ -78,14 +78,8 @@
     };
     combo_minus {
       timeout-ms = <25>;
-      key-positions = <25 27>; // [ k h , . ^ ]
-      bindings = <&kp MINUS>;  //   └───┴───────› -
-      layers = <0>;
-    };
-    combo_under {
-      timeout-ms = <25>;
       key-positions = <26 28>; // [ k h , . ^ ]
-      bindings = <&kp UNDER>;  //     └───┴─────› _
+      bindings = <&kp MINUS>;  //     └───┴─────› -
       layers = <0>;
     };
   };
