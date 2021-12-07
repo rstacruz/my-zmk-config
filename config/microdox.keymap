@@ -66,14 +66,14 @@
     };
     combo_quot {
       timeout-ms = <25>;
-      key-positions = <26 27>; // [ k h , . ^ ]
-      bindings = <&kp QUOT>;   //     └─┴───────› '
+      key-positions = <27 28>; // [ k h , . ^ ]
+      bindings = <&kp QUOT>;   //       └─┴─────› '
       layers = <0>;
     };
     combo_ret {
       timeout-ms = <25>;
-      key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp RET>;    //       └─┴─────› enter
+      key-positions = <26 27>; // [ k h , . ^ ]
+      bindings = <&kp RET>;    //     └─┴───────› enter
       layers = <0>;
     };
     combo_esc {
