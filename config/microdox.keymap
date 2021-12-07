@@ -23,7 +23,7 @@
 
 
 / {
-  behaviors {
+  behaviors { // {{{
     hm: homerow_mods {
       compatible = "zmk,behavior-hold-tap";
       label = "HOMEROW_MODS";
@@ -54,46 +54,53 @@
       bindings = <&kp DOT>, <&kp SLASH>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
-  };
+    mbspc: mod_morph_bspc {
+      compatible = "zmk,behavior-mod-morph";
+      label = "MOD_MORPH_BSPC";
+      #binding-cells = <0>;
+      bindings = <&kp BSPC>, <&kp N1>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+  }; // }}}
 
-  combos {
+  combos { // {{{
     compatible = "zmk,combos";
-    combo_semi {
+    combo_quot2 {
       timeout-ms = <25>;
       key-positions = <25 26>; // [ k h , . ^ ]
-      bindings = <&kp SEMI>;   //   └─┴─────────› ;
-      layers = <0>;
-    };
-    combo_quot {
-      timeout-ms = <25>;
-      key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp QUOT>;   //       └─┴─────› '
-      layers = <0>;
+      bindings = <&kp QUOT>; //     └─┴─────────› ' (?)
+      layers = <0 NAV>;
     };
     combo_ret {
       timeout-ms = <25>;
       key-positions = <26 27>; // [ k h , . ^ ]
-      bindings = <&kp RET>;    //     └─┴───────› enter
-      layers = <0>;
+      bindings = <&kp RET>; //        └─┴───────› enter
+      layers = <0 NAV>;
+    };
+    combo_quot {
+      timeout-ms = <25>;
+      key-positions = <27 28>; // [ k h , . ^ ]
+      bindings = <&kp QUOT>; //         └─┴─────› '
+      layers = <0 NAV>;
+    };
+    combo_semi {
+      timeout-ms = <25>;
+      key-positions = <28 29>; // [ k h , . ^ ]
+      bindings = <&kp SEMI>; //           └─┴───› ;
+      layers = <0 NAV>;
     };
     combo_esc {
       timeout-ms = <25>;
       key-positions = <26 27 28>; // [ k h , . ^ ]
-      bindings = <&kp ESC>;       //     └─┴─┴─────› esc
-      layers = <0>;
+      bindings = <&kp ESC>; //           └─┴─┴─────› esc
+      layers = <0 NAV>;
     };
-    combo_minus {
-      timeout-ms = <25>;
-      key-positions = <26 28>; // [ k h , . ^ ]
-      bindings = <&kp MINUS>;  //     └───┴─────› -
-      layers = <0>;
-    };
-  };
+  }; // }}}
 
   keymap {
     compatible = "zmk,keymap";
 
-    default_layer { // Base (Colemak-DH)
+    default_layer { // Base (Colemak-DH) {{{
       // ┌─────────────────────┬─────────────────────┐
       // │ q^  w   f   p   b   │ j   l   u   y   ⌫   │
       // │ a   r   s   t   g   │ m   n   e   i   o   │
@@ -107,9 +114,9 @@
         &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
                               &kp LGUI  &mo SYM   &kp LSHFT   &kp SPACE &mo NAV   &kp RALT
       >;
-    };
+    }; // }}}
 
-    nav_layer { // Navigation
+    nav_layer { // Navigation {{{
       // ┌─────────────────────┬─────────────────────┐
       // │ ^   ⌘   ⇤   ⇥   ⌥   │ p↑  hom ▲   end ⌫   │
       // │ 1   2   3   4   5   │ p↓  ◀   ▼   ▶   ↵   │
@@ -123,9 +130,9 @@
         &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC   &kp QUOT  &kp COMMA &kp DOT   &th LCTL DEL
                             &trans    &mo FUN   &trans       &trans    &mo FUN   &trans
       >;
-    };
+    }; // }}}
 
-    hex_layer { // Numeric input (southpaw)
+    hex_layer { // Numeric input (southpaw) {{{
       // ┌─────────────────────┬─────────────────────┐
       // │ a   b ┆ 1   2   3   │ ⌫       ,   .   ▓▓  │
       // │ c   d ┆ 4   5   6   │ #   :               │
@@ -139,9 +146,9 @@
         &kp E     &kp F     &kp N7    &kp N8    &kp N9       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &none
                             &kp COMMA &kp DOT   &kp N0       &kp SPC   &kp RET   &none
       >;
-    };
+    }; // }}}
 
-    sym_layer { // Symbols
+    sym_layer { // Symbols {{{
       // ┌─────────────────────┬─────────────────────┐
       // │ '   "   ^   ?   `   │ [   <   =   >   ]   │
       // │ !   @   #   $   %   │ {   (   :   )   }   │
@@ -155,9 +162,9 @@
         &kp BSLH  &kp TILDE &kp PIPE  &kp AMPS  &kp SEMI    &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
                             &trans    &mo FUN   &mo ADJ     &trans    &mo FUN   &trans
       >;
-    };
+    }; // }}}
 
-    fn_layer { // Function
+    fun_layer { // Function {{{
       // ┌─────────────────────┬─────────────────────┐
       // │ f11 f12 .   .   .   │ .   .   .   .   b⁺  │
       // │ f1  f2  f3  f4  f5  │ .   .   .   .   b⁻  │
@@ -169,9 +176,9 @@
         &kp F6    &kp F7    &kp F8    &kp F9    &kp F10     &kp C_VOL_DN &kp C_VOL_UP &kp C_PLAY &kp C_NEXT &none       
                             &trans    &trans    &trans      &trans       &trans       &trans    
       >;
-    };
+    }; // }}}
 
-    adjust_layer { // Adjust
+    adj_layer { // Adjust {{{
       // ┌─────────────────────┬─────────────────────┐
       // │ loc .   .   .   clr │ p↑  hom ▲   end .   │
       // │ .   .   .   .   .   │ p↓  ◀   ▼   ▶   ent │
@@ -185,9 +192,9 @@
         &none        &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bootloader
                                   &trans       &tog FVBASE  &none          &out OUT_TOG &out OUT_BLE &out OUT_USB
       >;
-    };
+    }; // }}}
 
-    fvbase_layer { // FrogV base
+    fvbase_layer { // FrogV base {{{
       // Base:                   Flip:                   Nav:                   
       // ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ 
       // │ N/s c   n   i   g   │ │ q   w   m   j   k   │ │ .   p↑  ▲   p↓  ⌫   │ 
@@ -244,9 +251,9 @@
         &none     &kp SEMI  &kp COMMA &kp DOT    &kp QUOT     &trans    &trans    &trans    &trans    &trans
                             &trans    &trans     &kp LSFT     &trans    &trans    &trans
       >;
-    };
+    }; // }}}
 
-    lock_layer { // Lock
+    lock_layer { // Lock {{{
       bindings = <
         &mo ULOC  &none     &none     &none     &none        &none     &none     &none     &none     &none
         &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
@@ -262,10 +269,9 @@
         &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
                             &none     &none     &tog LOCK    &none     &none     &none
       >;
-    };
-
+    }; // }}}
   };
 };
 
-// vim:ft=c
+// vim:ft=c:fdm=indent
 // https://zmk.dev/docs/codes/
