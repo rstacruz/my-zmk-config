@@ -80,7 +80,7 @@
     combo_comma_dot {
       timeout-ms = <25>;
       key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp ESC>; //          └─┴─────› esc
+      bindings = <&kp TAB>; //          └─┴─────› tab
       layers = <0 NAV>;
     };
     combo_dot_ctrl {
@@ -92,7 +92,7 @@
     combo_h_dot {
       timeout-ms = <25>;
       key-positions = <26 28>; // [ k h , . ^ ]
-      bindings = <&kp TAB>; //        └───┴─────› tab
+      bindings = <&kp ESC>; //        └───┴─────› esc
       layers = <0 NAV>;
     };
   }; // }}}
