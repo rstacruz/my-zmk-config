@@ -68,7 +68,7 @@
     combo_quot2 {
       timeout-ms = <25>;
       key-positions = <25 26>; // [ k h , . ^ ]
-      bindings = <&kp QUOT>; //     └─┴─────────› ' (?)
+      bindings = <&kp QUOT>; //     └─┴─────────› '
       layers = <0 NAV>;
     };
     combo_ret {
@@ -77,10 +77,10 @@
       bindings = <&kp RET>; //        └─┴───────› enter
       layers = <0 NAV>;
     };
-    combo_quot {
+    combo_esc {
       timeout-ms = <25>;
       key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp QUOT>; //         └─┴─────› '
+      bindings = <&kp ESC>; //          └─┴─────› esc
       layers = <0 NAV>;
     };
     combo_semi {
@@ -89,10 +89,10 @@
       bindings = <&kp SEMI>; //           └─┴───› ;
       layers = <0 NAV>;
     };
-    combo_esc {
+    combo_tab {
       timeout-ms = <25>;
-      key-positions = <26 27 28>; // [ k h , . ^ ]
-      bindings = <&kp ESC>; //           └─┴─┴─────› esc
+      key-positions = <26 28>; // [ k h , . ^ ]
+      bindings = <&kp TAB>; //        └───┴─────› tab
       layers = <0 NAV>;
     };
   }; // }}}
