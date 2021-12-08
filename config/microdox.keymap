@@ -65,31 +65,31 @@
 
   combos { // {{{
     compatible = "zmk,combos";
-    combo_quot2 {
+    combo_k_h {
       timeout-ms = <25>;
       key-positions = <25 26>; // [ k h , . ^ ]
       bindings = <&kp QUOT>; //     └─┴─────────› '
       layers = <0 NAV>;
     };
-    combo_ret {
+    combo_h_comma {
       timeout-ms = <25>;
       key-positions = <26 27>; // [ k h , . ^ ]
       bindings = <&kp RET>; //        └─┴───────› enter
       layers = <0 NAV>;
     };
-    combo_esc {
+    combo_comma_dot {
       timeout-ms = <25>;
       key-positions = <27 28>; // [ k h , . ^ ]
       bindings = <&kp ESC>; //          └─┴─────› esc
       layers = <0 NAV>;
     };
-    combo_semi {
+    combo_dot_ctrl {
       timeout-ms = <25>;
       key-positions = <28 29>; // [ k h , . ^ ]
       bindings = <&kp SEMI>; //           └─┴───› ;
       layers = <0 NAV>;
     };
-    combo_tab {
+    combo_h_dot {
       timeout-ms = <25>;
       key-positions = <26 28>; // [ k h , . ^ ]
       bindings = <&kp TAB>; //        └───┴─────› tab
