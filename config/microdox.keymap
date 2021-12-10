@@ -68,7 +68,7 @@
     combo_k_h {
       timeout-ms = <25>;
       key-positions = <25 26>; // [ k h , . ^ ]
-      bindings = <&kp QUOT>; //     └─┴─────────› '
+      bindings = <&kp TAB>; //      └─┴─────────› tab
       layers = <0 NAV>;
     };
     combo_h_comma {
@@ -80,7 +80,7 @@
     combo_comma_dot {
       timeout-ms = <25>;
       key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp TAB>; //          └─┴─────› tab
+      bindings = <&kp QUOT>; //         └─┴─────› '
       layers = <0 NAV>;
     };
     combo_dot_ctrl {
@@ -109,7 +109,7 @@
       //         │ ⌘   Sym ⇧   │ ␣   Nav ⌥   │
       //         └─────────────┴─────────────┘ 
       bindings = <
-        &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &kp BSPC
+        &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &mbspc
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M     &kp N     &kp E     &kp I     &kp O
         &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
                               &kp LGUI  &mo SYM   &kp LSHFT   &kp SPACE &mo NAV   &kp RALT
