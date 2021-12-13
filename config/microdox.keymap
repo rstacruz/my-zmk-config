@@ -68,7 +68,7 @@
     combo_k_h {
       timeout-ms = <25>;
       key-positions = <25 26>; // [ k h , . ^ ]
-      bindings = <&kp SEMI>; //     └─┴─────────› ;
+      bindings = <&kp QUOT>; //     └─┴─────────› '
       layers = <0 NAV>;
     };
     combo_h_comma {
