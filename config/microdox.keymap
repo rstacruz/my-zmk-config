@@ -204,9 +204,9 @@
     fvbase_layer { // FrogV base {{{
       // Base:                   Flip:                   Nav:                   
       // ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ 
-      // │ N/s c   n   i   g   │ │ q   w   m   j   k   │ │ .   p↑  ▲   p↓  ⌫   │ 
-      // │ ●   t   h   e   o   │ │ .   p   l   x   ⌫   │ │ .   ◀   ▼   ▶   ↵   │
-      // │ S/f d   r   a   u   │ │ .   b   v   y   z   │ │ .   hom end ⇥   esc │
+      // │Ns   c   n   i   g   │ │ q   w   m   j   k   │ │ ░░  p↑  ▲   p↓  ⌫   │ 
+      // │ ●   t   h   e   o   │ │ ░░  p   l   x   ↑   │ │ .   ◀   ▼   ▶   ↵   │
+      // │Sf   d   r   a   u   │ │ .   b   v   y   z   │ │ .   hom end ⇥   esc │
       // └───────┐ ctl num ␣   │ └───────┐ ctl gui ↑   │ └───────┐ ctl gui ↑   │ 
       //         └─────────────┘         └─────────────┘         └─────────────┘ 
       bindings = <
@@ -220,7 +220,7 @@
     fvflip_layer { // FrogV flip
       bindings = <
         &kp Q      &kp W     &kp M     &kp J     &kp K       &trans    &trans    &trans    &trans    &trans
-        &trans     &kp P     &kp L     &kp X     &kp BSPC    &trans    &trans    &trans    &trans    &trans
+        &trans     &kp P     &kp L     &kp X     &sk LSFT    &trans    &trans    &trans    &trans    &trans
         &kp Q      &kp B     &kp V     &kp Y     &kp Z       &trans    &trans    &trans    &trans    &trans
                              &kp LCTL  &kp LGUI  &kp LSFT    &trans    &trans    &trans
       >;
@@ -241,7 +241,7 @@
       // │ .   1   2   3       │ │     !   [   ]   \   │
       // │ ↑   4   5   6   gui │ │     '   =   -   /   │
       // │ ext 7   8   9   0   │ │     ;   ,   .   '   │
-      // └───────┐ cmd .   ctl │ └───────┐         ↑   │
+      // └───────┐ alt .   ctl │ └───────┐         ↑   │
       //         └─────────────┘         └─────────────┘
       bindings = <
         &none       &kp N1    &kp N2    &kp N3     &none        &trans    &trans    &trans    &trans    &trans
