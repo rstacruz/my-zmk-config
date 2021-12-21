@@ -87,20 +87,18 @@
     combo_comma_dot {
       timeout-ms = <25>;
       key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp MINUS>; //        └─┴─────› -
-      layers = <0 NAV>;
-    };
-    combo_dot_ctrl {
-      timeout-ms = <25>;
-      key-positions = <28 29>; // [ k h , . ^ ]
-      bindings = <&kp TAB>; //            └─┴───› tab
-      layers = <0 NAV>;
+      bindings = <&kp TAB>; //          └─┴─────› tab
     };
     combo_h_dot {
       timeout-ms = <25>;
       key-positions = <26 28>; // [ k h , . ^ ]
       bindings = <&kp ESC>; //        └───┴─────› esc
       layers = <0 NAV>;
+    };
+    combo_k_comma {
+      timeout-ms = <25>;
+      key-positions = <25 27>; // [ k h , . ^ ]
+      bindings = <&kp UNDER>; //    └───┴───────› _
     };
   }; // }}}
 
