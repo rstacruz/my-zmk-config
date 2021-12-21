@@ -4,9 +4,9 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
 
-#define NAV    1
-#define HEX    2
-#define SYM    3
+#define SYM    1
+#define NAV    2
+#define HEX    3
 #define FUN    4
 #define ADJ    5
 #define FVBASE 6
@@ -54,6 +54,13 @@
       bindings = <&kp DOT>, <&kp SLASH>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+    mspace: mod_morph_space {
+      compatible = "zmk,behavior-mod-morph";
+      label = "MOD_MORPH_SPACE";
+      #binding-cells = <0>;
+      bindings = <&kp SPACE>, <&lt NAV SPACE>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
     mbspc: mod_morph_bspc {
       compatible = "zmk,behavior-mod-morph";
       label = "MOD_MORPH_BSPC";
@@ -80,7 +87,7 @@
     combo_comma_dot {
       timeout-ms = <25>;
       key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp QUOT>; //         └─┴─────› '
+      bindings = <&kp MINUS>; //        └─┴─────› -
       layers = <0 NAV>;
     };
     combo_dot_ctrl {
@@ -112,23 +119,39 @@
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &mbspc
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M     &kp N     &kp E     &kp I     &kp O
         &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
-                              &kp LGUI  &mo SYM   &kp LSHFT   &kp SPACE &mo NAV   &kp RALT
+                              &kp LGUI  &mo SYM   &kp LSHFT   &mspace   &mo NAV   &kp RALT
+      >;
+    }; // }}}
+
+    sym_layer { // Symbols {{{
+      // ┌─────────────────────┬─────────────────────┐
+      // │ '   "   ^   ?   `   │ [   <   =   >   ]   │
+      // │ !   @   #   $   %   │ {   (   :   )   }   │
+      // │ \   ~   |   &   ;   │ /   *   -   +   _   │
+      // └─────────────────────┴─────────────────────┘
+      //         │         Adj │     Fn      │
+      //         └─────────────┴─────────────┘
+      bindings = <
+        &kp QUOT  &kp DQT   &kp CARET &kp QMARK &kp GRAVE   &kp LBKT      &kp LT    &kp EQUAL &kp GT    &kp RBKT
+        &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
+        &kp BSLH  &kp TILDE &kp PIPE  &kp AMPS  &kp SEMI    &kp SLASH     &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
+                            &trans    &mo FUN   &mo ADJ     &lt NAV SPACE &mo FUN   &trans
       >;
     }; // }}}
 
     nav_layer { // Navigation {{{
       // ┌─────────────────────┬─────────────────────┐
-      // │ ^   ⌘   ⇤   ⇥   ⌥   │ p↑  hom ▲   end ⌫   │
-      // │ 1   2   3   4   5   │ p↓  ◀   ▼   ▶   ↵   │
-      // │ 6   7   8   9   0   │ esc '   ,   .   del │
+      // │ ^   ⌘   ⇤   ⇥   ⌥   │     hom ▲   end ⌫   │
+      // │ 1   2   3   4   5   │     ◀   ▼   ▶   ↵   │
+      // │ 6   7   8   9   0   │ esc p↑  p↓  .   del │
       // └─────────────────────┴─────────────────────┘
       //         │     Fn      │     Fn      │
       //         └─────────────┴─────────────┘ 
       bindings = <
-        &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP  &kp HOME  &kp UP    &kp END   &lt HEX BSPC
-        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp PGDN  &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
-        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC   &kp QUOT  &kp COMMA &kp DOT   &th LCTL DEL
-                            &trans    &mo FUN   &trans       &trans    &mo FUN   &trans
+        &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP      &kp HOME  &kp UP    &kp END   &lt HEX BSPC
+        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp PGDN      &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
+        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC       &kp PGUP  &kp PGDN  &kp DOT   &th LCTL DEL
+                            &trans    &mo FUN   &trans       &lt NAV SPACE &mo FUN   &trans
       >;
     }; // }}}
 
@@ -145,22 +168,6 @@
         &kp C     &kp D     &kp N4    &kp N5    &kp N6       &kp HASH  &kp COLON &none     &none     &none
         &kp E     &kp F     &kp N7    &kp N8    &kp N9       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &none
                             &kp COMMA &kp DOT   &kp N0       &kp SPC   &kp RET   &none
-      >;
-    }; // }}}
-
-    sym_layer { // Symbols {{{
-      // ┌─────────────────────┬─────────────────────┐
-      // │ '   "   ^   ?   `   │ [   <   =   >   ]   │
-      // │ !   @   #   $   %   │ {   (   :   )   }   │
-      // │ \   ~   |   &   ;   │ /   *   -   +   _   │
-      // └─────────────────────┴─────────────────────┘
-      //         │         Adj │     Fn      │
-      //         └─────────────┴─────────────┘
-      bindings = <
-        &kp QUOT  &kp DQT   &kp CARET &kp QMARK &kp GRAVE   &kp LBKT  &kp LT    &kp EQUAL &kp GT    &kp RBKT
-        &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT   &kp LBRC  &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
-        &kp BSLH  &kp TILDE &kp PIPE  &kp AMPS  &kp SEMI    &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
-                            &trans    &mo FUN   &mo ADJ     &trans    &mo FUN   &trans
       >;
     }; // }}}
 
