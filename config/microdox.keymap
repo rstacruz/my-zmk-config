@@ -155,17 +155,17 @@
 
     hex_layer { // Numeric input (southpaw) {{{
       // ┌─────────────────────┬─────────────────────┐
-      // │     +   -   *   /   │ A   B   C   #   ▓▓  │
-      // │ 1   2   3   4   5   │ D   E   F   :       │
-      // │ 6   7   8   9   0   │         ,   .       │
+      // │     +   -   *   /   │ A   B   C   ⌫   ▓▓  │
+      // │ 1   2   3   4   5   │ D   E   F   ↵       │
+      // │ 6   7   8   9   0   │ #   :   ,   .       │
       // └─────────────────────┴─────────────────────┘
-      //         │ ,   .   0   │ ␣   ⌫   ‹┘  │
+      //         │         0   │ ␣       ‹┘  │
       //         └─────────────┴─────────────┘
       bindings = <
-        &none     &kp PLUS  &kp MINUS &kp STAR  &kp SLASH    &kp A     &kp B     &kp C     &kp HASH  &none
-        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp D     &kp E     &kp F     &kp COLON &none
-        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp SLASH &kp STAR  &kp COMMA &kp DOT   &none
-                            &kp COMMA &kp DOT   &kp N0       &kp SPC   &kp BSPC  &kp RET
+        &none     &kp PLUS  &kp MINUS &kp STAR  &kp SLASH    &kp A     &kp B     &kp C     &kp BSPC  &none
+        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp D     &kp E     &kp F     &kp RET   &none
+        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp HASH  &kp COLON &kp COMMA &kp DOT   &none
+                            &kp COMMA &kp DOT   &kp N0       &kp SPC   &none     &none
 
       >;
     }; // }}}
