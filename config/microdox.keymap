@@ -155,17 +155,17 @@
 
     hex_layer { // Numeric input (southpaw) {{{
       // ┌─────────────────────┬─────────────────────┐
-      // │ a   b ┆ 1   2   3   │ ⌫       ,   .   ▓▓  │
-      // │ c   d ┆ 4   5   6   │ #   :               │
-      // │ e   f ┆ 7   8   9   │ /   *   -   +       │
+      // │         1   2   3   │ A   B   C   #   ▓▓  │
+      // │         4   5   6   │ D   E   F   :       │
+      // │         7   8   9   │ /   *   -   +       │
       // └─────────────────────┴─────────────────────┘
-      //         │ ,   .   0   │ ␣           │
-      //         └─────────────┴─────────────┘ 
+      //         │ ,   .   0   │ ␣   ⌫   ‹┘  │
+      //         └─────────────┴─────────────┘
       bindings = <
-        &kp A     &kp B     &kp N1    &kp N2    &kp N3       &kp BSPC  &kp BSPC  &kp COMMA &kp DOT   &none
-        &kp C     &kp D     &kp N4    &kp N5    &kp N6       &kp HASH  &kp COLON &none     &none     &none
-        &kp E     &kp F     &kp N7    &kp N8    &kp N9       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &none
-                            &kp COMMA &kp DOT   &kp N0       &kp SPC   &kp RET   &none
+        &none     &none     &kp N1    &kp N2    &kp N3       &kp A     &kp B     &kp C     &kp HASH  &none
+        &none     &none     &kp N4    &kp N5    &kp N6       &kp D     &kp E     &kp F     &kp COLON &none
+        &none     &none     &kp N7    &kp N8    &kp N9       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &none
+                            &kp COMMA &kp DOT   &kp N0       &kp SPC   &kp BSPC  &kp RET
       >;
     }; // }}}
 
