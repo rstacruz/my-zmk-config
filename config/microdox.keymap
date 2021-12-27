@@ -21,7 +21,6 @@
 #define PTAB LC(PGUP) /* Previous tab */
 #define SFTAB LS(TAB) /* Shift-tab */
 
-
 / {
   behaviors { // {{{
     hm: homerow_mods {
@@ -141,14 +140,14 @@
       // ┌─────────────────────┬─────────────────────┐
       // │ ^   ⌘   ⇤   ⇥   ⌥   │     hom ▲   end ⌫   │
       // │ 1   2   3   4   5   │     ◀   ▼   ▶   ↵   │
-      // │ 6   7   8   9   0   │ esc p↑  p↓  .   del │
+      // │ 6   7   8   9   0   │ esc t↑  t↓  .   del │
       // └─────────────────────┴─────────────────────┘
       //         │     Fn      │     Fn      │
       //         └─────────────┴─────────────┘ 
       bindings = <
         &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP      &kp HOME  &kp UP    &kp END   &lt HEX BSPC
         &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp PGDN      &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
-        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC       &kp PGUP  &kp PGDN  &kp DOT   &th LCTL DEL
+        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC       &kp PTAB  &kp NTAB  &kp DOT   &th LCTL DEL
                             &trans    &mo FUN   &trans       &lt NAV SPACE &mo FUN   &trans
       >;
     }; // }}}
