@@ -88,7 +88,7 @@
     combo_comma_dot {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp TAB>; //          └─┴─────› tab
+      bindings = <&kp PGDN>; //         └─┴─────› pgdn
     };
     combo_h_dot {
       timeout-ms = <COMBO_TIMEOUT>;
@@ -96,23 +96,16 @@
       bindings = <&kp ESC>; //        └───┴─────› esc
       layers = <0 NAV>;
     };
-    combo_k_comma {
+    combo_h_comma_dot {
       timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <25 27>; // [ k h , . ^ ]
-      bindings = <&kp UNDER>; //    └───┴───────› _
+      key-positions = <26 27 28>; // [ k h , . ^ ]
+      bindings = <&kp PGUP>; //          └─┴─┴─────› pgup
     };
-    combo_home_up {
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <6 7>;
-      bindings = <&kp PGUP>;
-      layers = <NAV>;
-    }
-    combo_left_down {
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <16 17>;
-      bindings = <&kp PGDN>;
-      layers = <NAV>;
-    }
+    /* combo_k_comma { */
+    /*   timeout-ms = <COMBO_TIMEOUT>; */
+    /*   key-positions = <25 27>; // [ k h , . ^ ] */
+    /*   bindings = <&kp PGUP>; //     └───┴───────› pgup */
+    /* }; */
   }; // }}}
 
   keymap {
@@ -140,13 +133,13 @@
       // │ !   @   #   $   %   │ {   (   :   )   }   │
       // │ \   ~   |   &   ;   │ /   *   -   +   _   │
       // └─────────────────────┴─────────────────────┘
-      //         │         Adj │     Fn      │
+      //         │         Adj │     Hex     │
       //         └─────────────┴─────────────┘
       bindings = <
         &kp QUOT  &kp DQT   &kp CARET &kp QMARK &kp GRAVE   &kp LBKT      &kp LT    &kp EQUAL &kp GT    &kp RBKT
         &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
         &kp BSLH  &kp TILDE &kp PIPE  &kp AMPS  &kp SEMI    &kp SLASH     &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
-                            &trans    &mo FUN   &mo ADJ     &lt NAV SPACE &mo FUN   &trans
+                            &trans    &mo FUN   &mo ADJ     &lt NAV SPACE &mo HEX   &trans
       >;
     }; // }}}
 
@@ -168,17 +161,17 @@
 
     hex_layer { // Numeric input (southpaw) {{{
       // ┌─────────────────────┬─────────────────────┐
-      // │     +   -   *   /   │ A   B   C   ⌫   ▓▓  │
+      // │     ,   .   :   #   │ A   B   C   ⌫   ▓▓  │
       // │ 1   2   3   4   5   │ D   E   F   ↵       │
-      // │ 6   7   8   9   0   │ #   :   ,   .       │
+      // │ 6   7   8   9   0   │ /   *   -   +       │
       // └─────────────────────┴─────────────────────┘
-      //         │         0   │ ␣       ‹┘  │
+      //         │         ␣   │ ␣           │
       //         └─────────────┴─────────────┘
       bindings = <
-        &none     &kp PLUS  &kp MINUS &kp STAR  &kp SLASH    &kp A     &kp B     &kp C     &kp BSPC  &none
+        &none     &kp COMMA &kp DOT   &kp COLON &kp HASH     &kp A     &kp B     &kp C     &kp BSPC  &none
         &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp D     &kp E     &kp F     &kp RET   &none
-        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp HASH  &kp COLON &kp COMMA &kp DOT   &none
-                            &kp COMMA &kp DOT   &kp N0       &kp SPC   &none     &none
+        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &none
+                            &none     &none     &kp SPC      &kp SPC   &none     &none
 
       >;
     }; // }}}
@@ -187,7 +180,7 @@
       // ┌─────────────────────┬─────────────────────┐
       // │ f11 f12 .   .   .   │ .   .   .   .   b⁺  │
       // │ f1  f2  f3  f4  f5  │ .   .   .   .   b⁻  │
-      // │ f6  f7  f8  f9  f6  │ v⁻  v⁺  ply nxt .   │
+      // │ f6  f7  f8  f9  f10 │ v⁻  v⁺  ply nxt .   │
       // └─────────────────────┴─────────────────────┘
       bindings = <
         &kp F11   &kp F12   &none     &none     &none       &none        &none        &none      &none      &kp C_BRI_UP
