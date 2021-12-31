@@ -21,6 +21,8 @@
 #define PTAB LC(PGUP) /* Previous tab */
 #define SFTAB LS(TAB) /* Shift-tab */
 
+#define COMBO_TIMEOUT 25
+
 / {
   behaviors { // {{{
     hm: homerow_mods {
@@ -72,33 +74,45 @@
   combos { // {{{
     compatible = "zmk,combos";
     combo_k_h {
-      timeout-ms = <25>;
+      timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <25 26>; // [ k h , . ^ ]
       bindings = <&kp QUOT>; //     └─┴─────────› '
       layers = <0 NAV>;
     };
     combo_h_comma {
-      timeout-ms = <25>;
+      timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <26 27>; // [ k h , . ^ ]
       bindings = <&kp RET>; //        └─┴───────› enter
       layers = <0 NAV>;
     };
     combo_comma_dot {
-      timeout-ms = <25>;
+      timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <27 28>; // [ k h , . ^ ]
       bindings = <&kp TAB>; //          └─┴─────› tab
     };
     combo_h_dot {
-      timeout-ms = <25>;
+      timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <26 28>; // [ k h , . ^ ]
       bindings = <&kp ESC>; //        └───┴─────› esc
       layers = <0 NAV>;
     };
     combo_k_comma {
-      timeout-ms = <25>;
+      timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <25 27>; // [ k h , . ^ ]
       bindings = <&kp UNDER>; //    └───┴───────› _
     };
+    combo_home_up {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <6 7>;
+      bindings = <&kp PGUP>;
+      layers = <NAV>;
+    }
+    combo_left_down {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <16 17>;
+      bindings = <&kp PGDN>;
+      layers = <NAV>;
+    }
   }; // }}}
 
   keymap {
