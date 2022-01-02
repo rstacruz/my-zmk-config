@@ -149,7 +149,7 @@
       // │ 1   2   3   4   5   │     ◀   ▼   ▶   ↵   │
       // │ 6   7   8   9   0   │ esc t↑  t↓  .   del │
       // └─────────────────────┴─────────────────────┘
-      //         │     Fn      │     Fn      │
+      //         │     Fn      │             │
       //         └─────────────┴─────────────┘ 
       bindings = <
         &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP      &kp HOME  &kp UP    &kp END   &lt HEX BSPC
@@ -161,16 +161,16 @@
 
     hex_layer { // Numeric input (southpaw) {{{
       // ┌─────────────────────┬─────────────────────┐
-      // │     ,   .   :   #   │ A   B   C   ⌫   ▓▓  │
-      // │ 1   2   3   4   5   │ D   E   F   ↵       │
+      // │     ,   .   :   #   │ ,   A   B   C   ⌫   │
+      // │ 1   2   3   4   5   │ .   D   E   F   ↵   │
       // │ 6   7   8   9   0   │ /   *   -   +       │
       // └─────────────────────┴─────────────────────┘
-      //         │         ␣   │ ␣           │
+      //         │         ␣   │ ␣   ▓▓      │
       //         └─────────────┴─────────────┘
       bindings = <
-        &none     &kp COMMA &kp DOT   &kp COLON &kp HASH     &kp A     &kp B     &kp C     &kp BSPC  &none
-        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp D     &kp E     &kp F     &kp RET   &none
-        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &none
+        &none     &kp COMMA &kp DOT   &kp COLON &kp HASH     &kp COMMA &kp A     &kp B     &kp C     &kp BSPC
+        &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_N4 &kp KP_N5    &kp DOT   &kp D     &kp E     &kp F     &kp RET
+        &kp KP_N6 &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_N0    &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &kp COLN
                             &none     &none     &kp SPC      &kp SPC   &none     &none
 
       >;
