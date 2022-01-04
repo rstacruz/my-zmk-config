@@ -55,13 +55,6 @@
       bindings = <&kp DOT>, <&kp SLASH>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
-    mspace: mod_morph_space {
-      compatible = "zmk,behavior-mod-morph";
-      label = "MOD_MORPH_SPACE";
-      #binding-cells = <0>;
-      bindings = <&kp SPACE>, <&lt NAV SPACE>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
     mbspc: mod_morph_bspc {
       compatible = "zmk,behavior-mod-morph";
       label = "MOD_MORPH_BSPC";
@@ -123,7 +116,7 @@
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &mbspc
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M     &kp N     &kp E     &kp I     &kp O
         &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
-                              &kp LGUI  &mo SYM   &kp LSHFT   &mspace   &mo NAV   &kp RALT
+                              &kp LGUI  &mo SYM   &kp LSHFT   &kp SPACE &mo NAV   &kp RALT
       >;
     }; // }}}
 
