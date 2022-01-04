@@ -169,8 +169,8 @@
       //         └─────────────┴─────────────┘
       bindings = <
         &none     &kp COMMA &kp DOT   &kp COLON &kp HASH     &kp COMMA &kp A     &kp B     &kp C     &kp BSPC
-        &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_N4 &kp KP_N5    &kp DOT   &kp D     &kp E     &kp F     &kp RET
-        &kp KP_N6 &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_N0    &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &kp COLN
+        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp DOT   &kp D     &kp E     &kp F     &kp RET
+        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &kp COLN
                             &none     &none     &kp SPC      &kp SPC   &none     &none
       >;
     }; // }}}
