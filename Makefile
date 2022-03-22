@@ -18,7 +18,8 @@ default:
 	@grep -E '^[a-zA-Z_-].*?: .*?## .*$$' Makefile | sed 's#\\:#:#g' | awk 'BEGIN {FS = ": .*?## "}; {printf "\033[36m  %-20s\033[0m %s\n", $$1, $$2}'
 	@echo
 
-build: build/${shield_l}_${board}.uf2 ## Build the firmware [alias: b]
+build: ${file_r} ## Build the firmware [alias: b]
+build-left: ${file_l} ## Build the firmware [alias: bl]
 
 flash-left: ${file_l} ## Flash left [alias: l]
 	@sudo bash flash.sh --file ${file_l}
@@ -30,12 +31,14 @@ clean: ## Clean cache to rebuild from scratch
 	sudo rm -rf .cache build/*.uf2
 
 ${file_l}: config/*
-	bash build.sh --board ${board} --left ${shield_l} --right ${shield_r}
+	bash build.sh --board ${board} --left ${shield_l}
 
-${file_r}: ${file_l}
+${file_r}: config/*
+	bash build.sh --board ${board} --left ${shield_l} --right ${shield_r}
 
 b: build
 l: flash-left
 r: flash-right
+bl: build-left
 
 .PHONY: build b clean c flash-left l flash-right r

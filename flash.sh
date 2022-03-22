@@ -60,7 +60,9 @@ main() {
 
   if [[ -d /mnt/wsl ]]; then
     # WSL
-    flash-by-cp "/mnt/e" "$file"
+    # flash-by-cp "/mnt/e" "$file"
+    echo '-- Sorry, no WSL support yet :('
+    exit 1
   elif [[ -d /dev/disk/by-label ]]; then
     # Linux
     flash-by-mount "/dev/disk/by-label/$label" "$file"

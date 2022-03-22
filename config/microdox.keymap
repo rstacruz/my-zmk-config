@@ -62,6 +62,13 @@
       bindings = <&kp BSPC>, <&kp N1>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+		tdsft: tap_dance_0 {
+      compatible = "zmk,behavior-tap-dance";
+      label = "TAP_DANCE_0";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&kp LSFT>, <&kp LC(LGUI)>;
+    };
   }; // }}}
 
   combos { // {{{
@@ -81,7 +88,7 @@
     combo_comma_dot {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp LC(TAB)>; //      └─┴─────› alt-tab
+      bindings = <&kp LA(TAB)>; //      └─┴─────› alt-tab
     };
     combo_h_dot {
       timeout-ms = <COMBO_TIMEOUT>;
@@ -106,7 +113,7 @@
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &mbspc
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M     &kp N     &kp E     &kp I     &kp O
         &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
-                              &kp LGUI  &mo SYM   &kp LSHFT   &kp SPACE &mo NAV   &kp LALT
+                              &kp LGUI  &mo SYM   &tdsft      &kp SPACE &mo NAV   &kp LALT
       >;
     }; // }}}
 
@@ -173,7 +180,7 @@
     }; // }}}
 
     // ┌─────────────────────┬─────────────────────┐
-    // │ res .   .   .   clr │ p↑  hom ▲   end res │
+    // │ boot.   .   .   clr │ p↑  hom ▲   end boot│
     // │ .   .   b1  b2  usb │ p↓  ◀   ▼   ▶   ent │
     // │ loc .   b3  b4  bt  │ b1  b2  b3  b4  boot│
     // └─────────────────────┴─────────────────────┘
@@ -181,7 +188,7 @@
     //         └─────────────┴─────────────┘
     adj_layer { // Adjust {{{
       bindings = <
-        &reset       &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &reset
+        &bootloader  &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &bootloader
         &none        &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
         &tog LOCK    &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bootloader
                                   &trans       &tog FVBASE  &none          &out OUT_TOG &out OUT_BLE &out OUT_USB
