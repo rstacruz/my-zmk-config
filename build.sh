@@ -4,6 +4,9 @@
 #
 set -eou pipefail
 
+# https://hub.docker.com/r/zmkfirmware/zmk-build-arm
+ZMK_IMAGE="zmkfirmware/zmk-build-arm:2.5-branch"
+
 main() {
   local board='' shield_left='' shield_right='' GID
   GID="$(id -g)"
@@ -28,7 +31,7 @@ main() {
     -v "$(pwd)/.cache:/keeb" \
     -v "$(pwd)/config:/keeb/config:ro" \
     -v "$(pwd)/build:/build" \
-    zmkfirmware/zmk-build-arm:2.5 sh -c "
+    "$ZMK_IMAGE" sh -c "
       cd /keeb
 
       if [ ! -d .west ]; then
@@ -47,6 +50,7 @@ main() {
         -DZMK_CONFIG=/keeb/config
       cp /keeb/build/zephyr/zmk.uf2 /build/${shield_left}_${board}.uf2.out
       chown $UID:$GID /build/${shield_left}_${board}.uf2.out
+      chown $UID:$GID /build
 
       echo 'Building right'
       west build --pristine -b $board zmk/app -- \

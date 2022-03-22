@@ -81,7 +81,7 @@
     combo_comma_dot {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <27 28>; // [ k h , . ^ ]
-      bindings = <&kp PGDN>; //         └─┴─────› pgdn
+      bindings = <&kp LC(TAB)>; //      └─┴─────› alt-tab
     };
     combo_h_dot {
       timeout-ms = <COMBO_TIMEOUT>;
@@ -89,45 +89,35 @@
       bindings = <&kp ESC>; //        └───┴─────› esc
       layers = <0 NAV>;
     };
-    combo_h_comma_dot {
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <26 27 28>; // [ k h , . ^ ]
-      bindings = <&kp PGUP>; //          └─┴─┴─────› pgup
-    };
-    /* combo_k_comma { */
-    /*   timeout-ms = <COMBO_TIMEOUT>; */
-    /*   key-positions = <25 27>; // [ k h , . ^ ] */
-    /*   bindings = <&kp PGUP>; //     └───┴───────› pgup */
-    /* }; */
   }; // }}}
 
   keymap {
     compatible = "zmk,keymap";
 
-    default_layer { // Base (Colemak-DH) {{{
-      // ┌─────────────────────┬─────────────────────┐
-      // │ q^  w   f   p   b   │ j   l   u   y   ⌫   │
-      // │ a   r   s   t   g   │ m   n   e   i   o   │
-      // │ z   x   c   d   v   │ k   h   ,_  .?  ↵   │
-      // └─────────────────────┴─────────────────────┘
-      //         │ ⌘   Sym ⇧   │ ␣   Nav ⌥   │
-      //         └─────────────┴─────────────┘ 
+    // ┌─────────────────────┬─────────────────────┐
+    // │ q^  w   f   p   b   │ j   l   u   y   bks │
+    // │ a   r   s   t   g   │ m   n   e   i   o   │
+    // │ z   x   c   d   v   │ k   h   ,_  .?  ent │
+    // └─────────────────────┴─────────────────────┘
+    //         │ gui SYM ↑   │ ──  NAV alt │
+    //         └─────────────┴─────────────┘
+    default_layer { // Base (Colemak DH) {{{
       bindings = <
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &mbspc
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M     &kp N     &kp E     &kp I     &kp O
         &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
-                              &kp LGUI  &mo SYM   &kp LSHFT   &kp SPACE &mo NAV   &kp RALT
+                              &kp LGUI  &mo SYM   &kp LSHFT   &kp SPACE &mo NAV   &kp LALT
       >;
     }; // }}}
 
+    // ┌─────────────────────┬─────────────────────┐
+    // │ '   "   ^   ?   `   │ [   <   =   >   ]   │
+    // │ !   @   #   $   %   │ {   (   :   )   }   │
+    // │ \   ~   |   &   ;   │ /   *   -   +   _   │
+    // └─────────────────────┴─────────────────────┘
+    //         │ ·   ·   ADJ │ ·   HEX  ·  │
+    //         └─────────────┴─────────────┘
     sym_layer { // Symbols {{{
-      // ┌─────────────────────┬─────────────────────┐
-      // │ '   "   ^   ?   `   │ [   <   =   >   ]   │
-      // │ !   @   #   $   %   │ {   (   :   )   }   │
-      // │ \   ~   |   &   ;   │ /   *   -   +   _   │
-      // └─────────────────────┴─────────────────────┘
-      //         │         Adj │     Hex     │
-      //         └─────────────┴─────────────┘
       bindings = <
         &kp QUOT  &kp DQT   &kp CARET &kp QMARK &kp GRAVE   &kp LBKT      &kp LT    &kp EQUAL &kp GT    &kp RBKT
         &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
@@ -136,14 +126,14 @@
       >;
     }; // }}}
 
+    // ┌─────────────────────┬─────────────────────┐
+    // │ ctl cmd ⇤   ⇥   opt │ p↑  hom ▲   end bks │
+    // │ 1   2   3   4   5   │ p↓  ◀   ▼   ▶   ent │
+    // │ 6   7   8   9   0   │ esc t‹  t›  .   del │
+    // └─────────────────────┴─────────────────────┘
+    //         │ ·   FN  ·   │ ·   ▓▓  ·   │
+    //         └─────────────┴─────────────┘
     nav_layer { // Navigation {{{
-      // ┌─────────────────────┬─────────────────────┐
-      // │ ^   ⌘   ⇤   ⇥   ⌥   │ p↑  hom ▲   end ⌫   │
-      // │ 1   2   3   4   5   │ p↓  ◀   ▼   ▶   ↵   │
-      // │ 6   7   8   9   0   │ esc t‹  t›  .   del │
-      // └─────────────────────┴─────────────────────┘
-      //         │     Fn      │             │
-      //         └─────────────┴─────────────┘ 
       bindings = <
         &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP      &kp HOME  &kp UP    &kp END   &lt HEX BSPC
         &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp PGDN      &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
@@ -152,14 +142,14 @@
       >;
     }; // }}}
 
-    hex_layer { // Numeric input (southpaw) {{{
-      // ┌─────────────────────┬─────────────────────┐
-      // │                 #   │ ,   A   B   C   ⌫   │
-      // │ 1   2   3   4   5   │ .   D   E   F   ↵   │
-      // │ 6   7   8   9   0   │ /   *   -   +   :   │
-      // └─────────────────────┴─────────────────────┘
-      //         │         ␣   │ ␣   ▓▓      │
-      //         └─────────────┴─────────────┘
+    // ┌─────────────────────┬─────────────────────┐
+    // │                 #   │ ,   A   B   C   bks │
+    // │ 1   2   3   4   5   │ .   D   E   F   ent │
+    // │ 6   7   8   9   0   │ /   *   -   +   :   │
+    // └─────────────────────┴─────────────────────┘
+    //         │ ·   ·   ──  │ ──  ▓▓  ·   │
+    //         └─────────────┴─────────────┘
+    hex_layer { // Hex input {{{
       bindings = <
         &none     &kp COMMA &kp DOT   &kp COLON &kp HASH     &kp COMMA &kp A     &kp B     &kp C     &kp BSPC
         &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp DOT   &kp D     &kp E     &kp F     &kp RET
@@ -168,44 +158,44 @@
       >;
     }; // }}}
 
+    // ┌─────────────────────┬─────────────────────┐
+    // │ f11 f12 .   .   .   │ .   .   .   .   b⁺  │
+    // │ f1  f2  f3  f4  f5  │ .   .   .   .   b⁻  │
+    // │ f6  f7  f8  f9  f10 │ v⁻  v⁺  ply nxt .   │
+    // └─────────────────────┴─────────────────────┘
     fun_layer { // Function {{{
-      // ┌─────────────────────┬─────────────────────┐
-      // │ f11 f12 .   .   .   │ .   .   .   .   b⁺  │
-      // │ f1  f2  f3  f4  f5  │ .   .   .   .   b⁻  │
-      // │ f6  f7  f8  f9  f10 │ v⁻  v⁺  ply nxt .   │
-      // └─────────────────────┴─────────────────────┘
       bindings = <
         &kp F11   &kp F12   &none     &none     &none       &none        &none        &none      &none      &kp C_BRI_UP
         &kp F1    &kp F2    &kp F3    &kp F4    &kp F5      &none        &none        &none      &none      &kp C_BRI_DN
-        &kp F6    &kp F7    &kp F8    &kp F9    &kp F10     &kp C_VOL_DN &kp C_VOL_UP &kp C_PLAY &kp C_NEXT &none       
-                            &trans    &trans    &trans      &trans       &trans       &trans    
+        &kp F6    &kp F7    &kp F8    &kp F9    &kp F10     &kp C_VOL_DN &kp C_VOL_UP &kp C_PLAY &kp C_NEXT &none
+                            &trans    &trans    &trans      &trans       &trans       &trans
       >;
     }; // }}}
 
+    // ┌─────────────────────┬─────────────────────┐
+    // │ res .   .   .   clr │ p↑  hom ▲   end res │
+    // │ .   .   b1  b2  usb │ p↓  ◀   ▼   ▶   ent │
+    // │ loc .   b3  b4  bt  │ b1  b2  b3  b4  boot│
+    // └─────────────────────┴─────────────────────┘
+    //         │ ·   FV  ▓▓  │ tog bt  usb │  Adjust
+    //         └─────────────┴─────────────┘
     adj_layer { // Adjust {{{
-      // ┌─────────────────────┬─────────────────────┐
-      // │ loc .   .   .   clr │ p↑  hom ▲   end .   │
-      // │ .   .   .   .   .   │ p↓  ◀   ▼   ▶   ent │
-      // │ .   .   .   .   .   │ b1  b2  b3  b4  boot│
-      // └─────────────────────┴─────────────────────┘
-      //         │ ·   Fv  .   │ tog bt  usb │
-      //         └─────────────┴─────────────┘
       bindings = <
-        &tog LOCK    &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &none
+        &reset       &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &reset
         &none        &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
-        &none        &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bootloader
+        &tog LOCK    &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bootloader
                                   &trans       &tog FVBASE  &none          &out OUT_TOG &out OUT_BLE &out OUT_USB
       >;
     }; // }}}
 
     fvbase_layer { // FrogV base {{{
-      // Base:                   Flip:                   Nav:                   
-      // ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐ 
-      // │Ns   c   n   i   g   │ │ q   w   m   j   k   │ │ ░░  p↑  ▲   p↓  ⌫   │ 
-      // │ ●   t   h   e   o   │ │ ░░  p   l   x   ↑   │ │ .   ◀   ▼   ▶   ↵   │
+      // Base:                   Flip:                   Nav:
+      // ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐
+      // │Ns   c   n   i   g   │ │ q   w   m   j   k   │ │ ░░  p↑  ▲   p↓  bks │
+      // │ ●   t   h   e   o   │ │ ░░  p   l   x   ↑   │ │ .   ◀   ▼   ▶   ent │
       // │Sf   d   r   a   u   │ │ .   b   v   y   z   │ │ .   hom end ⇥   esc │
-      // └───────┐ ctl num ␣   │ └───────┐ ctl gui ↑   │ └───────┐ ctl gui ↑   │ 
-      //         └─────────────┘         └─────────────┘         └─────────────┘ 
+      // └───────┐ ctl num spc │ └───────┐ ctl gui ↑   │ └───────┐ ctl gui ↑   │
+      //         └─────────────┘         └─────────────┘         └─────────────┘
       bindings = <
         &lt FVNAVI S &kp C     &kp N     &kp I      &kp G        &none       &none     &none     &none     &none
         &sl FVFLIP   &kp T     &kp H     &kp E      &kp O        &none       &none     &none     &none     &none
@@ -259,18 +249,18 @@
 
     lock_layer { // Lock {{{
       bindings = <
+        &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
+        &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
         &mo ULOC  &none     &none     &none     &none        &none     &none     &none     &none     &none
-        &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
-        &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
                             &none     &none     &mo ULOC     &none     &none     &none
       >;
     };
 
     unlock_layer { // Unlock
       bindings = <
+        &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
+        &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
         &tog LOCK &none     &none     &none     &none        &none     &none     &none     &none     &none
-        &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
-        &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
                             &none     &none     &tog LOCK    &none     &none     &none
       >;
     }; // }}}

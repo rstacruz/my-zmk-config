@@ -58,9 +58,14 @@ main() {
     exit 1
   fi
 
-  if [[ -d /dev/disk/by-label ]]; then
+  if [[ -d /mnt/wsl ]]; then
+    # WSL
+    flash-by-cp "/mnt/e" "$file"
+  elif [[ -d /dev/disk/by-label ]]; then
+    # Linux
     flash-by-mount "/dev/disk/by-label/$label" "$file"
   elif [[ -d /Volumes ]]; then
+    # MacOS
     flash-by-cp "/Volumes/$label" "$file"
   else
     echo '-- Sorry, your platform is unsupported'
