@@ -25,7 +25,7 @@
 
 / {
   behaviors { // {{{
-    hm: homerow_mods {
+    hm: homerow_mods { // Letter mods
       compatible = "zmk,behavior-hold-tap";
       label = "HOMEROW_MODS";
       #binding-cells = <2>;
@@ -33,7 +33,7 @@
       flavor = "tap-preferred";
       bindings = <&kp>, <&kp>;
     };
-    th: tap_hold {
+    th: tap_hold { // Other mods (enter)
       compatible = "zmk,behavior-hold-tap";
       label = "TAP_HOLD";
       #binding-cells = <2>;
@@ -96,6 +96,12 @@
       bindings = <&kp ESC>; //        └───┴─────› esc
       layers = <0 NAV>;
     };
+    combo_sft_spc {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <32 33>; // [ . . sft | spc . . ]
+      bindings = <&mo NAV>; //           └─────┴─› nav
+      layers = <0>;
+    };
   }; // }}}
 
   keymap {
@@ -104,7 +110,7 @@
     // ┌─────────────────────┬─────────────────────┐
     // │ q^  w   f   p   b   │ j   l   u   y   bks │
     // │ a   r   s   t   g   │ m   n   e   i   o   │
-    // │ z   x   c   d   v   │ k   h   ,_  .?  ent │
+    // │ z*  x   c   d   v   │ k   h   ,_  .?  ent^│
     // └─────────────────────┴─────────────────────┘
     //         │ gui SYM ↑   │ ──  NAV alt │
     //         └─────────────┴─────────────┘
@@ -112,7 +118,7 @@
       bindings = <
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J     &kp L     &kp U     &kp Y     &mbspc
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M     &kp N     &kp E     &kp I     &kp O
-        &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
+        &hm LGUI Z  &kp X     &kp C     &kp D     &kp V       &kp K     &kp H     &mcomma   &mdot     &th LCTL RET
                               &kp LGUI  &mo SYM   &tdsft      &kp SPACE &mo NAV   &kp LALT
       >;
     }; // }}}
