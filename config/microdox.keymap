@@ -187,16 +187,16 @@
 
     // ┌─────────────────────┬─────────────────────┐
     // │ boot.   .   .   clr │ p↑  hom ▲   end boot│
-    // │ .   .   b1  b2  usb │ p↓  ◀   ▼   ▶   ent │
-    // │ loc .   b3  b4  bt  │ b1  b2  b3  b4  boot│
+    // │ res .   b1  b2  usb │ p↓  ◀   ▼   ▶   ent │
+    // │ loc .   b3  b4  bt  │ b1  b2  b3  b4  res │
     // └─────────────────────┴─────────────────────┘
     //         │ ·   FV  ▓▓  │ tog bt  usb │  Adjust
     //         └─────────────┴─────────────┘
     adj_layer { // Adjust {{{
       bindings = <
         &bootloader  &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &bootloader
-        &none        &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
-        &tog LOCK    &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bootloader
+        &reset       &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
+        &tog LOCK    &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &reset
                                   &trans       &tog FVBASE  &none          &out OUT_TOG &out OUT_BLE &out OUT_USB
       >;
     }; // }}}
