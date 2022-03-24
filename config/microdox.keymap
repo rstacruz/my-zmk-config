@@ -96,12 +96,6 @@
       bindings = <&kp ESC>; //        └───┴─────› esc
       layers = <0 NAV>;
     };
-    combo_sft_spc {
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <32 33>; // [ . . sft | spc . . ]
-      bindings = <&mo NAV>; //           └─────┴─› nav
-      layers = <0>;
-    };
   }; // }}}
 
   keymap {
