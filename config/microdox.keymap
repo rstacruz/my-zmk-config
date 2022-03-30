@@ -198,9 +198,9 @@
     fvbase_layer { // FrogV base {{{
       // Base:                   Flip:                   Nav:
       // ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐
-      // │Ns   c   n   i   g   │ │ q   w   m   j   k   │ │ ░░  p↑  ▲   p↓  bks │
+      // │ s*  c   n   i   g   │ │ q   w   m   j   k   │ │ ░░  p↑  ▲   p↓  bks │
       // │ ●   t   h   e   o   │ │ ░░  p   l   x   ↑   │ │ .   ◀   ▼   ▶   ent │
-      // │Sf   d   r   a   u   │ │ .   b   v   y   z   │ │ .   hom end ⇥   esc │
+      // │ f*  d   r   a   u   │ │ .   b   v   y   z   │ │ .   hom end ⇥   esc │
       // └───────┐ ctl num spc │ └───────┐ ctl gui ↑   │ └───────┐ ctl gui ↑   │
       //         └─────────────┘         └─────────────┘         └─────────────┘
       bindings = <
