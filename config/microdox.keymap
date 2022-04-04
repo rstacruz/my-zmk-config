@@ -108,6 +108,12 @@
       bindings = <&kp LA(BSPC)>; //    └─┴─┴───────› alt-bsp
       layers = <0 NAV>;
     };
+    combo_k_h_comma_dot {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <25 26 27 28>; // [ k h , . ^ ]
+      bindings = <&tog FVBASE>; //        └─┴─┴─┴─────› frogv
+      layers = <0 NAV>;
+    };
   }; // }}}
 
   keymap {
@@ -116,32 +122,32 @@
     // ┌─────────────────────┐┌─────────────────────┐
     // │ q^  w   f   p   b   ││ j   l   u   y   bks │
     // │ a   r   s   t   g   ││ m   n   e   i   o   │
-    // │ z*  x   c   d   v   ││ k*  h   ,_  .?  ent^│
+    // │ z*  x   c   d   v   ││ kk  h   ,_  .?  ent^│
     // └─────────────────────┤├─────────────────────┘
     //         │ gui SYM ↑   ││ ──  NAV alt │
     //         └─────────────┘└─────────────┘
     default_layer { // Base (Colemak DH) {{{
       bindings = <
-        &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J      &kp L     &kp U     &kp Y     &mbspc
+        &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J      &kp L     &kp U     &kp Y     &kp BSPC
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M      &kp N     &kp E     &kp I     &kp O
-        &hm LGUI Z  &kp X     &kp C     &kp D     &kp V       &hm LGUI K &kp H     &mcomma   &mdot     &th LCTL RET
+        &hm LGUI Z  &kp X     &kp C     &kp D     &kp V       &kp K      &kp H     &mcomma   &mdot     &th LCTL RET
                               &kp LGUI  &mo SYM   &tdsft      &kp SPACE  &mo NAV   &kp LALT
       >;
     }; // }}}
 
     // ┌─────────────────────┐┌─────────────────────┐
     // │ '   "   ^   ?   `   ││ [   <   =   >   ]   │
-    // │ !   @   #   $   %   ││ {   (   :   )   }   │
-    // │ \   ~   |   &   ;   ││ /   *   -   +   _   │
+    // │ !*  @   #   $   %   ││ {   (   :   )   }   │
+    // │ \   ~   |   &*  ;   ││ /   *   -   +   _   │
     // └───────┐─────────────││─────────────┌───────┘
     //         │ ·   ·   ADJ ││ ·   HEX  ·  │
     //         └─────────────┘└─────────────┘
     sym_layer { // Symbols {{{
       bindings = <
-        &kp QUOT  &kp DQT   &kp CARET &kp QMARK &kp GRAVE   &kp LBKT      &kp LT    &kp EQUAL &kp GT    &kp RBKT
-        &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
-        &kp BSLH  &kp TILDE &kp PIPE  &kp AMPS  &kp SEMI    &kp SLASH     &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
-                            &trans    &mo FUN   &mo ADJ     &lt NAV SPACE &mo HEX   &trans
+        &kp QUOT          &kp DQT   &kp CARET &kp QMARK    &kp GRAVE   &kp LBKT      &kp LT    &kp EQUAL &kp GT    &kp RBKT
+        &hm LC(LGUI) EXCL &kp AT    &kp HASH  &kp DLLR     &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
+        &kp BSLH          &kp TILDE &kp PIPE  &lt NAV AMPS &kp SEMI    &kp SLASH     &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
+                                    &trans    &mo FUN      &mo ADJ     &lt NAV SPACE &mo HEX   &trans
       >;
     }; // }}}
 
@@ -162,17 +168,17 @@
     }; // }}}
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │                 #   ││ ,   A   B   C   bks │
-    // │ 1   2   3   4   5   ││ .   D   E   F   ent │
-    // │ 6   7   8   9   0   ││ /   *   -   +   :   │
+    // │                 #   ││ +   A   B   C   bks │
+    // │ 1   2   3   4   5   ││ -   D   E   F   ent │
+    // │ 6   7   8   9   0   ││ /   *   ,   .   :   │
     // └───────┐─────────────││─────────────┌───────┘
     //         │ ·   ·   ──  ││ ──  ▓▓  ·   │
     //         └─────────────┘└─────────────┘
     hex_layer { // Hex input {{{
       bindings = <
-        &none     &kp COMMA &kp DOT   &kp COLON &kp HASH     &kp COMMA &kp A     &kp B     &kp C     &kp BSPC
-        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp DOT   &kp D     &kp E     &kp F     &kp RET
-        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp SLASH &kp STAR  &kp MINUS &kp PLUS  &kp COLN
+        &none     &kp COMMA &kp DOT   &kp COLON &kp HASH     &kp PLUS  &kp A     &kp B     &kp C     &kp BSPC
+        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp MINUS &kp D     &kp E     &kp F     &kp RET
+        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp SLASH &kp STAR  &kp COMMA &kp DOT   &kp COLN
                             &none     &none     &kp SPC      &kp SPC   &none     &none
       >;
     }; // }}}
@@ -219,7 +225,7 @@
         &lt FVNAVI S &kp C     &kp N     &kp I      &kp G        &none       &none     &none     &none     &none
         &sl FVFLIP   &kp T     &kp H     &kp E      &kp O        &none       &none     &none     &none     &none
         &lt FVSYMB F &kp D     &kp R     &kp A      &kp U        &none       &none     &none     &none     &none
-                               &kp LCTL  &mo FVNUMP &kp SPACE    &tog FVBASE &none     &none
+                               &kp LCTL  &mo FVNUMP &kp SPACE    &tog FVBASE &none     &tog FVBASE
       >;
     };
 
