@@ -5,7 +5,7 @@
 set -eou pipefail
 
 # https://hub.docker.com/r/zmkfirmware/zmk-build-arm
-ZMK_IMAGE="zmkfirmware/zmk-build-arm:2.5-branch"
+ZMK_IMAGE="zmkfirmware/zmk-build-arm:stable"
 
 main() {
   local board='' shield_left='' shield_right='' script='' GID

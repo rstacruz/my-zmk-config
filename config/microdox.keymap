@@ -14,8 +14,11 @@
 #define FVNAVI 8
 #define FVNUMP 9
 #define FVSYMB 10
-#define LOCK   11
-#define ULOC   12
+#define GAME   11
+#define GAMEX  12
+#define GAMEY  13
+#define LOCK   14
+#define ULOC   15
 
 #define NTAB LC(PGDN) /* Next tab */
 #define PTAB LC(PGUP) /* Previous tab */
@@ -62,13 +65,13 @@
       bindings = <&kp BSPC>, <&kp N1>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
-		tdsft: tap_dance_0 {
-      compatible = "zmk,behavior-tap-dance";
-      label = "TAP_DANCE_0";
-      #binding-cells = <0>;
-      tapping-term-ms = <200>;
-      bindings = <&kp LSFT>, <&kp LC(LGUI)>;
-    };
+		// tdsft: tap_dance_0 {
+    //   compatible = "zmk,behavior-tap-dance";
+    //   label = "TAP_DANCE_0";
+    //   #binding-cells = <0>;
+    //   tapping-term-ms = <200>;
+    //   bindings = <&kp LSFT>, <&kp LC(LGUI)>;
+    // };
   }; // }}}
 
   combos { // {{{
@@ -131,7 +134,7 @@
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J      &kp L     &kp U     &kp Y     &kp BSPC
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M      &kp N     &kp E     &kp I     &kp O
         &hm LGUI Z  &kp X     &kp C     &kp D     &kp V       &kp K      &kp H     &mcomma   &mdot     &th LCTL RET
-                              &kp LGUI  &mo SYM   &tdsft      &kp SPACE  &mo NAV   &kp LALT
+                              &kp LGUI  &mo SYM   &kp LSFT    &kp SPACE  &mo NAV   &kp LALT
       >;
     }; // }}}
 
@@ -145,7 +148,7 @@
     sym_layer { // Symbols {{{
       bindings = <
         &kp QUOT          &kp DQT   &kp CARET &kp QMARK    &kp GRAVE   &kp LBKT      &kp LT    &kp EQUAL &kp GT    &kp RBKT
-        &hm LC(LGUI) EXCL &kp AT    &kp HASH  &kp DLLR     &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
+        &hm LC(LGUI) EXCL &kp AT    &kp HASH  &lt NAV DLLR &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
         &kp BSLH          &kp TILDE &kp PIPE  &lt NAV AMPS &kp SEMI    &kp SLASH     &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
                                     &trans    &mo FUN      &mo ADJ     &lt NAV SPACE &mo HEX   &trans
       >;
@@ -198,7 +201,7 @@
     }; // }}}
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │ boot.   .   .   clr ││ p↑  hom ▲   end boot│
+    // │ BL  gam .   .   clr ││ p↑  hom ▲   end BL  │
     // │ res .   b1  b2  usb ││ p↓  ◀   ▼   ▶   ent │
     // │ loc .   b3  b4  bt  ││ b1  b2  b3  b4  res │
     // └───────┐─────────────││─────────────┌───────┘
@@ -206,7 +209,7 @@
     //         └─────────────┘└─────────────┘
     adj_layer { // Adjust {{{
       bindings = <
-        &bootloader  &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &bootloader
+        &bootloader  &tog GAME    &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &bootloader
         &reset       &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
         &tog LOCK    &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &reset
                                   &trans       &tog FVBASE  &none          &out OUT_TOG &out OUT_BLE &out OUT_USB
@@ -271,6 +274,50 @@
                             &trans    &trans     &kp LSFT     &trans    &trans    &trans
       >;
     }; // }}}
+
+    // ┌─────────────────────┐ ┌─────────────────────┐
+    // │ q   w   e   r   tab │ │ y   u   i   o   p   │ Game
+    // │ a   s   d   f   sft │ │ t   j   k   l   ent │
+    // │ 1   2   3   4   ctl │ │ n   m           esc │
+    // └───────┐ alt XX  spc │ │ spc XX exit ┌───────┘
+    // ┌─────────────────────┐ ┌─────────────────────┐
+    // │ f1  f2  f3  f4  f5  │ │         ↑       bs  │ X
+    // │ 5   6   7   g   h   │ │     ←   ↓   →   ent │
+    // │ z   x   c   v   b   │ │                 esc │
+    // └───────┐         YY  │ │        exit ┌───────┘
+    // ┌─────────────────────┐ ┌─────────────────────┐
+    // │ y   u   i   o   p   │ │         ↑       bs  │ Y
+    // │ t   j   k   l   ent │ │     ←   ↓   →   ent │
+    // │ n   m   c   v   esc │ │                 esc │
+    // └───────┐             │ │        exit ┌───────┘
+    //         └─────────────┘ └─────────────┘
+
+    game_layer {
+      bindings = <
+        &kp Q     &kp W     &kp E     &kp R     &kp TAB      &kp Y     &kp U     &kp I     &kp O     &kp P
+        &kp A     &kp S     &kp D     &kp F     &kp LSFT     &kp T     &kp J     &kp K     &kp L     &kp RET
+        &kp N1    &kp N2    &kp N3    &kp N4    &kp LCTL     &kp N     &kp M     &none     &none     &kp ESC
+                            &kp LALT  &mo GAMEX &kp SPC      &kp SPC   &mo GAMEX &tog GAME
+      >;
+    };
+
+    game_x_layer {
+      bindings = <
+        &kp F1    &kp F2    &kp F3    &kp F4    &kp F5       &none     &none     &kp UP    &none     &kp BSPC
+        &kp N5    &kp N6    &kp N7    &kp G     &kp H        &none     &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
+        &kp Z     &kp X     &kp C     &kp V     &kp B        &none     &none     &none     &none     &kp ESC
+                            &none     &none     &mo GAMEY    &none     &none     &tog GAME
+      >;
+    };
+
+    game_y_layer {
+      bindings = <
+        &kp Y     &kp U     &kp I     &kp O     &kp P        &none     &none     &kp UP    &none     &kp BSPC
+        &kp T     &kp J     &kp K     &kp L     &kp RET      &none     &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
+        &kp N     &kp M     &kp COMMA &kp DOT   &kp ESC      &none     &none     &none     &none     &kp ESC
+                            &none     &none     &none        &none     &none     &tog GAME
+      >;
+    };
 
     lock_layer { // Lock {{{
       bindings = <
