@@ -125,7 +125,7 @@
     // ┌─────────────────────┐┌─────────────────────┐
     // │ q^  w   f   p   b   ││ j   l   u   y   bks │
     // │ a   r   s   t   g   ││ m   n   e   i   o   │
-    // │ z*  x   c   d   v   ││ kk  h   ,_  .?  ent^│
+    // │ z*  x   c   d   v   ││ k   h   ,_  .?  ent^│
     // └─────────────────────┤├─────────────────────┘
     //         │ gui SYM ↑   ││ ──  NAV alt │
     //         └─────────────┘└─────────────┘
@@ -155,7 +155,7 @@
     }; // }}}
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │ ctl cmd ⇤   ⇥   opt ││ p↑  hom ▲   end bks │
+    // │ ctl cmd ⇤   ⇥   opt ││ p↑  hom ▲   end cbs │
     // │ 1   2   3   4   5   ││ p↓  ◀   ▼   ▶   ent │
     // │ 6   7   8   9   0   ││ esc t‹  t›  .   del │
     // └───────┐─────────────││─────────────┌───────┘
@@ -163,7 +163,7 @@
     //         └─────────────┘└─────────────┘
     nav_layer { // Navigation {{{
       bindings = <
-        &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP      &kp HOME  &kp UP    &kp END   &lt HEX BSPC
+        &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP      &kp HOME  &kp UP    &kp END   &kp LC(BSPC)
         &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp PGDN      &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
         &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC       &kp PTAB  &kp NTAB  &kp DOT   &th LCTL DEL
                             &trans    &mo FUN   &trans       &lt NAV SPACE &mo FUN   &trans
