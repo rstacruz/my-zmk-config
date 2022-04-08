@@ -28,6 +28,7 @@ flash-right: ${file_r} ## Flash right [alias: r]
 	@sudo bash flash.sh --file ${file_r}
 
 clean: ## Clean cache to rebuild from scratch
+	docker image rm zmkfirmware/zmk-build-arm:stable || true
 	sudo rm -rf .cache build/*.uf2
 
 ${file_l}: config/*
