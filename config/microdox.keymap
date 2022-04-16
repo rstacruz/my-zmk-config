@@ -57,7 +57,6 @@
       #binding-cells = <0>;
       bindings = <&kp DOT>, <&kp QUOT>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
-
     };
     mbspc: mod_morph_bspc {
       compatible = "zmk,behavior-mod-morph";
@@ -93,6 +92,7 @@
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <27 28>; // [ k h , . ^ ]
       bindings = <&kp LA(TAB)>; //      └─┴─────› alt-tab
+      layers = <0 NAV>;
     };
     combo_h_dot {
       timeout-ms = <COMBO_TIMEOUT>;
