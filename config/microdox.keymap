@@ -55,8 +55,9 @@
       compatible = "zmk,behavior-mod-morph";
       label = "MOD_MORPH_DOT";
       #binding-cells = <0>;
-      bindings = <&kp DOT>, <&kp SLASH>;
+      bindings = <&kp DOT>, <&kp QUOT>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
+
     };
     mbspc: mod_morph_bspc {
       compatible = "zmk,behavior-mod-morph";
@@ -155,18 +156,18 @@
     }; // }}}
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │ ctl cmd ⇤   ⇥   opt ││ p↑  hom ▲   end cbs │
-    // │ 1   2   3   4   5   ││ p↓  ◀   ▼   ▶   ent │
-    // │ 6   7   8   9   0   ││ t‹  t›  esc .   del │
+    // │ ctl cmd ⇤   ⇥   opt ││ ,   hom ▲   end cbs │
+    // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
+    // │ 6   7   8   9   0   ││     p↑  p↓  esc del │
     // └───────┐─────────────││─────────────┌───────┘
     //         │ ·   FN  ·   ││ ·   ▓▓  ·   │
     //         └─────────────┘└─────────────┘
     nav_layer { // Navigation {{{
       bindings = <
-        &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp PGUP      &kp HOME  &kp UP    &kp END   &kp LC(BSPC)
-        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp PGDN      &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
-        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC       &kp NTAB  &kp ESC   &kp DOT   &th LCTL DEL
-                            &trans    &mo FUN   &trans       &lt NAV SPACE &mo FUN   &trans
+        &kp LCTRL &kp LGUI  &kp SFTAB &kp TAB   &kp LALT     &kp COMMA &kp HOME  &kp UP    &kp END   &kp LC(BSPC)
+        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp DOT   &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
+        &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC   &kp PGUP  &kp PGDN  &kp ESC   &th LCTL DEL
+                            &trans    &mo FUN   &trans       &kp SPACE &mo FUN   &trans
       >;
     }; // }}}
 
