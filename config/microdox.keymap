@@ -27,7 +27,7 @@
 #define COMBO_TIMEOUT 30
 
 / {
-  behaviors { // {{{
+  behaviors {
     hm: homerow_mods { // Letter mods
       compatible = "zmk,behavior-hold-tap";
       label = "HOMEROW_MODS";
@@ -72,9 +72,9 @@
     //   tapping-term-ms = <200>;
     //   bindings = <&kp LSFT>, <&kp LC(LGUI)>;
     // };
-  }; // }}}
+  };
 
-  combos { // {{{
+  combos {
     compatible = "zmk,combos";
     combo_k_h {
       timeout-ms = <COMBO_TIMEOUT>;
@@ -118,7 +118,26 @@
       bindings = <&tog FVBASE>; //        └─┴─┴─┴─────› frogv
       layers = <0 NAV>;
     };
-  }; // }}}
+  };
+
+  macros {
+    mup: mup {
+      label = "mup";
+      compatible = "zmk,behavior-macro";
+      wait-ms = <10>;
+      tap-ms = <10>;
+      #binding-cells = <0>;
+      bindings = <&macro_tap &kp UP &kp UP &kp UP &kp UP &kp UP &kp UP &kp UP>;
+    };
+    mdown: mdown {
+      label = "mdown";
+      compatible = "zmk,behavior-macro";
+      wait-ms = <10>;
+      tap-ms = <10>;
+      #binding-cells = <0>;
+      bindings = <&macro_tap &kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN>;
+    };
+  };
 
   keymap {
     compatible = "zmk,keymap";
@@ -156,16 +175,16 @@
     }; // }}}
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │ ctl cmd ⇤   ⇥   opt ││ ,   hom ▲   end cbs │
+    // │ ctl gui ⇤   ⇥   alt ││ ,   hom ▲   end cbs │
     // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
     // │ 6   7   8   9   0   ││     p↑  p↓  esc del │
     // └───────┐─────────────││─────────────┌───────┘
-    //         │ ·   FN  ·   ││ ·   ▓▓  ·   │
+    //         │ ·   FN  ·   ││ ─── ▓▓  alt │
     //         └─────────────┘└─────────────┘
     nav_layer { // Navigation {{{
       bindings = <
-        &kp RCTRL &kp RGUI  &kp SFTAB &kp TAB   &kp RALT     &kp COMMA &kp HOME  &kp UP    &kp END   &kp LC(BSPC)
-        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp DOT   &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
+        &kp RCTRL &kp RGUI  &kp SFTAB &kp TAB   &kp LALT     &mup      &kp HOME  &kp UP    &kp END   &kp LC(BSPC)
+        &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &mdown    &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
         &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC   &kp PGUP  &kp PGDN  &kp ESC   &th LCTL DEL
                             &trans    &mo FUN   &trans       &kp SPACE &mo FUN   &trans
       >;
