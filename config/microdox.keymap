@@ -148,10 +148,10 @@
     //         └─────────────┘└─────────────┘
     sym_layer { // Symbols {{{
       bindings = <
-        &kp QUOT          &kp DQT   &kp CARET &kp QMARK    &kp GRAVE   &kp LBKT      &kp LT    &kp EQUAL &kp GT    &kp RBKT
-        &hm LC(LGUI) EXCL &kp AT    &kp HASH  &lt NAV DLLR &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
-        &kp BSLH          &kp TILDE &kp PIPE  &lt NAV AMPS &kp SEMI    &kp SLASH     &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
-                                    &trans    &mo FUN      &mo ADJ     &lt NAV SPACE &mo HEX   &trans
+        &kp QUOT     &kp DQT   &kp CARET &kp QMARK &kp GRAVE   &kp LBKT      &kp LT    &kp EQUAL &kp GT    &kp RBKT
+        &lt NAV EXCL &kp AT    &kp HASH  &kp DLLR  &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
+        &kp BSLH     &kp TILDE &kp PIPE  &kp AMPS  &kp SEMI    &kp SLASH     &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
+                               &trans    &mo FUN   &mo ADJ     &lt NAV SPACE &mo HEX   &trans
       >;
     }; // }}}
 
