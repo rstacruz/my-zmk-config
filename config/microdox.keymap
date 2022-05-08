@@ -76,16 +76,10 @@
 
   combos {
     compatible = "zmk,combos";
-    combo_k_h {
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <25 26>; // [ k h , . ^ ]
-      bindings = <&kp QUOT>; //     └─┴─────────› '
-      layers = <0 NAV>;
-    };
     combo_h_comma {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <26 27>; // [ k h , . ^ ]
-      bindings = <&kp RET>; //        └─┴───────› enter
+      bindings = <&kp QUOT>; //       └─┴───────› '
       layers = <0 NAV>;
     };
     combo_comma_dot {
@@ -98,24 +92,6 @@
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <26 28>; // [ k h , . ^ ]
       bindings = <&kp ESC>; //        └───┴─────› esc
-      layers = <0 NAV>;
-    };
-    combo_h_comma_dot {
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <26 27 28>; // [ k h , . ^ ]
-      bindings = <&kp LC(BSPC)>; //      └─┴─┴─────› ctl-bsp
-      layers = <0 NAV>;
-    };
-    combo_k_h_comma {
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <25 26 27>; // [ k h , . ^ ]
-      bindings = <&kp LA(BSPC)>; //    └─┴─┴───────› alt-bsp
-      layers = <0 NAV>;
-    };
-    combo_k_h_comma_dot {
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <25 26 27 28>; // [ k h , . ^ ]
-      bindings = <&tog FVBASE>; //        └─┴─┴─┴─────› frogv
       layers = <0 NAV>;
     };
   };
