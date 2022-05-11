@@ -48,14 +48,14 @@
       compatible = "zmk,behavior-mod-morph";
       label = "MOD_MORPH_COMMA";
       #binding-cells = <0>;
-      bindings = <&kp COMMA>, <&kp MINUS>;
+      bindings = <&kp COMMA>, <&kp KP_MINUS>; // [sft ,] ─› [-]
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
     mdot: mod_morph_dot {
       compatible = "zmk,behavior-mod-morph";
       label = "MOD_MORPH_DOT";
       #binding-cells = <0>;
-      bindings = <&kp DOT>, <&kp QUOT>;
+      bindings = <&kp DOT>, <&kp MINUS>; // [sft .] ─› [_]
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
     mbspc: mod_morph_bspc {
@@ -102,7 +102,7 @@
     // ┌─────────────────────┐┌─────────────────────┐
     // │ q^  w   f   p   b   ││ j   l   u   y   bks │
     // │ a   r   s   t   g   ││ m   n   e   i   o   │
-    // │ z*  x   c   d   v   ││ k   h   ,_  .?  ent^│
+    // │ z*  x   c   d   v   ││ k   h   ,-  ._  ent^│
     // └─────────────────────┤├─────────────────────┘
     //         │ gui SYM ↑   ││ ──  NAV alt │
     //         └─────────────┘└─────────────┘
