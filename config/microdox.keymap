@@ -104,14 +104,14 @@
     // │ a   r   s   t   g   ││ m   n   e   i   o   │
     // │ z   x   c   d   v   ││ k   h   ,_  ._  ent^│ (ent-ctrl)
     // └─────────────────────┤├─────────────────────┘
-    //         │ gui*SYM ↑   ││ ──  NAV alt*│ (esc-gui, alt-tab)
+    //         │ gui SYM ↑   ││ ──  NAV alt │
     //         └─────────────┘└─────────────┘
     default_layer { // Base (Colemak DH) {{{
       bindings = <
-        &hm LCTL Q  &kp W     &kp F        &kp P     &kp B       &kp J      &kp L     &kp U     &kp Y     &kp BSPC
-        &kp A       &kp R     &kp S        &kp T     &kp G       &kp M      &kp N     &kp E     &kp I     &kp O
-        &kp Z       &kp X     &kp C        &kp D     &kp V       &kp K      &kp H     &mcomma   &mdot     &th LCTL RET
-                              &th LGUI ESC &mo SYM   &kp LSFT    &kp SPACE  &mo NAV   &th LALT TAB
+        &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J      &kp L     &kp U     &kp Y     &kp BSPC
+        &kp A       &kp R     &kp S     &kp T     &kp G       &kp M      &kp N     &kp E     &kp I     &kp O
+        &kp Z       &kp X     &kp C     &kp D     &kp V       &kp K      &kp H     &mcomma   &mdot     &th LCTL RET
+                              &kp LGUI  &mo SYM   &kp LSFT    &kp SPACE  &mo NAV   &kp LALT
       >;
     }; // }}}
 
