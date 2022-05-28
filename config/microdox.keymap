@@ -91,7 +91,13 @@
     combo_h_dot {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <26 28>; // [ k h , . ^ ]
-      bindings = <&kp ESC>; //        └───┴─────› esc
+      bindings = <&kp LG(TAB)>; //    └───┴─────› gui-tab
+      layers = <0>;
+    };
+    combo_k_h {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <25 26>; // [ k h , . ^ ]
+      bindings = <&kp ESC>; //      └─┴─────────› esc
       layers = <0>;
     };
   };
