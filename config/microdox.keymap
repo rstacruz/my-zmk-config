@@ -110,9 +110,9 @@
     // │ a   r   s   t   g   ││ m   n   e   i   o   │
     // │ z   x   c   d   v   ││ k   h   ,_  ._  ent^│ (ent-ctrl)
     // └─────────────────────┤├─────────────────────┘
-    //         │ gui SYM ↑   ││ ──  NAV alt │
+    //         │ gui SYM ↑   ││ ──  NAV alt │ Base (colemak dh)
     //         └─────────────┘└─────────────┘
-    default_layer { // Base (Colemak DH) {{{
+    default_layer { // {{{
       bindings = <
         &hm LCTL Q  &kp W     &kp F     &kp P     &kp B       &kp J      &kp L     &kp U     &kp Y     &kp BSPC
         &kp A       &kp R     &kp S     &kp T     &kp G       &kp M      &kp N     &kp E     &kp I     &kp O
@@ -126,14 +126,14 @@
     // │ !   @   #   $   %   ││ {   (   :   )   }   │
     // │ \   ~   |   ;   &   ││ /   *   -   +   _   │
     // └───────┐─────────────││─────────────┌───────┘
-    //         │ ·   ·   ADJ ││ ·   HEX  ·  │
+    //         │ ·   ▓▓  ADJ ││ ·   FUN  ·  │ Symbols
     //         └─────────────┘└─────────────┘
-    sym_layer { // Symbols {{{
+    sym_layer { // {{{
       bindings = <
         &kp QUOT  &kp DQT   &kp CARET &kp QMARK     &kp GRAVE   &kp LBKT      &kp LT    &kp EQUAL &kp GT    &kp RBKT
         &kp EXCL  &kp AT    &kp HASH  &lt NAV DLLR  &kp PRCNT   &kp LBRC      &kp LPAR  &kp COLON &kp RPAR  &kp RBRC
-        &kp BSLH  &kp TILDE &kp PIPE  &kp AMPS      &kp SEMI    &kp SLASH     &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
-                            &trans    &mo FUN       &mo ADJ     &lt NAV SPACE &mo HEX   &trans
+        &kp BSLH  &kp TILDE &kp PIPE  &kp SEMI      &kp AMPS    &kp SLASH     &kp STAR  &kp MINUS &kp PLUS  &kp UNDER
+                            &trans    &mo FUN       &mo ADJ     &lt NAV SPACE &mo FUN   &trans
       >;
     }; // }}}
 
@@ -142,14 +142,14 @@
     // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
     // │ 6   7   8   9   0   ││     p↑  p↓  esc del │
     // └───────┐─────────────││─────────────┌───────┘
-    //         │ ·   FN  ·   ││ ─── ▓▓  alt │
+    //         │ ·   HEX ·   ││ ─── ▓▓  alt │ Navigation
     //         └─────────────┘└─────────────┘
-    nav_layer { // Navigation {{{
+    nav_layer { // {{{
       bindings = <
         &kp RCTRL &kp RGUI  &kp SFTAB &kp TAB   &kp LALT     &kp COMMA &kp HOME  &kp UP    &kp END   &kp LC(BSPC)
         &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp DOT   &kp LEFT  &kp DOWN  &kp RIGHT &kp RET
         &kp N6    &kp N7    &kp N8    &kp N9    &kp N0       &kp ESC   &kp PGUP  &kp PGDN  &kp ESC   &th LCTL DEL
-                            &trans    &mo FUN   &trans       &kp SPACE &mo FUN   &trans
+                            &trans    &mo HEX   &trans       &kp SPACE &mo FUN   &trans
       >;
     }; // }}}
 
@@ -158,9 +158,9 @@
     // │ 1   2   3   4   5   ││ .   D   E   F   ent │
     // │ 6   7   8   9   0   ││ /   *   -   +   :   │
     // └───────┐─────────────││─────────────┌───────┘
-    //         │ ·   ·   ──  ││ ──  ▓▓  ·   │
+    //         │ ·   ·   ──  ││ ──  ▓▓  ·   │ Hex input
     //         └─────────────┘└─────────────┘
-    hex_layer { // Hex input {{{
+    hex_layer { // {{{
       bindings = <
         &none     &kp COMMA &kp DOT   &kp COLON &kp HASH     &kp COMMA &kp A     &kp B     &kp C     &kp BSPC
         &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp DOT   &kp D     &kp E     &kp F     &kp RET
@@ -173,7 +173,9 @@
     // │ f11 f12 .   ps  .   ││ v⁺  .   .   .   b⁺  │
     // │ f1  f2  f3  f4  f5  ││ v⁻  .   .   .   b⁻  │
     // │ f6  f7  f8  f9  f10 ││ ply .   .   nxt .   │
-    // └─────────────────────┘└─────────────────────┘
+    // └───────┐─────────────││─────────────┌───────┘
+    //         │ ·   ·   ──  ││ ──  ▓▓  ·   │ Function
+    //         └─────────────┘└─────────────┘
     fun_layer { // Function {{{
       bindings = <
         &kp F11   &kp F12   &none     &kp PSCRN &none       &kp C_VOL_UP &none     &none     &none      &kp C_BRI_UP
@@ -184,13 +186,13 @@
     }; // }}}
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │ BL  gam .   .   clr ││ p↑  hom ▲   end BL  │
-    // │ res .   b0  b1  usb ││ p↓  ◀   ▼   ▶   ent │
-    // │ loc .   b2  b3  bt  ││ b0  b1  b2  b3  res │
+    // │BOOT gam .   .   clr ││ .   .   .   .   BOOT│
+    // │rset .   b0  b1  usb ││ .   .   .   .   .   │
+    // │lock .   b2  b3  bt  ││ b0  b1  b2  b3  rset│
     // └───────┐─────────────││─────────────┌───────┘
-    //         │ ·   FV  ▓▓  ││ tog bt  usb │
+    //         │ ·   FRV ▓▓  ││ tog bt  usb │ Adjust
     //         └─────────────┘└─────────────┘
-    adj_layer { // Adjust {{{
+    adj_layer { // {{{
       bindings = <
         &bootloader  &tog GAME    &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &bootloader
         &reset       &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
