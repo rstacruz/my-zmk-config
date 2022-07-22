@@ -91,7 +91,13 @@
     combo_h_dot {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <26 28>; // [ k h , . ^ ]
-      bindings = <&kp LG(TAB)>; //    └───┴─────› gui-tab
+      bindings = <&kp QMARK>; //      └───┴─────› ?
+      layers = <0>;
+    };
+    combo_h_comma_dot {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <26 27 28>; // [ k h , . ^ ]
+      bindings = <&kp LC(BSPC)>; //      └─┴─┴─────› ctrl-backspace
       layers = <0>;
     };
     combo_k_h {
