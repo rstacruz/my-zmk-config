@@ -192,17 +192,17 @@
     }; // }}}
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │lock .   .   .   clr ││ .   .   .   .   .   │
-    // │game .   b0  b1  usb ││ .   .   .   .   .   │
-    // │BOOT .   b2  b3  bt  ││ b0  b1  b2  b3  BOOT│
+    // │lock .   .   .   clr ││ .   .   .   .   rset│
+    // │game .   .   .   usb ││ .   .   .   .   .   │
+    // │BOOT b2  b1  b0  bt  ││ .   b0  b1  b2  BOOT│
     // └───────┐─────────────││─────────────┌───────┘
     //         │ ·   FRV ▓▓  ││ tog bt  usb │ Adjust
     //         └─────────────┘└─────────────┘
     adj_layer { // {{{
       bindings = <
-        &tog LOCK    &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &none
-        &tog GAME    &none        &bt BT_SEL 0 &bt BT_SEL 1 &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
-        &bootloader  &none        &bt BT_SEL 2 &bt BT_SEL 3 &out OUT_BLE   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bootloader
+        &tog LOCK    &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &reset
+        &tog GAME    &none        &none        &none        &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
+        &bootloader  &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0 &out OUT_BLE   &none        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bootloader
                                   &trans       &tog FVBASE  &none          &out OUT_TOG &out OUT_BLE &out OUT_USB
       >;
     }; // }}}
