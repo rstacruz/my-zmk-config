@@ -9,20 +9,21 @@
 #define HEX    3
 #define FUN    4
 #define ADJ    5
-#define FVBASE 6
-#define FVFLIP 7
-#define FVNAVI 8
-#define FVNUMP 9
-#define FVSYMB 10
-#define GAME   11
-#define GAMEX  12
-#define GAMEY  13
-#define LOCK   14
-#define ULOC   15
+#define MACRO  6
+#define FVBASE 7
+#define FVFLIP 8
+#define FVNAVI 9
+#define FVNUMP 10
+#define FVSYMB 11
+#define GAME   12
+#define GAMEX  13
+#define GAMEY  14
+#define LOCK   15
+#define ULOC   16
 
-#define NTAB LC(PGDN) /* Next tab */
-#define PTAB LC(PGUP) /* Previous tab */
 #define SFTAB LS(TAB) /* Shift-tab */
+#define ZMUTE LG(LS(A)) /* Zoom: mute */
+#define ZHAND LG(LS(R)) /* Zoom: raise hand */
 
 #define COMBO_TIMEOUT 30
 
@@ -192,18 +193,34 @@
     }; // }}}
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │lock .   .   .   clr ││ .   .   .   .   rset│
+    // │lock .   .   .   clr ││ .   .   .   .   rset│ Adjust
     // │game .   .   .   usb ││ .   .   .   .   .   │
     // │BOOT b2  b1  b0  bt  ││ .   b0  b1  b2  BOOT│
     // └───────┐─────────────││─────────────┌───────┘
-    //         │ ·   FRV ▓▓  ││ tog bt  usb │ Adjust
+    //         │ ·   FRV ▓▓  ││ tog bt  usb │
     //         └─────────────┘└─────────────┘
     adj_layer { // {{{
       bindings = <
         &tog LOCK    &none        &none        &none        &bt BT_CLR     &kp PGUP     &kp HOME     &kp UP       &kp END      &reset
-        &tog GAME    &none        &none        &none        &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
+        &tog GAME    &tog MACRO   &none        &none        &out OUT_USB   &kp PGDN     &kp LEFT     &kp DOWN     &kp RIGHT    &th LCTL RET
         &bootloader  &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0 &out OUT_BLE   &none        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bootloader
                                   &trans       &tog FVBASE  &none          &out OUT_TOG &out OUT_BLE &out OUT_USB
+      >;
+    }; // }}}
+
+    macro_layer { // macro {{{
+      // ┌─────────────────────┐┌─────────────────────┐
+      // │ NAV .   .   .   exit││ .   .   .   .   .   │ Macro
+      // │ .   .   .   .   .   ││ .   .   .   .   .   │
+      // │ .   .   .   .   hand││ .   .   .   .   .   │
+      // └───────┐─────────────││─────────────┌───────┘
+      //         │ ·   ·   mute││ ──  ·   ·   │
+      //         └─────────────┘└─────────────┘
+      bindings = <
+        &mo FVNAVI &kp PGUP  &kp UP    &kp PGDN  &tog MACRO   &none     &none     &none     &none     &none
+        &none      &kp LEFT  &kp DOWN  &kp RIGHT &kp ZMUTE    &none     &none     &none     &none     &none
+        &none      &none     &none     &none     &kp ZHAND    &none     &none     &none     &none     &none
+                             &none     &none     &kp ZMUTE    &none     &none     &none
       >;
     }; // }}}
 
@@ -310,6 +327,13 @@
       >;
     };
 
+    // ┌─────────────────────┐┌─────────────────────┐
+    // │ .   .   .   .   .   ││ .   .   .   .   .   │
+    // │ .   .   .   .   .   ││ .   .   .   .   .   │
+    // │ .   .   .   .   .   ││ .   .   .   .   .   │
+    // └───────┐─────────────││─────────────┌───────┘
+    //         │ ·   ·   ──  ││ ──  ·   ·   │
+    //         └─────────────┘└─────────────┘
     lock_layer { // Lock {{{
       bindings = <
         &none     &none     &none     &none     &none        &none     &none     &none     &none     &none
