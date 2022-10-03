@@ -70,26 +70,26 @@ combos {
   };
   combo_comma_dot {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <27 28>; // [ k h , . ^ ]
-    bindings = <&kp LA(TAB)>; //      └─┴─────› alt-tab
+    key-positions = <CB3 CB4>; // [ k h , . ^ ]
+    bindings = <&kp LA(TAB)>; //        └─┴─────› alt-tab
     layers = <0>;
   };
   combo_h_dot {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <26 28>; // [ k h , . ^ ]
-    bindings = <&kp QMARK>; //      └───┴─────› ?
+    key-positions = <CB2 CB4>; // [ k h , . ^ ]
+    bindings = <&kp LC(BSPC)>; //     └───┴─────› ctrl-backspace
     layers = <0>;
   };
   combo_h_comma_dot {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <26 27 28>; // [ k h , . ^ ]
-    bindings = <&kp LC(BSPC)>; //      └─┴─┴─────› ctrl-backspace
+    key-positions = <CB2 CB3 CB4>; // [ k h , . ^ ]
+    bindings = <&kp LC(BSPC)>; //         └─┴─┴─────› ctrl-backspace
     layers = <0>;
   };
   combo_k_h {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <25 26>; // [ k h , . ^ ]
-    bindings = <&kp ESC>; //      └─┴─────────› esc
+    key-positions = <CB1 CB2>; // [ k h , . ^ ]
+    bindings = <&kp ESC>; //        └─┴─────────› esc
     layers = <0>;
   };
 };
