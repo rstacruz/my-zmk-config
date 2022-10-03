@@ -210,17 +210,17 @@
 
     macro_layer { // macro {{{
       // ┌─────────────────────┐┌─────────────────────┐
-      // │ NAV .   .   .   exit││ .   .   .   .   .   │ Macro
+      // │ NAV .   .   .   .   ││ .   .   .   .   .   │ Macro
       // │ .   .   .   .   .   ││ .   .   .   .   .   │
-      // │ .   .   .   .   hand││ .   .   .   .   .   │
+      // │ nx  pl  v-  v+  hand││ .   .   .   .   .   │
       // └───────┐─────────────││─────────────┌───────┘
-      //         │ ·   ·   mute││ ──  ·   ·   │
+      //         │exit ·   mute││ ──  ·   ·   │
       //         └─────────────┘└─────────────┘
       bindings = <
-        &mo FVNAVI &kp PGUP  &kp UP    &kp PGDN  &tog MACRO   &none     &none     &none     &none     &none
-        &none      &kp LEFT  &kp DOWN  &kp RIGHT &kp ZMUTE    &none     &none     &none     &none     &none
-        &none      &none     &none     &none     &kp ZHAND    &none     &none     &none     &none     &none
-                             &none     &none     &kp ZMUTE    &none     &none     &none
+        &mo FVNAVI &kp PGUP   &kp UP       &kp PGDN     &tog MACRO   &none     &none     &none     &none     &none
+        &none      &kp LEFT   &kp DOWN     &kp RIGHT    &kp ZMUTE    &none     &none     &none     &none     &none
+        &kp C_NEXT &kp C_PLAY &kp C_VOL_DN &kp C_VOL_UP &kp ZHAND    &none     &none     &none     &none     &none
+                              &tog MACRO   &none     &kp ZMUTE    &none     &none     &none
       >;
     }; // }}}
 
