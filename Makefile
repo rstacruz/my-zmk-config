@@ -1,5 +1,6 @@
 keeb := technikable
 docker_image := zmkfirmware/zmk-build-arm:stable
+volume_label := TECHNIKABLE
 
 help:
 	@echo "make build; make {microdox|technikable} build"
@@ -18,10 +19,12 @@ build:
 
 technikable:
 	$(eval keeb := technikable)
+  $(eval volume_label := TECHNIKABLE)
 	@true
 
 microdox:
 	$(eval keeb := microdox)
+  $(eval volume_label := NICENANO)
 	@true
 
 clean:
