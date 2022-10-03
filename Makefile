@@ -3,9 +3,12 @@ docker_image := zmkfirmware/zmk-build-arm:stable
 volume_label := TECHNIKABLE
 
 help:
-	@echo "make build; make {microdox|technikable} build"
+	@echo "Usage: make {microdox|technikable} build"
+	@echo
+	@grep -E '^[a-zA-Z_-].*?: .*?## .*$$' Makefile | sed 's#\\:#:#g' | awk 'BEGIN {FS = ": .*?## "}; {printf "\033[36m  %-20s\033[0m %s\n", $$1, $$2}'
+	@echo
 
-build:
+build: ## Builds [alias: b]
 	docker run -it --rm \
 		--name "zmk-${keeb}" \
 		-v "$(shell pwd)/.cache:/keeb" \
@@ -19,15 +22,17 @@ build:
 
 technikable:
 	$(eval keeb := technikable)
-  $(eval volume_label := TECHNIKABLE)
+	$(eval volume_label := TECHNIKABLE)
 	@true
 
 microdox:
 	$(eval keeb := microdox)
-  $(eval volume_label := NICENANO)
+	$(eval volume_label := NICENANO)
 	@true
 
-clean:
+clean: ## Clean cache to update zmk/zephyr
 	docker run -it --rm \
 		-v "$(shell pwd)/.cache:/keeb" \
 		"${docker_image}" sh -c "rm -rf /keeb/*"
+
+b: build

@@ -64,8 +64,8 @@ combos {
   compatible = "zmk,combos";
   combo_h_comma {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB1 CB2>; // [ k h , . ^ ]
-    bindings = <&kp QUOT>; //       └─┴───────› '
+    key-positions = <CB2 CB3>; // [ k h , . ^ ]
+    bindings = <&kp QUOT>; //         └─┴───────› '
     layers = <0>;
   };
   combo_comma_dot {
