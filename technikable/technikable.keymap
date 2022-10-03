@@ -14,6 +14,17 @@
 	K20  K21  K22  K23  K24  &none &none  K25  K26  K27  K28  K29 \
 	          K32  K33  K34               K35  K36  K37
 
+// Combo key positions, lower-right combos
+#define CB1 31
+#define CB2 32
+#define CB3 33
+#define CB4 34
+
+// #define CB1 25
+// #define CB2 26
+// #define CB3 27
+// #define CB4 28
+
 / {
   chosen {
      zmk,matrix_transform = &dual_2u_transform;
