@@ -6,7 +6,7 @@ build:
 		-v "$(shell pwd)/.cache:/keeb" \
 		-v "$(shell pwd)/${keeb}:/keeb/config:ro" \
 		-v "$(shell pwd)/base36:/keeb/base36:ro" \
-		-e HOST_UID="$UID" \
+		-e HOST_UID="$(shell id -u)" \
 		-e HOST_GID="$(shell id -g)" \
 		"${docker_image}" sh -c "cd /keeb; sh config/build.sh"
 
