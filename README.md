@@ -1,4 +1,36 @@
 ```
+
++ west build --pristine -b technikable zmk/app -- -DZMK_CONFIG=/keeb/config
+-- west build: making build dir /keeb/build pristine
+-- west build: generating a build system
+Including boilerplate (Zephyr base): /keeb/zephyr/cmake/app/boilerplate.cmake
+-- Application: /keeb/zmk/app
+-- Adding ZMK config directory as board root: /keeb/config
+-- ZMK Config directory: /keeb/config
+-- ZMK Config Kconfig: /keeb/config/technikable.conf
+-- ZMK Config Kconfig: /keeb/config/technikable.conf
+-- Using keymap file: /keeb/config/boards/arm/technikable/technikable.keymap
+-- Zephyr version: 3.0.0 (/keeb/zephyr)
+-- Found Python3: /usr/bin/python3.8 (found suitable exact version "3.8.10") found components: Interpreter
+-- Found west (found suitable version "0.12.0", minimum required is "0.7.1")
+-- Board: technikable
+-- Cache files will be written to: /root/.cache/zephyr
+-- ZEPHYR_TOOLCHAIN_VARIANT not set, trying to locate Zephyr SDK
+-- Found host-tools: zephyr 0.13.2 (/opt/zephyr-sdk-0.13.2)
+-- Found dtc: /opt/zephyr-sdk-0.13.2/sysroots/x86_64-pokysdk-linux/usr/bin/dtc (found suitable version "1.6.0", minimum required is "1.4.6")
+-- Found toolchain: zephyr 0.13.2 (/opt/zephyr-sdk-0.13.2)
+-- Found BOARD.dts: /keeb/config/boards/arm/technikable/technikable.dts
+-- Found devicetree overlay: /keeb/config/boards/arm/technikable/technikable.keymap
+-- Generated zephyr.dts: /keeb/build/zephyr/zephyr.dts
+-- Generated devicetree_unfixed.h: /keeb/build/zephyr/include/generated/devicetree_unfixed.h
+-- Generated device_extern.h: /keeb/build/zephyr/include/generated/device_extern.h
+-- Including generated dts.cmake file: /keeb/build/zephyr/dts.cmake
+Parsing /keeb/zmk/app/Kconfig
+Loaded configuration '/keeb/config/boards/arm/technikable/technikable_defconfig'
+Merged configuration '/keeb/zmk/app/prj.conf'
+Merged configuration '/keeb/config/technikable.conf'
+Merged configuration '/keeb/config/technikable.conf'
+
 warning: HAS_NORDIC_DRIVERS (defined at modules/hal_nordic/Kconfig:7) has direct dependencies 0 with value n, but is currently being y-selected by the following symbols:
  - SOC_SERIES_NRF52X (defined at soc/arm/nordic_nrf/nrf52/Kconfig.series:6), with value y, direct dependencies <choice> (value: y), and select condition <choice> (value: y)
 
