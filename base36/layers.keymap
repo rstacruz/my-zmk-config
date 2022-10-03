@@ -172,7 +172,7 @@ keymap {
     bindings = < LAYOUT36(
       &kp F11,   &kp F12,   &kp PSCRN, &kp C_PLAY, &kp C_NEXT,  &kp C_VOL_UP, &none,        &none,        &none,      &kp C_BRI_UP,
       &kp F1,    &kp F2,    &kp F3,    &kp F4,     &kp F5,      &kp C_VOL_DN, &none,        &none,        &none,      &kp C_BRI_DN,
-      &kp F6,    &kp F7,    &kp F8,    &kp F9,     &kp F10,     &kp C_PLAY,   &kp C_VOL_UP, &kp C_VOL_DN, &kp C_NEXT, &none,
+      &kp F6,    &kp F7,    &kp F8,    &kp F9,     &kp F10,     &kp C_PLAY,   &kp C_VOL_DN, &kp C_VOL_UP, &kp C_NEXT, &none,
                           &trans,    &trans,     &trans,      &trans,       &trans,       &trans
     ) >;
   }; // }}}

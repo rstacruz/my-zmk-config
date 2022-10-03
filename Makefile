@@ -6,7 +6,7 @@ help:
 
 build:
 	docker run -it --rm \
-		--name "zmk-${keeb}"
+		--name "zmk-${keeb}" \
 		-v "$(shell pwd)/.cache:/keeb" \
 		-v "$(shell pwd)/${keeb}:/keeb/config:ro" \
 		-v "$(shell pwd)/base36:/keeb/base36:ro" \
