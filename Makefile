@@ -1,9 +1,9 @@
 PWD = $(shell pwd)
 
 # zmk config
-shield_l = microdox_left
-shield_r = microdox_right
-board = nice_nano_v2
+shield_l := microdox_left
+shield_r := microdox_right
+board := nice_nano_v2
 
 # output files
 file_l = build/${shield_l}_${board}.uf2
@@ -18,8 +18,15 @@ default:
 	@grep -E '^[a-zA-Z_-].*?: .*?## .*$$' Makefile | sed 's#\\:#:#g' | awk 'BEGIN {FS = ": .*?## "}; {printf "\033[36m  %-20s\033[0m %s\n", $$1, $$2}'
 	@echo
 
-build: ${file_r} ## Build the firmware [alias: b]
-build-left: ${file_l} ## Build the firmware [alias: bl]
+technikable:
+	$(eval shield_l := technikable)
+	$(eval shield_r := $(shell echo))
+	$(eval board := technikable)
+	@true
+
+build: build-left ## Build the firmware [alias: build-left, bl]
+build-left: ${file_l} ## Build the firmware, left [alias: b]
+build-right: ${file_l} ## Build the firmware, right
 
 flash-left: ${file_l} ## Flash left [alias: l]
 	@sudo bash flash.sh --file ${file_l}
@@ -40,6 +47,5 @@ ${file_r}: config/*
 b: build
 l: flash-left
 r: flash-right
-bl: build-left
 
 .PHONY: build b clean c flash-left l flash-right r
