@@ -1,6 +1,8 @@
 keeb := technikable
 docker_image := zmkfirmware/zmk-build-arm:stable
 volume_label := TECHNIKABLE
+base_path = $(shell pwd)
+keeb_path = $(shell pwd)/${keeb}
 
 help:
 	@echo "Usage: make {microdox|technikable} build"
@@ -11,9 +13,9 @@ help:
 build: ## Builds [alias: b]
 	docker run -it --rm \
 		--name "zmk-${keeb}" \
-		-v "$(shell pwd)/.cache:/keeb" \
-		-v "$(shell pwd)/${keeb}:/keeb/config:ro" \
-		-v "$(shell pwd)/base36:/keeb/base36:ro" \
+		-v "${base_path}/.cache:/keeb" \
+		-v "${keeb_path}:/keeb/config:ro" \
+		-v "${base_path}/base36:/keeb/base36:ro" \
 		-e HOST_UID="$(shell id -u)" \
 		-e HOST_GID="$(shell id -g)" \
 		"${docker_image}" sh -c "cd /keeb; sh config/build.sh"
@@ -32,7 +34,7 @@ microdox:
 
 clean: ## Clean cache to update zmk/zephyr
 	docker run -it --rm \
-		-v "$(shell pwd)/.cache:/keeb" \
+		-v "${base_path}/.cache:/keeb" \
 		"${docker_image}" sh -c "rm -rf /keeb/*"
 
 b: build
