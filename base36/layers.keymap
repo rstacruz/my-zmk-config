@@ -23,6 +23,15 @@
 #define BT_USB &out OUT_USB
 #define BT_TOG &out OUT_TOG
 
+/* Shorthand */
+#define _ &kp
+#define __ &none
+
+/* Complex keys */
+#define _CTLQ &hm LCTL Q /* Q (tap), ctrl (hold) */
+#define _CENT &th LCTL RET /* Enter (tap), ctrl (hold) */
+#define _DLLR &lt NAV DLLR /* Dollar (tap), NAV (hold) */
+
 #define COMBO_TIMEOUT 30
 
 behaviors {
@@ -111,10 +120,11 @@ keymap {
   //         └─────────────┘└─────────────┘
   default_layer { // {{{
     bindings = < LAYOUT36(
-      &hm LCTL Q,  &kp W,     &kp F,     &kp P,     &kp B,       &kp J,      &kp L,     &kp U,     &kp Y,     &kp BSPC,
-      &kp A,       &kp R,     &kp S,     &kp T,     &kp G,       &kp M,      &kp N,     &kp E,     &kp I,     &kp O,
-      &kp Z,       &kp X,     &kp C,     &kp D,     &kp V,       &kp K,      &kp H,     &mcomma,   &mdot,     &th LCTL RET,
-      /* */                 &kp LGUI,  &mo SYM,   &kp LSFT,    &kp SPACE,  &mo NAV,   &kp LALT
+      _CTLQ, _ W, _ F, _ P, _ B, /**/  _ J, _ L, _ U,     _ Y,   _ BSPC,
+      _ A,   _ R, _ S, _ T, _ G, /**/  _ M, _ N, _ E,     _ I,   _ O,
+      _ Z,   _ X, _ C, _ D, _ V, /**/  _ K, _ H, &mcomma, &mdot, _CENT,
+
+      /**/ _ LGUI, &mo SYM, _ LSFT, /**/ _ SPACE, &mo NAV, _ LALT
     ) >;
   }; // }}}
 
@@ -127,10 +137,11 @@ keymap {
   //         └─────────────┘└─────────────┘
   sym_layer { // {{{
     bindings = < LAYOUT36(
-      &kp QUOT,  &kp DQT,   &kp CARET, &kp QMARK,     &kp GRAVE,   &kp LBKT,      &kp LT,    &kp EQUAL, &kp GT,    &kp RBKT,
-      &kp EXCL,  &kp AT,    &kp HASH,  &lt NAV DLLR,  &kp PRCNT,   &kp LBRC,      &kp LPAR,  &kp COLON, &kp RPAR,  &kp RBRC,
-      &kp BSLH,  &kp TILDE, &kp PIPE,  &kp SEMI,      &kp AMPS,    &kp SLASH,     &kp STAR,  &kp MINUS, &kp PLUS,  &kp UNDER,
-                          &trans,    &mo FUN,       &mo ADJ,     &lt NAV SPACE, &mo FUN,   &trans
+      _ QUOT,  _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+      _ EXCL,  _ AT,    _ HASH,  _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+      _ BSLH,  _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER,
+
+      /**/ &trans, &mo FUN, &mo ADJ, /**/ &lt NAV SPACE, &mo FUN, &trans
     ) >;
   }; // }}}
 
@@ -143,10 +154,11 @@ keymap {
   //         └─────────────┘└─────────────┘
   nav_layer { // {{{
     bindings = < LAYOUT36(
-      &kp RCTRL, &kp RGUI,  &kp SFTAB, &kp TAB,   &kp LALT,     &kp COMMA, &kp HOME,  &kp UP,    &kp END,   &kp DEL,
-      &kp N1,    &kp N2,    &kp N3,    &kp N4,    &kp N5,       &kp DOT,   &kp LEFT,  &kp DOWN,  &kp RIGHT, &kp RET,
-      &kp N6,    &kp N7,    &kp N8,    &kp N9,    &kp N0,       &kp ESC,   &kp PGUP,  &kp PGDN,  &kp ESC,   &kp LCTL,
-                          &trans,    &mo HEX,   &trans,       &kp SPACE, &mo FUN,   &trans
+      _ RCTRL, _ RGUI, _ SFTAB, _ TAB, _ LALT, /**/ _ COMMA, _ HOME, _ UP,   _ END,   _ DEL,
+      _ N1,    _ N2,   _ N3,    _ N4,  _ N5,   /**/ _ DOT,   _ LEFT, _ DOWN, _ RIGHT, _ RET,
+      _ N6,    _ N7,   _ N8,    _ N9,  _ N0,   /**/ _ ESC,   _ PGUP, _ PGDN, _ ESC,   _ LCTL,
+
+      /**/ &trans, &mo HEX, &trans, /**/ &kp SPACE, &mo FUN, &trans
     ) >;
   }; // }}}
 
@@ -159,10 +171,11 @@ keymap {
   //         └─────────────┘└─────────────┘
   hex_layer { // {{{
     bindings = < LAYOUT36(
-      &none,     &kp COMMA, &kp DOT,   &kp COLON, &kp HASH,     &kp COMMA, &kp A,     &kp B,     &kp C,     &kp BSPC,
-      &kp N1,    &kp N2,    &kp N3,    &kp N4,    &kp N5,       &kp DOT,   &kp D,     &kp E,     &kp F,     &kp RET,
-      &kp N6,    &kp N7,    &kp N8,    &kp N9,    &kp N0,       &kp SLASH, &kp STAR,  &kp MINUS, &kp PLUS,  &kp COLN,
-                          &none,     &none,     &kp SPC,      &kp SPC,   &none,     &none
+      __,   _ COMMA, _ DOT, _ COLON, _ HASH, /**/ _ COMMA, _ A,    _ B,     _ C,    _ BSPC,
+      _ N1, _ N2,    _ N3,  _ N4,    _ N5,   /**/ _ DOT,   _ D,    _ E,     _ F,    _ RET,
+      _ N6, _ N7,    _ N8,  _ N9,    _ N0,   /**/ _ SLASH, _ STAR, _ MINUS, _ PLUS, _ COLN,
+
+      /**/ _, _, _ SPC, /**/ _ SPC, __, __
     ) >;
   }; // }}}
 
@@ -175,10 +188,11 @@ keymap {
   //         └─────────────┘└─────────────┘
   fun_layer { // Function {{{
     bindings = < LAYOUT36(
-      &kp F11,   &kp F12,   &kp PSCRN, &kp C_PLAY, &kp C_NEXT,  &kp C_VOL_UP, &none,        &none,        &none,      &kp C_BRI_UP,
-      &kp F1,    &kp F2,    &kp F3,    &kp F4,     &kp F5,      &kp C_VOL_DN, &none,        &none,        &none,      &kp C_BRI_DN,
-      &kp F6,    &kp F7,    &kp F8,    &kp F9,     &kp F10,     &kp C_PLAY,   &kp C_VOL_DN, &kp C_VOL_UP, &kp C_NEXT, &none,
-      /**/       /**/       &trans,    &trans,     &trans,      &trans,       &trans,       &trans
+      _ F11,   _ F12,   _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,       _ C_BRI_UP,
+      _ F1,    _ F2,    _ F3,    _ F4,     _ F5,     /**/ _ C_VOL_DN, __,         __,         __,       _ C_BRI_DN,
+      _ F6,    _ F7,    _ F8,    _ F9,     _ F10,    /**/ _ C_PLAY,   _ C_VOL_DN, _ C_VOL_UP, _ C_NEXT, __,
+
+      /**/ &trans, &trans, &trans, /**/ &trans, &trans, &trans
     ) >;
   }; // }}}
 
@@ -191,10 +205,11 @@ keymap {
   //         └─────────────┘└─────────────┘
   adj_layer { // {{{
     bindings = < LAYOUT36(
-      &tog LOCK,   &none, &none,  &none,       &bt BT_CLR, &kp PGUP, &kp HOME, &kp UP,   &kp END,   &none,
-      &tog GAME,   &none, &none,  BT_BLE,      BT_USB,     &kp PGDN, &kp LEFT, &kp DOWN, &kp RIGHT, &th LCTL RET,
-      &bootloader, BT(3), BT(2),  BT(1),       BT(0),      BT(0),    BT(1),    BT(2),    BT(3),     &bootloader,
-      /**/         /**/   &trans, &tog FVBASE, &none,      BT_TOG,   BT_BLE,   BT_USB
+      &tog LOCK,   __,    __,    __,     &bt BT_CLR, /**/ __,    __,    __,    __,    __,
+      &tog GAME,   __,    __,    BT_BLE, BT_USB,     /**/ __,    __,    __,    __,    __,
+      &bootloader, BT(3), BT(2), BT(1),  BT(0),      /**/ BT(0), BT(1), BT(2), BT(3), &bootloader,
+
+      /**/         /**/   &trans, &tog FVBASE, __,      BT_TOG,   BT_BLE,   BT_USB
     ) >;
   }; // }}}
 
@@ -210,6 +225,7 @@ keymap {
       &lt FVNAVI S, &kp C,     &kp N,     &kp I,      &kp G,        &none,       &none,     &none,     &none,     &none,
       &sl FVFLIP,   &kp T,     &kp H,     &kp E,      &kp O,        &none,       &none,     &none,     &none,     &none,
       &lt FVSYMB F, &kp D,     &kp R,     &kp A,      &kp U,        &none,       &none,     &none,     &none,     &none,
+
                              &kp LCTL,  &mo FVNUMP, &kp SPACE,    &tog FVBASE, &none,     &tog FVBASE
     ) >;
   };
@@ -219,6 +235,7 @@ keymap {
       &kp Q,      &kp W,     &kp M,     &kp J,     &kp K,       &trans,    &trans,    &trans,    &trans,    &trans,
       &trans,     &kp P,     &kp L,     &kp X,     &sk LSFT,    &trans,    &trans,    &trans,    &trans,    &trans,
       &kp Q,      &kp B,     &kp V,     &kp Y,     &kp Z,       &trans,    &trans,    &trans,    &trans,    &trans,
+
                            &kp LCTL,  &kp LGUI,  &kp LSFT,    &trans,    &trans,    &trans
     ) >;
   };
@@ -228,6 +245,7 @@ keymap {
       &trans,     &kp PGUP,  &kp UP,    &kp PGDN,   &kp BSPC,     &trans,    &trans,    &trans,    &trans,    &trans,
       &none,      &kp LEFT,  &kp DOWN,  &kp RIGHT,  &kp RET,      &trans,    &trans,    &trans,    &trans,    &trans,
       &none,      &kp HOME,  &kp END,   &kp TAB,    &kp ESC,      &trans,    &trans,    &trans,    &trans,    &trans,
+
                            &kp LCTL,  &kp LGUI,   &kp LSFT,     &trans,    &trans,    &trans
     ) >;
   };
@@ -244,6 +262,7 @@ keymap {
       &none,       &none,     &kp LGUI,  &kp LSFT,   &tog FVBASE,  &trans,    &trans,    &trans,    &trans,    &trans,
       &kp N1,      &kp N2,    &kp N3,    &kp N4,     &kp N5,       &trans,    &trans,    &trans,    &trans,    &trans,
       &kp N6,      &kp N7,    &kp N8,    &kp N9,     &kp N0,       &trans,    &trans,    &trans,    &trans,    &trans,
+
                             &kp LALT,  &trans,     &kp LCTL,     &trans,    &trans,    &trans
     ) >;
   };
@@ -253,6 +272,7 @@ keymap {
       &none,     &kp EXCL,  &kp LBKT,  &kp RBKT,   &kp BSLH,     &trans,    &trans,    &trans,    &trans,    &trans,
       &none,     &kp GRAVE, &kp EQUAL, &kp MINUS,  &kp LGUI,     &trans,    &trans,    &trans,    &trans,    &trans,
       &none,     &kp SEMI,  &kp COMMA, &kp DOT,    &kp QUOT,     &trans,    &trans,    &trans,    &trans,    &trans,
+
                           &trans,    &trans,     &kp LSFT,     &trans,    &trans,    &trans
     ) >;
   }; // }}}
@@ -276,46 +296,51 @@ keymap {
 
   game_layer {
     bindings = < LAYOUT36(
-      &kp TAB,   &kp Q,     &kp W,     &kp E,     &kp R,        &kp Y,     &kp U,     &kp I,     &kp O,     &kp P,
-      &kp LSFT,  &kp A,     &kp S,     &kp D,     &kp F,        &kp T,     &kp J,     &kp K,     &kp L,     &kp RET,
-      &kp LCTL,  &kp N1,    &kp N2,    &kp N3,    &kp N4,       &kp N,     &kp M,     &none,     &none,     &kp ESC,
-                          &mo GAMEY, &mo GAMEX, &kp SPC,      &kp SPC,   &mo GAMEX, &tog GAME
+      _ TAB,  _ Q,  _ W,  _ E,  _ R,  /**/ _ Y, _ U, _ I, _ O, _ P,
+      _ LSFT, _ A,  _ S,  _ D,  _ F,  /**/ _ T, _ J, _ K, _ L, _ RET,
+      _ LCTL, _ N1, _ N2, _ N3, _ N4, /**/ _ N, _ M, __,  __,  _ ESC,
+
+      &mo GAMEY, &mo GAMEX, _ SPC,  /**/ _ SPC,   &mo GAMEX, &tog GAME
     ) >;
   };
 
   game_x_layer {
     bindings = < LAYOUT36(
-      &kp F1,    &kp F2,    &kp F3,    &kp F4,    &kp F5,       &none,     &none,     &kp UP,    &none,     &kp BSPC,
-      &kp N5,    &kp N6,    &kp N7,    &kp G,     &kp H,        &none,     &kp LEFT,  &kp DOWN,  &kp RIGHT, &kp RET,
-      &kp Z,     &kp X,     &kp C,     &kp V,     &kp B,        &none,     &none,     &none,     &none,     &kp ESC,
+      _ F1,    _ F2,    _ F3,    _ F4,    _ F5,       &none,     &none,     _ UP,    &none,     _ BSPC,
+      _ N5,    _ N6,    _ N7,    _ G,     _ H,        &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
+      _ Z,     _ X,     _ C,     _ V,     _ B,        &none,     &none,     &none,     &none,     _ ESC,
+
                           &none,     &none,     &kp LALT,     &none,     &none,     &tog GAME
     ) >;
   };
 
   game_y_layer {
     bindings = < LAYOUT36(
-      &kp Y,     &kp U,     &kp I,     &kp O,     &kp P,        &none,     &none,     &kp UP,    &none,     &kp BSPC,
-      &kp T,     &kp J,     &kp K,     &kp L,     &kp RET,      &none,     &kp LEFT,  &kp DOWN,  &kp RIGHT, &kp RET,
-      &kp N,     &kp M,     &kp COMMA, &kp DOT,   &kp ESC,      &none,     &none,     &none,     &none,     &kp ESC,
-                          &none,     &none,     &none,        &none,     &none,     &tog GAME
+      _ Y, _ U, _ I,     _ O,   _ P,   &none,     &none,     _ UP,    &none,     _ BSPC,
+      _ T, _ J, _ K,     _ L,   _ RET, &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
+      _ N, _ M, _ COMMA, _ DOT, _ ESC, &none,     &none,     &none,     &none,     _ ESC,
+
+                    &none,     &none,   &none,   &none,     &none,     &tog GAME
     ) >;
   };
 
   lock_layer { // Lock {{{
     bindings = < LAYOUT36(
-      &none,     &none,     &none,     &none,     &none,        &none,     &none,     &none,     &none,     &none,
-      &none,     &none,     &none,     &none,     &none,        &none,     &none,     &none,     &none,     &none,
-      &mo ULOC,  &none,     &none,     &none,     &none,        &none,     &none,     &none,     &none,     &none,
-                          &none,     &none,     &mo ULOC,     &none,     &none,     &none
+      __,       __, __, __, __, __, __, __, __, __,
+      __,       __, __, __, __, __, __, __, __, __,
+      &mo ULOC, __, __, __, __, __, __, __, __, __,
+
+      /**/ __, __, &mo ULOC, /**/ __, __, __
     ) >;
   };
 
   unlock_layer { // Unlock
     bindings = < LAYOUT36(
-      &none,     &none,     &none,     &none,     &none,        &none,     &none,     &none,     &none,     &none,
-      &none,     &none,     &none,     &none,     &none,        &none,     &none,     &none,     &none,     &none,
-      &tog LOCK, &none,     &none,     &none,     &none,        &none,     &none,     &none,     &none,     &none,
-                          &none,     &none,     &tog LOCK,    &none,     &none,     &none
+      __,        __, __, __, __, __, __, __, __, __,
+      __,        __, __, __, __, __, __, __, __, __,
+      &tog LOCK, __, __, __, __, __, __, __, __, __,
+
+      /**/ __, __, &tog LOC, /**/ __, __, __
     ) >;
   }; // }}}
 };
