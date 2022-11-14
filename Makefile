@@ -22,6 +22,17 @@ build: ## Builds [alias: b]
 
 	cp .cache/*.uf2 . || true
 
+update: ## Updates ZMK [alias: u]
+	docker run -it --rm \
+		--name "zmk-${keeb}" \
+		-v "${base_path}/.cache:/keeb" \
+		-v "${keeb_path}:/keeb/config:ro" \
+		-v "${base_path}/base36:/keeb/base36:ro" \
+		-e HOST_UID="$(shell id -u)" \
+		-e HOST_GID="$(shell id -g)" \
+		"${docker_image}" sh -c "cd /keeb; west update"
+
+
 technikable:
 	$(eval keeb := technikable)
 	$(eval volume_label := TECHNIKABLE)
@@ -38,3 +49,4 @@ clean: ## Clean cache to update zmk/zephyr
 		"${docker_image}" sh -c "rm -rf /keeb/*"
 
 b: build
+u: update
