@@ -1,5 +1,5 @@
-#define SYM    1
-#define NAV    2
+#define NAV    1
+#define SYM    2
 #define HEX    3
 #define FUN    4
 #define ADJ    5
@@ -120,28 +120,10 @@ keymap {
   //         └─────────────┘└─────────────┘
   default_layer { // {{{
     bindings = < LAYOUT36(
-      _CTLQ, _ W, _ F, _ P, _ B, /**/  _ J, _ L, _ U,     _ Y,   _ BSPC,
-      _ A,   _ R, _ S, _ T, _ G, /**/  _ M, _ N, _ E,     _ I,   _ O,
-      _ Z,   _ X, _ C, _ D, _ V, /**/  _ K, _ H, &mcomma, &mdot, _CENT,
-
-      /**/ _ LGUI, &mo SYM, _ LSFT, /**/ _ SPACE, &mo NAV, _ LALT
-    ) >;
-  }; // }}}
-
-  // ┌─────────────────────┐┌─────────────────────┐
-  // │ '   "   ^   ?   `   ││ [   <   =   >   ]   │ Symbols
-  // │ !   @   #   $   %   ││ {   (   :   )   }   │
-  // │ \   ~   |   ;   &   ││ /   *   -   +   _   │
-  // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   ▓▓  ADJ ││ ·   FUN  ·  │
-  //         └─────────────┘└─────────────┘
-  sym_layer { // {{{
-    bindings = < LAYOUT36(
-      _ QUOT,  _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-      _ EXCL,  _ AT,    _ HASH,  _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
-      _ BSLH,  _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER,
-
-      /**/ &trans, &mo FUN, &mo ADJ, /**/ &lt NAV SPACE, &mo FUN, &trans
+      _CTLQ, _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   _ BSPC,
+      _ A,   _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
+      _ Z,   _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT,
+      /**/   /**/ _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
     ) >;
   }; // }}}
 
@@ -150,15 +132,30 @@ keymap {
   // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
   // │ 6   7   8   9   0   ││     p↑  p↓  esc ctl │
   // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   HEX ·   ││ ─── ▓▓  alt │
+  //         │ ·   SYM ·   ││ spc ▓▓  ralt│
   //         └─────────────┘└─────────────┘
   nav_layer { // {{{
     bindings = < LAYOUT36(
-      _ RCTRL, _ RGUI, _ SFTAB, _ TAB, _ LALT, /**/ _ COMMA, _ HOME, _ UP,   _ END,   _ DEL,
-      _ N1,    _ N2,   _ N3,    _ N4,  _ N5,   /**/ _ DOT,   _ LEFT, _ DOWN, _ RIGHT, _ RET,
-      _ N6,    _ N7,   _ N8,    _ N9,  _ N0,   /**/ _ ESC,   _ PGUP, _ PGDN, _ ESC,   _ LCTL,
+      _ RCTRL, _ RGUI, _ SFTAB,  _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
+      _ N1,    _ N2,   _ N3,     _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
+      _ N6,    _ N7,   _ N8,     _ N9,   _ N0,   /**/ _ ESC,   _   PGUP, _ PGDN, _ ESC,   _ LCTL,
+      /**/     /**/    &trans,   &trans, &trans, /**/ _ SPACE, &mo FUN,  _ RALT
+    ) >;
+  }; // }}}
 
-      /**/ &trans, &mo HEX, &trans, /**/ &kp SPACE, &mo FUN, &trans
+  // ┌─────────────────────┐┌─────────────────────┐
+  // │ '   "   ^   ?   `   ││ [   <   =   >   ]   │ Symbols
+  // │ !   @   #   $   %   ││ {   (   :   )   }   │
+  // │ \   ~   |   ;   &   ││ /   *   -   +   _   │
+  // └───────┐─────────────││─────────────┌───────┘
+  //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
+  //         └─────────────┘└─────────────┘
+  sym_layer { // {{{
+    bindings = < LAYOUT36(
+      _ QUOT,  _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+      _ EXCL,  _ AT,    _ HASH,  _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+      _ BSLH,  _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER,
+      /**/     /**/     &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
     ) >;
   }; // }}}
 
@@ -235,8 +232,7 @@ keymap {
       &kp Q,      &kp W,     &kp M,     &kp J,     &kp K,       &trans,    &trans,    &trans,    &trans,    &trans,
       &trans,     &kp P,     &kp L,     &kp X,     &sk LSFT,    &trans,    &trans,    &trans,    &trans,    &trans,
       &kp Q,      &kp B,     &kp V,     &kp Y,     &kp Z,       &trans,    &trans,    &trans,    &trans,    &trans,
-
-                           &kp LCTL,  &kp LGUI,  &kp LSFT,    &trans,    &trans,    &trans
+      /**/                 &kp LCTL,  &kp LGUI,  &kp LSFT,    &trans,    &trans,    &trans
     ) >;
   };
 
@@ -245,8 +241,7 @@ keymap {
       &trans,     &kp PGUP,  &kp UP,    &kp PGDN,   &kp BSPC,     &trans,    &trans,    &trans,    &trans,    &trans,
       &none,      &kp LEFT,  &kp DOWN,  &kp RIGHT,  &kp RET,      &trans,    &trans,    &trans,    &trans,    &trans,
       &none,      &kp HOME,  &kp END,   &kp TAB,    &kp ESC,      &trans,    &trans,    &trans,    &trans,    &trans,
-
-                           &kp LCTL,  &kp LGUI,   &kp LSFT,     &trans,    &trans,    &trans
+      /**/                 &kp LCTL,  &kp LGUI,   &kp LSFT,     &trans,    &trans,    &trans
     ) >;
   };
 
@@ -262,8 +257,7 @@ keymap {
       &none,       &none,     &kp LGUI,  &kp LSFT,   &tog FVBASE,  &trans,    &trans,    &trans,    &trans,    &trans,
       &kp N1,      &kp N2,    &kp N3,    &kp N4,     &kp N5,       &trans,    &trans,    &trans,    &trans,    &trans,
       &kp N6,      &kp N7,    &kp N8,    &kp N9,     &kp N0,       &trans,    &trans,    &trans,    &trans,    &trans,
-
-                            &kp LALT,  &trans,     &kp LCTL,     &trans,    &trans,    &trans
+      /**/                  &kp LALT,  &trans,     &kp LCTL,     &trans,    &trans,    &trans
     ) >;
   };
 
@@ -299,7 +293,6 @@ keymap {
       _ TAB,  _ Q,  _ W,  _ E,  _ R,  /**/ _ Y, _ U, _ I, _ O, _ P,
       _ LSFT, _ A,  _ S,  _ D,  _ F,  /**/ _ T, _ J, _ K, _ L, _ RET,
       _ LCTL, _ N1, _ N2, _ N3, _ N4, /**/ _ N, _ M, __,  __,  _ ESC,
-
       &mo GAMEY, &mo GAMEX, _ SPC,  /**/ _ SPC,   &mo GAMEX, &tog GAME
     ) >;
   };
@@ -309,8 +302,7 @@ keymap {
       _ F1,    _ F2,    _ F3,    _ F4,    _ F5,       &none,     &none,     _ UP,    &none,     _ BSPC,
       _ N5,    _ N6,    _ N7,    _ G,     _ H,        &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
       _ Z,     _ X,     _ C,     _ V,     _ B,        &none,     &none,     &none,     &none,     _ ESC,
-
-                          &none,     &none,     &kp LALT,     &none,     &none,     &tog GAME
+      /**/                &none,     &none,     &kp LALT,     &none,     &none,     &tog GAME
     ) >;
   };
 
@@ -319,7 +311,6 @@ keymap {
       _ Y, _ U, _ I,     _ O,   _ P,   &none,     &none,     _ UP,    &none,     _ BSPC,
       _ T, _ J, _ K,     _ L,   _ RET, &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
       _ N, _ M, _ COMMA, _ DOT, _ ESC, &none,     &none,     &none,     &none,     _ ESC,
-
                     &none,     &none,   &none,   &none,     &none,     &tog GAME
     ) >;
   };
@@ -329,18 +320,16 @@ keymap {
       __,       __, __, __, __, __, __, __, __, __,
       __,       __, __, __, __, __, __, __, __, __,
       &mo ULOC, __, __, __, __, __, __, __, __, __,
-
       /**/ __, __, &mo ULOC, /**/ __, __, __
     ) >;
-  };
+  }; // }}}
 
-  unlock_layer { // Unlock
+  unlock_layer { // Unlock {{{
     bindings = < LAYOUT36(
-      __,        __, __, __, __, __, __, __, __, __,
-      __,        __, __, __, __, __, __, __, __, __,
+      __,       __, __, __, __, __, __, __, __, __,
+      __,       __, __, __, __, __, __, __, __, __,
       &tog LOCK, __, __, __, __, __, __, __, __, __,
-
-      /**/ __, __, &tog LOC, /**/ __, __, __
+      /**/ __, __, &tog LOCK, /**/ __, __, __
     ) >;
   }; // }}}
 };
