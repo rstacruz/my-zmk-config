@@ -14,11 +14,19 @@
 	c0 c1 c2 c3 c4 &none &none c5 c6 c7 c8 c9 \
 	      d2 d3 d4             d5 d6 d7
 
-// Combo key positions, lower-right combos
+// Combo key positions: lower-right combos
 #define CB1 31
 #define CB2 32
 #define CB3 33
 #define CB4 34
+
+// Combo key positions: upper-left combos
+#define CBL3 2
+#define CBL4 3
+
+&sl {
+	release-after-ms = <500>; /* for frogv's flip button */
+};
 
 / {
   chosen {

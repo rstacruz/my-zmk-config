@@ -79,31 +79,37 @@ combos {
   combo_h_comma {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB2 CB3>; // [ k h , . ^ ]
-    bindings = <&kp QUOT>; //         └─┴───────› '
+    bindings = <&kp QUOT>; //         └─┴──› '
     layers = <0>;
   };
   combo_comma_dot {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB3 CB4>; // [ k h , . ^ ]
-    bindings = <&kp LA(TAB)>; //        └─┴─────› alt-tab
+    bindings = <&kp LA(TAB)>; //        └─┴──› alt-tab
     layers = <0>;
   };
   combo_h_dot {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB2 CB4>; // [ k h , . ^ ]
-    bindings = <&kp LC(BSPC)>; //     └───┴─────› ctrl-backspace
+    bindings = <&kp LC(BSPC)>; //     └───┴──› ctrl-backspace
     layers = <0>;
   };
   combo_h_comma_dot {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB2 CB3 CB4>; // [ k h , . ^ ]
-    bindings = <&kp LC(BSPC)>; //         └─┴─┴─────› ctrl-backspace
+    bindings = <&kp LC(BSPC)>; //         └─┴─┴──› ctrl-backspace
     layers = <0>;
+  };
+  combo_f_p_sym {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <CBL3 CBL4>; // [ q w f p b ]
+    bindings = <&tog FVBASE>; //          └─┴──› frogv
+    layers = <SYM>;
   };
   combo_k_h {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB1 CB2>; // [ k h , . ^ ]
-    bindings = <&kp ESC>; //        └─┴─────────› esc
+    bindings = <&kp ESC>; //        └─┴──› esc
     layers = <0>;
   };
 };
@@ -222,8 +228,7 @@ keymap {
       &lt FVNAVI S, &kp C,     &kp N,     &kp I,      &kp G,        &none,       &none,     &none,     &none,     &none,
       &sl FVFLIP,   &kp T,     &kp H,     &kp E,      &kp O,        &none,       &none,     &none,     &none,     &none,
       &lt FVSYMB F, &kp D,     &kp R,     &kp A,      &kp U,        &none,       &none,     &none,     &none,     &none,
-
-                             &kp LCTL,  &mo FVNUMP, &kp SPACE,    &tog FVBASE, &none,     &tog FVBASE
+                               &kp LCTL,  &mo FVNUMP, &kp SPACE,    &tog FVBASE, &none,     &tog FVBASE
     ) >;
   };
 

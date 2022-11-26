@@ -14,11 +14,16 @@
 	c0 c1 c2 c3 c4 c5 c6 c7 c8 c9 \
 	      d2 d3 d4 d5 d6 d7
 
-// Combo key positions, lower-right combos
+// Combo key positions: lower-right combos
 #define CB1 25
 #define CB2 26
 #define CB3 27
 #define CB4 28
+
+// Combo key positions: upper-left combos
+#define CBL3 2
+#define CBL4 3
+
 
 / {
   #include "../base36/layers.keymap"
