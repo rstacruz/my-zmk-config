@@ -42,7 +42,7 @@ main() {
 
 # flash-by-mount "/dev/disk/by-label/NICENANO" "file.uf2"
 flash-by-mount() {
-  local label="$1"
+  local device="$1"
   local file="$2"
   echo ""
   echo "━━› Flashing $file"
