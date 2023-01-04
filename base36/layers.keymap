@@ -1,5 +1,5 @@
-#define NAV    1
-#define ALTL   2
+#define ALTL   1
+#define NAV    2
 #define SYM    3
 #define HEX    4
 #define FUN    5
@@ -81,37 +81,37 @@ combos {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB2 CB3>; // [ k h , . ^ ]
     bindings = <&kp QUOT>; //         └─┴──› '
-    layers = <0>;
+    layers = <0 ALTL>;
   };
   combo_comma_dot {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB3 CB4>; // [ k h , . ^ ]
     bindings = <&kp LA(TAB)>; //        └─┴──› alt-tab
-    layers = <0>;
+    layers = <0 ALTL>;
   };
   combo_h_dot {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB2 CB4>; // [ k h , . ^ ]
     bindings = <&kp LC(BSPC)>; //     └───┴──› ctrl-backspace
-    layers = <0>;
+    layers = <0 ALTL>;
   };
   combo_h_comma_dot {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB2 CB3 CB4>; // [ k h , . ^ ]
     bindings = <&kp LC(BSPC)>; //         └─┴─┴──› ctrl-backspace
-    layers = <0>;
+    layers = <0 ALTL>;
   };
   combo_f_p_sym {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CBL3 CBL4>; // [ q w f p b ]
     bindings = <&tog FVBASE>; //          └─┴──› frogv
-    layers = <SYM>;
+    layers = <SYM ALTL>;
   };
   combo_k_h {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB1 CB2>; // [ k h , . ^ ]
     bindings = <&kp ESC>; //        └─┴──› esc
-    layers = <0>;
+    layers = <0 ALTL>;
   };
 };
 
@@ -138,7 +138,7 @@ keymap {
     bindings = < LAYOUT36(
       &trans, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans, &trans, &trans,
       &trans, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans, &trans, &trans,
-      &hm LGUI Z, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &th LGUI COMMA, &th LALT DOT, &trans,
+      &hm LGUI Z, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &hm LGUI COMMA, &hm LALT DOT, &trans,
       &trans, &trans, &trans, /**/ &trans, &trans, &trans
     ) >;
   }; // }}}
