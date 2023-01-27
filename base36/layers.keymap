@@ -1,19 +1,18 @@
 #define ALTL   1
 #define NAV    2
 #define SYM    3
-#define HEX    4
-#define FUN    5
-#define ADJ    6
-#define FVBASE 7
-#define FVFLIP 8
-#define FVNAVI 9
-#define FVNUMP 10
-#define FVSYMB 11
-#define GAME   12
-#define GAMEX  13
-#define GAMEY  14
-#define LOCK   15
-#define ULOC   16
+#define FUN    4
+#define ADJ    5
+#define FVBASE 6
+#define FVFLIP 7
+#define FVNAVI 8
+#define FVNUMP 9
+#define FVSYMB 10
+#define GAME   11
+#define GAMEX  12
+#define GAMEY  13
+#define LOCK   14
+#define ULOC   15
 
 #define NTAB LC(PGDN) /* Next tab */
 #define PTAB LC(PGUP) /* Previous tab */
@@ -31,11 +30,14 @@
 /* Complex keys */
 #define _CTLQ &hm LCTL Q /* Q (tap), ctrl (hold) */
 #define _CENT &th LCTL RET /* Enter (tap), ctrl (hold) */
-#define _DLLR &lt NAV DLLR /* Dollar (tap), NAV (hold) */
+#define _DLLR &lt NAV DLLR /* $ (tap), NAV (hold) */
+#define _BSLH &lt ADJ BSLH /* \ (tap), ADJ (hold) */
 
 #define COMBO_TIMEOUT 30
 
+
 behaviors {
+
   hm: homerow_mods { // Letter mods
     compatible = "zmk,behavior-hold-tap";
     label = "HOMEROW_MODS";
@@ -170,58 +172,39 @@ keymap {
     bindings = < LAYOUT36(
       _ QUOT,  _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
       _ EXCL,  _ AT,    _ HASH,  _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
-      _ BSLH,  _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER,
+      _BSLH,   _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER,
       /**/     /**/     &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
     ) >;
   }; // }}}
 
   // ┌─────────────────────┐┌─────────────────────┐
-  // │     ,   .   :   #   ││ ,   A   B   C   bks │ Hex input
-  // │ 1   2   3   4   5   ││ .   D   E   F   ent │
-  // │ 6   7   8   9   0   ││ /   *   -   +       │
-  // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   ▓▓  ──  ││ ──  ·   ·   │
-  //         └─────────────┘└─────────────┘
-  hex_layer { // {{{
-    bindings = < LAYOUT36(
-      __,   _ COMMA, _ DOT, _ COLON, _ HASH, /**/ _ COMMA, _ A,    _ B,     _ C,    _ BSPC,
-      _ N1, _ N2,    _ N3,  _ N4,    _ N5,   /**/ _ DOT,   _ D,    _ E,     _ F,    _ RET,
-      _ N6, _ N7,    _ N8,  _ N9,    _ N0,   /**/ _ SLASH, _ STAR, _ MINUS, _ PLUS, _ COLN,
-
-      /**/ _, _, _ SPC, /**/ _ SPC, __, __
-    ) >;
-  }; // }}}
-
-  // ┌─────────────────────┐┌─────────────────────┐
-  // │ f11 f12 psc ply nxt ││ .   .   .   .   b⁺  │ Function
-  // │ f1  f2  f3  f4  f5  ││ .   .   .   .   b⁻  │
-  // │ f6  f7  f8  f9  f10 ││ .   v-  v+  .   .   │
+  // │ f11 f12 psc ply nxt ││ .   .   .   .   .   │ Function
+  // │ f1  f2  f3  f4  f5  ││ .   .   .   .   .   │
+  // │ f6  f7  f8  f9  f10 ││ .   v-  v+  b⁻  b⁺  │
   // └───────┐─────────────││─────────────┌───────┘
   //         │ ·   ·   ──  ││ ──  ▓▓  ·   │
   //         └─────────────┘└─────────────┘
   fun_layer { // Function {{{
     bindings = < LAYOUT36(
-      _ F11,   _ F12,   _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,       _ C_BRI_UP,
-      _ F1,    _ F2,    _ F3,    _ F4,     _ F5,     /**/ _ C_VOL_DN, __,         __,         __,       _ C_BRI_DN,
-      _ F6,    _ F7,    _ F8,    _ F9,     _ F10,    /**/ _ C_PLAY,   _ C_VOL_DN, _ C_VOL_UP, _ C_NEXT, __,
-
+      _ F11,   _ F12,   _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,       __,
+      _ F1,    _ F2,    _ F3,    _ F4,     _ F5,     /**/ _ C_VOL_DN, __,         __,         __,       __,
+      _ F6,    _ F7,    _ F8,    _ F9,     _ F10,    /**/ _ _,        _ C_VOL_DN, _ C_VOL_UP, _ C_BRI_DN, _ C_BRI_UP,
       /**/ &trans, &trans, &trans, /**/ &trans, &trans, &trans
     ) >;
   }; // }}}
 
   // ┌─────────────────────┐┌─────────────────────┐
-  // │lock .   .   .   clr ││ .   .   .   .   .   │
-  // │game .   .   bt  usb ││ .   .   .   .   .   │
-  // │BOOT b3  b2  b1  b0  ││ b0  b1  b2  b3  BOOT│
+  // │lock .   .   .   BOOT││ .   .   .   .   .   │
+  // │game b4  usb bt  clr ││ .   .   .   .   .   │
+  // │.    b3  b2  b1  .   ││ .   .   .   .   .   │
   // └───────┐─────────────││─────────────┌───────┘
   //         │ ·   FRV ▓▓  ││ tog bt  usb │ Adjust
   //         └─────────────┘└─────────────┘
   adj_layer { // {{{
     bindings = < LAYOUT36(
-      &tog LOCK,   &tog ALTL,    __,    __,     &bt BT_CLR, /**/ __,    __,    __,    __,    __,
-      &tog GAME,   __,    __,    BT_BLE, BT_USB,     /**/ __,    __,    __,    __,    __,
-      &bootloader, BT(3), BT(2), BT(1),  BT(0),      /**/ BT(0), BT(1), BT(2), BT(3), &bootloader,
-
+      &tog LOCK,   &tog ALTL, __,    __,      &bootloader, /**/ __,    __,    __,    __,    __,
+      &tog GAME,   BT(3),     BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,    __,    __,    __,    __,
+      __,          BT(2),     BT(1),  BT(0),  _,           /**/ BT(0), BT(1), BT(2), BT(3), __,
       /**/         /**/   &trans, &tog FVBASE, __,      BT_TOG,   BT_BLE,   BT_USB
     ) >;
   }; // }}}
