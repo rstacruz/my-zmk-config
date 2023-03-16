@@ -1,18 +1,19 @@
 #define ALTL   1
-#define NAV    2
-#define SYM    3
-#define FUN    4
-#define ADJ    5
-#define FVBASE 6
-#define FVFLIP 7
-#define FVNAVI 8
-#define FVNUMP 9
-#define FVSYMB 10
-#define GAME   11
-#define GAMEX  12
-#define GAMEY  13
-#define LOCK   14
-#define ULOC   15
+#define SYM    2
+#define NAV    3
+#define NPAD   4
+#define FUN    5
+#define ADJ    6
+#define FVBASE 7
+#define FVFLIP 8
+#define FVNAVI 9
+#define FVNUMP 10
+#define FVSYMB 11
+#define GAME   12
+#define GAMEX  13
+#define GAMEY  14
+#define LOCK   15
+#define ULOC   16
 
 #define NTAB LC(PGDN) /* Next tab */
 #define PTAB LC(PGUP) /* Previous tab */
@@ -30,6 +31,7 @@
 /* Complex keys */
 #define _CTLQ &hm LCTL Q /* Q (tap), ctrl (hold) */
 #define _CENT &th LCTL RET /* Enter (tap), ctrl (hold) */
+#define _HASH &lt NPAD HASH /* # (tap), NPAD (hold) */
 #define _DLLR &lt NAV DLLR /* $ (tap), NAV (hold) */
 #define _BSLH &lt ADJ BSLH /* \ (tap), ADJ (hold) */
 
@@ -146,11 +148,27 @@ keymap {
   }; // }}}
 
   // ┌─────────────────────┐┌─────────────────────┐
-  // │ ctl gui ⇤   ⇥   alt ││ ,   hom ▲   end del │ Navigation
+  // │ '   "   ^   ?   `   ││ [   <   =   >   ]   │ Symbols
+  // │ !   @   #   $   %   ││ {   (   :   )   }   │
+  // │ \   ~   |   ;   &   ││ /   *   -   +   _   │
+  // └───────┐─────────────││─────────────┌───────┘
+  //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
+  //         └─────────────┘└─────────────┘
+  sym_layer { // {{{
+    bindings = < LAYOUT36(
+      _ QUOT,  _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+      _ EXCL,  _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC, 
+      _BSLH,   _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER,
+      /**/     /**/     &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
+    ) >;
+  }; // }}}
+
+  // ┌─────────────────────┐┌─────────────────────┐
+  // │ ctl gui ⇤   ⇥   alt ││ ,   hom ▲   end del │ navigation
   // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
   // │ 6   7   8   9   0   ││     p↑  p↓  esc ctl │
   // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   SYM ·   ││ spc ▓▓  ralt│
+  //         │ ·   sym ·   ││ spc ▓▓  ralt│
   //         └─────────────┘└─────────────┘
   nav_layer { // {{{
     bindings = < LAYOUT36(
@@ -162,18 +180,18 @@ keymap {
   }; // }}}
 
   // ┌─────────────────────┐┌─────────────────────┐
-  // │ '   "   ^   ?   `   ││ [   <   =   >   ]   │ Symbols
-  // │ !   @   #   $   %   ││ {   (   :   )   }   │
-  // │ \   ~   |   ;   &   ││ /   *   -   +   _   │
+  // │ .   .   .   .   .   ││ ,   1   2   3   bks │ navigation
+  // │ .   .   .   .   .   ││ -   4   5   6   .   │
+  // │ .   .   .   .   .   ││ :   7   8   9   ent │
   // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
+  //         │ .   .   .   ││ 0           │
   //         └─────────────┘└─────────────┘
-  sym_layer { // {{{
+  numpad_layer { // {{{
     bindings = < LAYOUT36(
-      _ QUOT,  _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-      _ EXCL,  _ AT,    _ HASH,  _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
-      _BSLH,   _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER,
-      /**/     /**/     &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
+    &trans, &trans, &trans, &trans, &trans, /**/ _ COMMA, _ N1, _ N2, _ N3, _ BSPC,
+    &trans, &trans, &trans, &trans, &trans, /**/ _ MINUS, _ N4, _ N5, _ N6, _ DOT,
+    &trans, &trans, &trans, &trans, &trans, /**/ _ COLON, _ N7, _ N8, _ N9, _ RET,
+    /**/    /**/    &trans, &trans, &trans, /**/ _ N0, _ DOT,  _ COMMA
     ) >;
   }; // }}}
 
