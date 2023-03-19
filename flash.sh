@@ -50,7 +50,7 @@ flash-by-mount() {
 	echo ""
 	echo "━━› Waiting for $device"
 	sudo true
-	echo "━━› "
+	echo -n "━━› "
 	while true; do
 		if [[ -e "$device" ]]; then break; fi
 		sleep 0.2
