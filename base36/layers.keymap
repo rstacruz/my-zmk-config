@@ -96,7 +96,7 @@ combos {
   combo_h_dot {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB2 CB4>; // [ k h , . ^ ]
-    bindings = <&kp LC(BSPC)>; //     └───┴──› ctrl-backspace
+    bindings = <&kp MINUS>; //        └───┴──› hyphen
     layers = <0 ALTL>;
   };
   combo_h_comma_dot {
