@@ -4,16 +4,13 @@
 #define NPAD   4
 #define FUN    5
 #define ADJ    6
-#define FVBASE 7
-#define FVFLIP 8
-#define FVNAVI 9
-#define FVNUMP 10
-#define FVSYMB 11
-#define GAME   12
-#define GAMEX  13
-#define GAMEY  14
-#define LOCK   15
-#define ULOC   16
+#define OHBASE 7
+#define OHNAV  8
+#define GAME   9
+#define GAMEX  10
+#define GAMEY  11
+#define LOCK   12
+#define ULOC   13
 
 #define NTAB LC(PGDN) /* Next tab */
 #define PTAB LC(PGUP) /* Previous tab */
@@ -22,6 +19,7 @@
 #define BT(n) &bt BT_SEL n
 #define BT_BLE &out OUT_BLE
 #define BT_USB &out OUT_USB
+#define BT_TOG &out OUT_TOG
 #define BT_TOG &out OUT_TOG
 
 /* Shorthand */
@@ -36,7 +34,6 @@
 #define _BSLH &lt ADJ BSLH /* \ (tap), ADJ (hold) */
 
 #define COMBO_TIMEOUT 30
-
 
 behaviors {
 
@@ -108,7 +105,7 @@ combos {
   combo_f_p_sym {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CBL3 CBL4>; // [ q w f p b ]
-    bindings = <&tog FVBASE>; //          └─┴──› frogv
+    bindings = <&tog OHBASE>; //          └─┴──› one-hand
     layers = <SYM ALTL>;
   };
   combo_k_h {
@@ -213,79 +210,38 @@ keymap {
 
   // ┌─────────────────────┐┌─────────────────────┐
   // │lock .   .   .   BOOT││ .   .   .   .   .   │
-  // │game b4  usb bt  clr ││ .   .   .   .   .   │
-  // │.    b3  b2  b1  .   ││ .   .   .   .   .   │
+  // │game .   usb bt  tog ││ .   .   .   .   .   │
+  // │.    b3  b2  b1  clr ││ .   .   .   .   .   │
   // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   FRV ▓▓  ││ tog bt  usb │ Adjust
+  //         │ ·   ONE ▓▓  ││ tog bt  usb │ Adjust
   //         └─────────────┘└─────────────┘
   adj_layer { // {{{
     bindings = < LAYOUT36(
-      &tog LOCK,   &tog ALTL, __,    __,      &bootloader, /**/ __,    __,    __,    __,    __,
-      &tog GAME,   BT(3),     BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,    __,    __,    __,    __,
-      __,          BT(2),     BT(1),  BT(0),  _,           /**/ BT(0), BT(1), BT(2), BT(3), __,
-      /**/         /**/   &trans, &tog FVBASE, __,      BT_TOG,   BT_BLE,   BT_USB
+      &tog LOCK,   &tog ALTL, __,    __,          &bootloader,  /**/ __,    __,    __,    __,    __,
+      &tog GAME,   __,        BT_USB, BT_BLE,     &out OUT_TOG, /**/ __,    __,    __,    __,    __,
+      __,          BT(2),     BT(1),  BT(0),      &bt BT_CLR,   /**/ BT(0), BT(1), BT(2), BT(3), __,
+      /**/         /**/       &trans, &tog OHBASE, __,          /**/  BT_TOG,   BT_BLE,   BT_USB
     ) >;
   }; // }}}
 
-  fvbase_layer { // FrogV base {{{
-    // Base:                   Flip:                   Nav:
-    // ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐
-    // │ s*  c   n   i   g   │ │ q   w   m   j   k   │ │ ░░  p↑  ▲   p↓  bks │
-    // │ ●   t   h   e   o   │ │ ░░  p   l   x   ↑   │ │ .   ◀   ▼   ▶   ent │
-    // │ f*  d   r   a   u   │ │ .   b   v   y   z   │ │ .   hom end ⇥   esc │
-    // └───────┐ ctl num spc │ └───────┐ ctl gui ↑   │ └───────┐ ctl gui ↑   │
-    //         └─────────────┘         └─────────────┘         └─────────────┘
+  ohbase_layer { // One-hand base {{{
     bindings = < LAYOUT36(
-      &lt FVNAVI S, &kp C,     &kp N,     &kp I,      &kp G,        &none,       &none,     &none,     &none,     &none,
-      &sl FVFLIP,   &kp T,     &kp H,     &kp E,      &kp O,        &none,       &none,     &none,     &none,     &none,
-      &lt FVSYMB F, &kp D,     &kp R,     &kp A,      &kp U,        &none,       &none,     &none,     &none,     &none,
-                               &kp LCTL,  &mo FVNUMP, &kp SPACE,    &tog FVBASE, &none,     &tog FVBASE
+      &hm LCTL Q,  &hm LALT W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   &tog OHBASE,
+      &lt OHNAV A, _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
+      _ Z,         _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT,
+      /**/         /**/ _ LGUI, _ SPACE, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
     ) >;
   };
 
-  fvflip_layer { // FrogV flip
+  ohnav_layer { // {{{
     bindings = < LAYOUT36(
-      &kp Q,      &kp W,     &kp M,     &kp J,     &kp K,       &trans,    &trans,    &trans,    &trans,    &trans,
-      &trans,     &kp P,     &kp L,     &kp X,     &sk LSFT,    &trans,    &trans,    &trans,    &trans,    &trans,
-      &kp Q,      &kp B,     &kp V,     &kp Y,     &kp Z,       &trans,    &trans,    &trans,    &trans,    &trans,
-      /**/                 &kp LCTL,  &kp LGUI,  &kp LSFT,    &trans,    &trans,    &trans
-    ) >;
-  };
-
-  fvnavi_layer { // FrogV navigation
-    bindings = < LAYOUT36(
-      &trans,     &kp PGUP,  &kp UP,    &kp PGDN,   &kp BSPC,     &trans,    &trans,    &trans,    &trans,    &trans,
-      &none,      &kp LEFT,  &kp DOWN,  &kp RIGHT,  &kp RET,      &trans,    &trans,    &trans,    &trans,    &trans,
-      &none,      &kp HOME,  &kp END,   &kp TAB,    &kp ESC,      &trans,    &trans,    &trans,    &trans,    &trans,
-      /**/                 &kp LCTL,  &kp LGUI,   &kp LSFT,     &trans,    &trans,    &trans
-    ) >;
-  };
-
-  fvnump_layer { // FrogV number pad
-    // Num:                    Sym:
-    // ┌─────────────────────┐ ┌─────────────────────┐
-    // │         gui ↑   ext │ │     !   [   ]   \   │
-    // │ 1   2   3   4   5   │ │     '   =   -   /   │
-    // │ 6   7   8   9   0   │ │     ;   ,   .   '   │
-    // └───────┐ alt .   ctl │ └───────┐         ↑   │
-    //         └─────────────┘         └─────────────┘
-    bindings = < LAYOUT36(
-      &none,       &none,     &kp LGUI,  &kp LSFT,   &tog FVBASE,  &trans,    &trans,    &trans,    &trans,    &trans,
-      &kp N1,      &kp N2,    &kp N3,    &kp N4,     &kp N5,       &trans,    &trans,    &trans,    &trans,    &trans,
-      &kp N6,      &kp N7,    &kp N8,    &kp N9,     &kp N0,       &trans,    &trans,    &trans,    &trans,    &trans,
-      /**/                  &kp LALT,  &trans,     &kp LCTL,     &trans,    &trans,    &trans
-    ) >;
-  };
-
-  fvsymb_layer { // FrogV symbol
-    bindings = < LAYOUT36(
-      &none,     &kp EXCL,  &kp LBKT,  &kp RBKT,   &kp BSLH,     &trans,    &trans,    &trans,    &trans,    &trans,
-      &none,     &kp GRAVE, &kp EQUAL, &kp MINUS,  &kp LGUI,     &trans,    &trans,    &trans,    &trans,    &trans,
-      &none,     &kp SEMI,  &kp COMMA, &kp DOT,    &kp QUOT,     &trans,    &trans,    &trans,    &trans,    &trans,
-
-                          &trans,    &trans,     &kp LSFT,     &trans,    &trans,    &trans
+      __,  _ PGUP, _ UP, _ PGDN, _ BSPC, __, __, __, __, __,
+      __, _ LEFT, _ DOWN, _ RIGHT, _ RET, __, __, __, __, __,
+      __, __, __, __, __, __, __, __, __, __,
+      /**/ __, __, __, /**/ __, __, __
     ) >;
   }; // }}}
+
 
   // ┌─────────────────────┐ ┌─────────────────────┐
   // │ tab q   w   e   r   │ │ y   u   i   o   p   │ Game
@@ -333,10 +289,10 @@ keymap {
 
   lock_layer { // Lock {{{
     bindings = < LAYOUT36(
-      __,       __, __, __, __, __, __, __, __, __,
+      __,       __, __, __, __, __, __, __, __, &tog LOCK,
       __,       __, __, __, __, __, __, __, __, __,
       &mo ULOC, __, __, __, __, __, __, __, __, __,
-      /**/ __, __, &mo ULOC, /**/ __, __, __
+      /**/ __, __, &mo ULOC, /**/ __, __, &tog LOCK
     ) >;
   }; // }}}
 
