@@ -36,11 +36,11 @@ main() {
 		# MacOS
 		flash-by-cp "/Volumes/$label" "$file"
 	else
-		echo '-- Sorry, your platform is unsupported'
+		echo '━━› Sorry, your platform is unsupported'
 		exit 1
 	fi
 
-	echo '-- Done!'
+	echo '━━› Done!'
 }
 
 # flash-by-mount "/dev/disk/by-label/NICENANO" "file.uf2"
@@ -48,22 +48,21 @@ flash-by-mount() {
 	local device="$1"
 	local file="$2"
 	echo ""
-	echo "━━› Waiting for $device"
+	echo -n "━━› Waiting for $device"
 	sudo true
-	echo -n "━━› "
 	while true; do
 		if [[ -e "$device" ]]; then break; fi
 		sleep 0.2
 		echo -n '.'
 	done
 	echo ' ✓'
-	echo -n '-- Mounting...'
+	echo -n '━━› Mounting...'
 	mkdir -p /tmp/flashmnt
 	sudo mount "$device" /tmp/flashmnt
 	echo ' ✓'
 
 	echo -n "━━› Sending $file..."
-	cp "$file" /tmp/flashmnt
+	sudo cp "$file" /tmp/flashmnt
 	sync
 	sudo umount -R /tmp/flashmnt
 	echo ' ✓'

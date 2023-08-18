@@ -1,4 +1,5 @@
 keeb := technikable
+flash_file := technikable.uf2
 docker_image := zmkfirmware/zmk-build-arm:stable
 volume_label := TECHNIKABLE
 base_path = $(shell pwd)
@@ -32,21 +33,29 @@ update: ## Updates ZMK [alias: u]
 		-e HOST_GID="$(shell id -g)" \
 		"${docker_image}" sh -c "cd /keeb; west update"
 
-
 technikable:
 	$(eval keeb := technikable)
+	$(eval flash_file := technikable.uf2)
 	$(eval volume_label := TECHNIKABLE)
 	@true
 
 microdox:
 	$(eval keeb := microdox)
+	$(eval flash_file := microdox_left.uf2)
 	$(eval volume_label := NICENANO)
+	@true
+
+microdox_right: microdox
+	$(eval flash_file := microdox_right.uf2)
 	@true
 
 clean: ## Clean cache to update zmk/zephyr
 	docker run -it --rm \
 		-v "${base_path}/.cache:/keeb" \
 		"${docker_image}" sh -c "rm -rf /keeb/*"
+
+flash: ## Flash - only works for linux/macOS [alias: u]
+	./flash.sh --label "${volume_label}" "./${flash_file}"
 
 b: build
 u: update

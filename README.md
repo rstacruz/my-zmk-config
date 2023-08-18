@@ -14,8 +14,7 @@ make microdox build    # build microdox.uf2
 Copy the `.uf2` file to the keyboard in bootloader mode. Alternatively,
 
 ```bash
-./flash.sh --label TECHNIKABLE technikable.uf2
-./flash.sh --label NICENANO microdox_left.uf2
+make flash [technikable|microdox|microdox_right]
 # only works on Linux and MacOS
 ```
 
