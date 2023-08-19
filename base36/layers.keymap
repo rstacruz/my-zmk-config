@@ -5,12 +5,13 @@
 #define FUN    5
 #define ADJ    6
 #define OHBASE 7
-#define OHNAV  8
-#define GAME   9
-#define GAMEX  10
-#define GAMEY  11
-#define LOCK   12
-#define ULOC   13
+#define OHFLIP 8
+#define OHNAV  9
+#define GAME   10
+#define GAMEX  11
+#define GAMEY  12
+#define LOCK   13
+#define ULOC   14
 
 #define NTAB LC(PGDN) /* Next tab */
 #define PTAB LC(PGUP) /* Previous tab */
@@ -130,17 +131,17 @@ keymap {
     bindings = < LAYOUT36(
       _CTLQ, _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   _ BSPC,
       _ A,   _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
-      _ Z,   _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT,
-      /**/   /**/ _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
+      _ Z,   _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
+      /*,    */,  _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
     ) >;
   }; // }}}
 
   alt_layer { // {{{
     bindings = < LAYOUT36(
-      &trans, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans, &trans, &trans,
-      &trans, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans, &trans, &trans,
-      &hm LGUI Z, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &hm LGUI COMMA, &hm LALT DOT, &trans,
-      &trans, &trans, &trans, /**/ &trans, &trans, &trans
+      &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
+      &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
+      &hm LGUI Z, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &hm LGUI COMMA, &hm LALT DOT, &trans
+      /*,         */,     &trans, &trans, &trans, /**/ &trans, &trans, &trans
     ) >;
   }; // }}}
 
@@ -153,10 +154,10 @@ keymap {
   //         └─────────────┘└─────────────┘
   sym_layer { // {{{
     bindings = < LAYOUT36(
-      _ QUOT,  _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-      _ EXCL,  _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC, 
-      _BSLH,   _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER,
-      /**/     /**/     &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
+      _ QUOT, _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+      _ EXCL, _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+      _BSLH,  _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
+      /*,     */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
     ) >;
   }; // }}}
 
@@ -169,10 +170,10 @@ keymap {
   //         └─────────────┘└─────────────┘
   nav_layer { // {{{
     bindings = < LAYOUT36(
-      _ RCTRL, _ RGUI, _ SFTAB,  _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
-      _ N1,    _ N2,   _ N3,     _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
-      _ N6,    _ N7,   _ N8,     _ N9,   _ N0,   /**/ &mo ADJ, _   PGUP, _ PGDN, _ ESC,   _ LCTL,
-      /**/     /**/    &trans,   &trans, &trans, /**/ _ SPACE, &mo FUN,  _ RALT
+      _ RCTRL, _ RGUI, _ SFTAB, _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
+      _ N1,    _ N2,   _ N3,    _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
+      _ N6,    _ N7,   _ N8,    _ N9,   _ N0,   /**/ &mo ADJ, _   PGUP, _ PGDN, _ ESC,   _ LCTL
+      /*,      */,     &trans,  &trans, &trans, /**/ _ SPACE, &mo FUN,  _ RALT
     ) >;
   }; // }}}
 
@@ -185,10 +186,10 @@ keymap {
   //         └─────────────┘└─────────────┘
   numpad_layer { // {{{
     bindings = < LAYOUT36(
-    &trans, &trans, &trans, &trans, &trans, /**/ _ COMMA, _ N1, _ N2, _ N3, _ BSPC,
-    &trans, &trans, &trans, &trans, &trans, /**/ _ MINUS, _ N4, _ N5, _ N6, _ DOT,
-    &trans, &trans, &trans, &trans, &trans, /**/ _ COLON, _ N7, _ N8, _ N9, _ RET,
-    /**/    /**/    &trans, &trans, &trans, /**/ _ N0, _ DOT,  _ COMMA
+      &trans, &trans, &trans, &trans, &trans, /**/ _ COMMA, _ N1,  _ N2, _ N3, _ BSPC,
+      &trans, &trans, &trans, &trans, &trans, /**/ _ MINUS, _ N4,  _ N5, _ N6, _ DOT,
+      &trans, &trans, &trans, &trans, &trans, /**/ _ COLON, _ N7,  _ N8, _ N9, _ RET
+      /*,     */,     &trans, &trans, &trans, /**/ _ N0,    _ DOT, _ COMMA
     ) >;
   }; // }}}
 
@@ -201,10 +202,10 @@ keymap {
   //         └─────────────┘└─────────────┘
   fun_layer { // Function {{{
     bindings = < LAYOUT36(
-      _ F11,   _ F12,   _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,       __,
-      _ F1,    _ F2,    _ F3,    _ F4,     _ F5,     /**/ _ C_VOL_DN, __,         __,         __,       __,
-      _ F6,    _ F7,    _ F8,    _ F9,     _ F10,    /**/ _ CAPS,     _ C_VOL_DN, _ C_VOL_UP, _ C_BRI_DN, _ C_BRI_UP,
-      /**/ &trans, &trans, &trans, /**/ &trans, &trans, &trans
+      _ F11, _ F12, _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,         __,
+      _ F1,  _ F2,  _ F3,    _ F4,     _ F5,     /**/ _ C_VOL_DN, __,         __,         __,         __,
+      _ F6,  _ F7,  _ F8,    _ F9,     _ F10,    /**/ _ CAPS,     _ C_VOL_DN, _ C_VOL_UP, _ C_BRI_DN, _ C_BRI_UP
+      /*,    */,    &trans,  &trans,   &trans,   /**/ &trans,     &trans,     &trans
     ) >;
   }; // }}}
 
@@ -217,28 +218,37 @@ keymap {
   //         └─────────────┘└─────────────┘
   adj_layer { // {{{
     bindings = < LAYOUT36(
-      &tog LOCK,   &tog ALTL, __,    __,          &bootloader,  /**/ __,    __,    __,    __,    __,
-      &tog GAME,   __,        BT_USB, BT_BLE,     &out OUT_TOG, /**/ __,    __,    __,    __,    __,
-      __,          BT(2),     BT(1),  BT(0),      &bt BT_CLR,   /**/ BT(0), BT(1), BT(2), BT(3), __,
-      /**/         /**/       &trans, &tog OHBASE, __,          /**/  BT_TOG,   BT_BLE,   BT_USB
+      &tog LOCK, &tog ALTL, __,     __,          &bootloader,  /**/ __,      __,     __,    __,    __,
+      &tog GAME, __,        BT_USB, BT_BLE,      &out OUT_TOG, /**/ __,      __,     __,    __,    __,
+      __,        BT(2),     BT(1),  BT(0),       &bt BT_CLR,   /**/ BT(0),   BT(1),  BT(2), BT(3), __
+      /*,        */,        &trans, &tog OHBASE, __,           /**/  BT_TOG, BT_BLE, BT_USB
     ) >;
   }; // }}}
 
   ohbase_layer { // One-hand base {{{
     bindings = < LAYOUT36(
       &hm LCTL Q,  &hm LALT W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   &tog OHBASE,
-      &lt OHNAV A, _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
-      _ Z,         _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT,
-      /**/         /**/ _ LGUI, _ SPACE, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
+      &lt OHNAV A, _ R,        _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
+      _ Z,         _ X,        _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
+      /*,          */,         _ LGUI, _ SPACE, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
+    ) >;
+  };
+
+  ohflip_layer { // One-hand flip {{{
+    bindings = < LAYOUT36(
+      &hm LCTL J,  &hm LALT L, _ U,     _ Y,     __,     /**/  _ J,     _ L,     _ U,     _ Y,   &tog OHBASE,
+      &lt OHNAV M, _ N,        _ E,     _ I,     _ O,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
+      _ K,         _ H,        _ COMMA, _ DOT,   _ RET,  /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
+      /*,          */,         _ LGUI,  _ SPACE, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
     ) >;
   };
 
   ohnav_layer { // {{{
     bindings = < LAYOUT36(
-      __,  _ PGUP, _ UP, _ PGDN, _ BSPC, __, __, __, __, __,
-      __, _ LEFT, _ DOWN, _ RIGHT, _ RET, __, __, __, __, __,
-      __, __, __, __, __, __, __, __, __, __,
-      /**/ __, __, __, /**/ __, __, __
+      __, _ PGUP, _ UP,   _ PGDN,  _ BSPC, /**/ __, __, __, __, __,
+      __, _ LEFT, _ DOWN, _ RIGHT, _ RET,  /**/ __, __, __, __, __,
+      __, __,     __,     __,      __,     /**/ __, __, __, __, __
+      /*, */,     __,     __,      __,     /**/ __, __, __
     ) >;
   }; // }}}
 
