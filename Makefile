@@ -1,6 +1,7 @@
 keeb := technikable
 flash_file := technikable.uf2
 docker_image := zmkfirmware/zmk-build-arm:stable
+docker := docker
 volume_label := TECHNIKABLE
 base_path = $(shell pwd)
 keeb_path = $(shell pwd)/${keeb}
@@ -12,7 +13,7 @@ help:
 	@echo
 
 build: ## Builds [alias: b]
-	docker run -it --rm \
+	${docker} run -it --rm \
 		--name "zmk-${keeb}" \
 		-v "${base_path}/.cache:/keeb" \
 		-v "${keeb_path}:/keeb/config:ro" \
@@ -24,7 +25,7 @@ build: ## Builds [alias: b]
 	cp .cache/*.uf2 . || true
 
 update: ## Updates ZMK [alias: u]
-	docker run -it --rm \
+	${docker} run -it --rm \
 		--name "zmk-${keeb}" \
 		-v "${base_path}/.cache:/keeb" \
 		-v "${keeb_path}:/keeb/config:ro" \
@@ -45,12 +46,16 @@ microdox:
 	$(eval volume_label := NICENANO)
 	@true
 
+nerdctl:
+	$(eval docker := nerdctl)
+	@true
+
 microdox_right: microdox
 	$(eval flash_file := microdox_right.uf2)
 	@true
 
 clean: ## Clean cache to update zmk/zephyr
-	docker run -it --rm \
+	${docker} run -it --rm \
 		-v "${base_path}/.cache:/keeb" \
 		"${docker_image}" sh -c "rm -rf /keeb/*"
 
