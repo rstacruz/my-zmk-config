@@ -4,14 +4,13 @@
 #define NPAD   4
 #define FUN    5
 #define ADJ    6
-#define OHBASE 7
-#define OHFLIP 8
-#define OHNAV  9
-#define GAME   10
-#define GAMEX  11
-#define GAMEY  12
-#define LOCK   13
-#define ULOC   14
+#define OHFLIP 7
+#define OHNAV  8
+#define GAME   9
+#define GAMEX  10
+#define GAMEY  11
+#define LOCK   12
+#define ULOC   13
 
 #define NTAB LC(PGDN) /* Next tab */
 #define PTAB LC(PGUP) /* Previous tab */
@@ -103,12 +102,6 @@ combos {
     bindings = <&kp LC(BSPC)>; //         └─┴─┴──› ctrl-backspace
     layers = <0 ALTL>;
   };
-  combo_f_p_sym {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CBL3 CBL4>; // [ q w f p b ]
-    bindings = <&tog OHBASE>; //          └─┴──› one-hand
-    layers = <SYM ALTL>;
-  };
   combo_k_h {
     timeout-ms = <COMBO_TIMEOUT>;
     key-positions = <CB1 CB2>; // [ k h , . ^ ]
@@ -147,17 +140,17 @@ keymap {
 
   // ┌─────────────────────┐┌─────────────────────┐
   // │ '   "   ^   ?   `   ││ [   <   =   >   ]   │ Symbols
-  // │ !   @   #   $   %   ││ {   (   :   )   }   │
-  // │ \   ~   |   ;   &   ││ /   *   -   +   _   │
+  // │ !   @   #   $   %⁺  ││ {   (   :   )   }   │
+  // │ \⁺  ~   |   ;   &   ││ /   *   -   +   _   │ ⁺ = layer tap
   // └───────┐─────────────││─────────────┌───────┘
   //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
   //         └─────────────┘└─────────────┘
   sym_layer { // {{{
     bindings = < LAYOUT36(
-      _ QUOT, _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-      _ EXCL, _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
-      _BSLH,  _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
-      /*,     */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
+      _ QUOT,       _ DQT,   _ CARET, _ QMARK, _ GRAVE,          /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+      _ EXCL,       _ AT,    _HASH,   _DLLR,   &lt OHFLIP PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+      &lt ADJ BSLH, _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,           /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
+      /*,           */,      &trans,  &mo FUN, &mo ADJ,          /**/ _ SPACE, &mo FUN, _ RALT
     ) >;
   }; // }}}
 
@@ -214,32 +207,23 @@ keymap {
   // │game .   usb bt  tog ││ .   .   .   .   .   │
   // │.    b3  b2  b1  clr ││ .   .   .   .   .   │
   // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   ONE ▓▓  ││ tog bt  usb │ Adjust
+  //         │ ·   ·   ▓▓  ││ tog bt  usb │ Adjust
   //         └─────────────┘└─────────────┘
   adj_layer { // {{{
     bindings = < LAYOUT36(
-      &tog LOCK, &tog ALTL, __,     __,          &bootloader,  /**/ __,      __,     __,    __,    __,
-      &tog GAME, __,        BT_USB, BT_BLE,      &out OUT_TOG, /**/ __,      __,     __,    __,    __,
-      __,        BT(2),     BT(1),  BT(0),       &bt BT_CLR,   /**/ BT(0),   BT(1),  BT(2), BT(3), __
-      /*,        */,        &trans, &tog OHBASE, __,           /**/  BT_TOG, BT_BLE, BT_USB
+      &tog LOCK, &tog ALTL, __,     __,     &bootloader,  /**/ __,  __, __, __, __,
+      &tog GAME, __,        BT_USB, BT_BLE, &out OUT_TOG, /**/ __,  __, __, __, __,
+      __,        BT(2),     BT(1),  BT(0),  &bt BT_CLR,   /**/ __,  __, __, __, __
+      /*,        */,        &trans, &trans, __,           /**/  __, __, __
     ) >;
   }; // }}}
 
-  ohbase_layer { // One-hand base {{{
-    bindings = < LAYOUT36(
-      &hm LCTL Q,  &hm LALT W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   &tog OHBASE,
-      &lt OHNAV A, _ R,        _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
-      _ Z,         _ X,        _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
-      /*,          */,         _ LGUI, _ SPACE, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
-    ) >;
-  };
-
   ohflip_layer { // One-hand flip {{{
     bindings = < LAYOUT36(
-      &hm LCTL J,  &hm LALT L, _ U,     _ Y,     __,     /**/  _ J,     _ L,     _ U,     _ Y,   &tog OHBASE,
-      &lt OHNAV M, _ N,        _ E,     _ I,     _ O,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
-      _ K,         _ H,        _ COMMA, _ DOT,   _ RET,  /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
-      /*,          */,         _ LGUI,  _ SPACE, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
+      &hm LCTL J,  &hm LALT L, _ U,    _ Y,     __,      /**/  _ J,     _ L,     _ U,     _ Y,   __,
+      &lt OHNAV M, _ N,        _ E,    _ I,     _ O,     /**/  _ M,     _ N,     _ E,     _ I,   _ O,
+      _ K,         _ H,        _ O,    _ DOT,   _ COMMA, /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
+      /*,          */,         _ LGUI, _ SPACE, _ LSFT,  /**/  _ SPACE, &mo NAV, _ LALT
     ) >;
   };
 
@@ -251,7 +235,6 @@ keymap {
       /*, */,     __,     __,      __,     /**/ __, __, __
     ) >;
   }; // }}}
-
 
   // ┌─────────────────────┐ ┌─────────────────────┐
   // │ tab q   w   e   r   │ │ y   u   i   o   p   │ Game
