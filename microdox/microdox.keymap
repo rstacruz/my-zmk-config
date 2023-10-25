@@ -24,6 +24,10 @@
 #define CBL3 2
 #define CBL4 3
 
+// Combo keys
+#define CB_G 14
+#define CB_D 23
+#define CB_V 24
 
 / {
   #include "../base36/layers.keymap"

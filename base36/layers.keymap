@@ -109,6 +109,18 @@ combos {
     bindings = <&kp ESC>; //        └─┴──› esc
     layers = <0 ALTL>;
   };
+  combo_d_v {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <CB_D CB_V>;
+    bindings = <&sl OHFLIP>;
+    layers = <0 ALTL>;
+  };
+  combo_g_v {
+    timeout-ms = <COMBO_TIMEOUT>;
+    key-positions = <CB_G CB_V>;
+    bindings = <&sl OHFLIP>;
+    layers = <0 ALTL>;
+  };
 };
 
 keymap {
@@ -148,10 +160,10 @@ keymap {
   //         └─────────────┘└─────────────┘
   sym_layer { // {{{
     bindings = < LAYOUT36(
-      _ QUOT,       _ DQT,   _ CARET, _ QMARK, _ GRAVE,          /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-      _ EXCL,       _ AT,    _HASH,   _DLLR,   &lt OHFLIP PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
-      &lt ADJ BSLH, _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,           /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
-      /*,           */,      &trans,  &mo FUN, &mo ADJ,          /**/ _ SPACE, &mo FUN, _ RALT
+      _ QUOT,       _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+      _ EXCL,       _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+      &lt ADJ BSLH, _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
+      /*,           */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
     ) >;
   }; // }}}
 
@@ -221,10 +233,10 @@ keymap {
 
   ohflip_layer { // One-hand flip {{{
     bindings = < LAYOUT36(
-      &hm LCTL J,  &hm LALT L, _ U,    _ Y,     __,      /**/  _ J,     _ L,     _ U,     _ Y,   __,
-      &lt OHNAV M, _ N,        _ E,    _ I,     _ O,     /**/  _ M,     _ N,     _ E,     _ I,   _ O,
-      _ K,         _ H,        _ O,    _ DOT,   _ COMMA, /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
-      /*,          */,         _ LGUI, _ SPACE, _ LSFT,  /**/  _ SPACE, &mo NAV, _ LALT
+      &hm LCTL J,  &hm LALT L, _ U,     _ Y,     __,      /**/  _ J,     _ L,     _ U,     _ Y,   __,
+      &lt OHNAV M, _ N,        _ E,     _ I,     _ O,     /**/  _ M,     _ N,     _ E,     _ I,   _ O,
+      _ K,         _ H,        _ COMMA, _ DOT,   _ COMMA, /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
+      /*,          */,         _ LGUI,  _ SPACE, _ LALT,  /**/  _ SPACE, &mo NAV, _ LALT
     ) >;
   };
 

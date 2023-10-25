@@ -24,6 +24,11 @@
 #define CBL3 2
 #define CBL4 3
 
+// Combo keys
+#define CB_G 16
+#define CB_D 27
+#define CB_V 28
+
 &sl {
 	release-after-ms = <500>; /* for frogv's flip button */
 };
