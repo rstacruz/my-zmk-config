@@ -1,3 +1,4 @@
+// https://zmk.dev/docs/codes/keyboard-keypad
 #define ALTL   1
 #define SYM    2
 #define NAV    3
@@ -157,7 +158,7 @@ keymap {
   // ┌─────────────────────┐┌─────────────────────┐
   // │ ctl gui ⇤   ⇥   alt ││ ,   hom ▲   end del │ navigation
   // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
-  // │ 6   7   8   9   0   ││ adj p↑  p↓  esc ctl │
+  // │ 6   7   8   9   0   ││ ins p↑  p↓  esc ctl │
   // └───────┐─────────────││─────────────┌───────┘
   //         │ ·   sym ·   ││ spc ▓▓  ralt│
   //         └─────────────┘└─────────────┘
@@ -165,7 +166,7 @@ keymap {
     bindings = < LAYOUT36(
       _ RCTRL, _ RGUI, _ SFTAB, _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
       _ N1,    _ N2,   _ N3,    _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
-      _ N6,    _ N7,   _ N8,    _ N9,   _ N0,   /**/ &mo ADJ, _   PGUP, _ PGDN, _ ESC,   _ LCTL
+      _ N6,    _ N7,   _ N8,    _ N9,   _ N0,   /**/ _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
       /*,      */,     &trans,  &trans, &trans, /**/ _ SPACE, &mo FUN,  _ RALT
     ) >;
   }; // }}}
@@ -300,4 +301,3 @@ keymap {
 };
 
 // vim:ft=c:fdm=indent
-// https://zmk.dev/docs/codes/layer
