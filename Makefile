@@ -16,20 +16,19 @@ build: ## Builds [alias: b]
 	${docker} run -it --rm \
 		--name "zmk-${keeb}" \
 		-v "${base_path}/.cache:/keeb" \
-		-v "${keeb_path}:/keeb/config:ro" \
+		-v "${keeb_path}:/keeb/${keeb}:ro" \
 		-v "${base_path}/base36:/keeb/base36:ro" \
 		-e HOST_UID="$(shell id -u)" \
 		-e HOST_GID="$(shell id -g)" \
-		"${docker_image}" sh -c "cd /keeb; sh config/build.sh"
+		"${docker_image}" sh -c "cd /keeb; sh /keeb/${keeb}/build.sh"
 
 	cp .cache/*.uf2 . || true
 
 update: ## Updates ZMK [alias: u]
+	${docker} pull "${docker_image}"
 	${docker} run -it --rm \
 		--name "zmk-${keeb}" \
 		-v "${base_path}/.cache:/keeb" \
-		-v "${keeb_path}:/keeb/config:ro" \
-		-v "${base_path}/base36:/keeb/base36:ro" \
 		-e HOST_UID="$(shell id -u)" \
 		-e HOST_GID="$(shell id -g)" \
 		"${docker_image}" sh -c "cd /keeb; west update"
