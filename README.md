@@ -2,27 +2,30 @@
 
 Builds and flashes zmk firmware via Docker.
 
-```sh
-make build             # build technikable.uf2
-make microdox build    # build microdox.uf2
-```
-
 ![](./reference.png)
 
-## Flashing
+## Building
 
-Copy the `.uf2` file to the keyboard in bootloader mode. Alternatively,
+```sh
+make technikable build # builds technikable.uf2
+make microdox build    # builds microdox.uf2
+```
 
 ```bash
-make flash [technikable|microdox|microdox_right]
-# only works on Linux and MacOS
+make technikable flash
+make microdox flash
+make microdox_right flash
+# ...only works on Linux and MacOS
 ```
+
+...Alternatively, copy the generated `.uf2` file to the keyboard in bootloader mode.
 
 ## Extras
 
 ```bash
 make nerdctl build   # build using containerd+nerdctl instead of Docker
 ```
+
 ## Acknowledgements
 
 - [petejohanson/technikable-zmk-config](https://github.com/petejohanson/technikable-zmk-config) &mdash; board definitions for the Technikable were taken from here
