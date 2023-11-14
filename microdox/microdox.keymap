@@ -1,37 +1,21 @@
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
-
 #define LAYOUT36( \
-	a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, \
-	b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, \
-	c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, \
-	/*   */ d2, d3, d4, d5, d6, d7 \
+	a0, a1, a2, a3, a4, /**/ a5, a6, a7, a8, a9, \
+	b0, b1, b2, b3, b4, /**/ b5, b6, b7, b8, b9, \
+	c0, c1, c2, c3, c4, /**/ c5, c6, c7, c8, c9, \
+	/*   */ d2, d3, d4, /**/ d5, d6, d7 \
 	) \
 	a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 \
 	b0 b1 b2 b3 b4 b5 b6 b7 b8 b9 \
 	c0 c1 c2 c3 c4 c5 c6 c7 c8 c9 \
 	      d2 d3 d4 d5 d6 d7
 
-// Combo key positions: lower-right combos
-#define CB1 25
-#define CB2 26
-#define CB3 27
-#define CB4 28
-
-// Combo key positions: upper-left combos
-#define CBL3 2
-#define CBL4 3
-
 // Combo keys
-#define CB_G 14
-#define CB_D 23
-#define CB_V 24
+#define CB_K 25
+#define CB_H 26
+#define CB_COMMA 27
+#define CB_DOT 28
 
-/ {
-  #include "../base36/layers.keymap"
-};
+#include "../base36/layers.keymap"
 
 // vim:ft=c:fdm=indent
 // https://zmk.dev/docs/codes/

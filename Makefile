@@ -4,11 +4,11 @@ docker_image := zmkfirmware/zmk-build-arm:stable
 docker := docker
 volume_label := TECHNIKABLE
 base_path = $(shell pwd)
-keeb_path = $(shell pwd)/${keeb}
+config_path = $(shell pwd)/${keeb}
 docker_run = ${docker} run -it --rm \
 	--name "zmk" \
 	-v "${base_path}/.cache:/keeb" \
-	-v "${keeb_path}:/keeb/config:ro" \
+	-v "${config_path}:/keeb/config:ro" \
 	-v "${base_path}/base36:/keeb/base36:ro" \
 	-e HOST_UID="$(shell id -u)" \
 	-e HOST_GID="$(shell id -g)" \
@@ -28,14 +28,7 @@ sh: ## Opens a shell
 	${docker_run} bash
 
 update: ## Updates ZMK [alias: u]
-	${docker} pull "${docker_image}"
-	${docker} run -it --rm \
-		--name "zmk" \
-		-v "${base_path}/.cache:/keeb" \
-		-v "${base_path}/base36/west.yml:/keeb/config/west.yml:ro" \
-		-e HOST_UID="$(shell id -u)" \
-		-e HOST_GID="$(shell id -g)" \
-		"${docker_image}" sh -c "cd /keeb; west update"
+	${docker_run} sh -c "cd /keeb; west update"
 
 technikable:
 	$(eval keeb := technikable)
@@ -78,10 +71,11 @@ clean: ## Clean cache to update zmk/zephyr
 		-v "${base_path}/.cache:/keeb" \
 		"${docker_image}" sh -c "rm -rf /keeb/*"
 
-flash: ## Flash - only works for linux/macOS [alias: u]
+flash: ## Flash - only works for linux/macOS [alias: f]
 	./flash.sh --label "${volume_label}" "./${flash_file}"
 
 b: build
 u: update
+f: flash
 
 .PHONY: microdox technikable chocofi nice_nano_v2_reset

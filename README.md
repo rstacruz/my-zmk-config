@@ -4,21 +4,28 @@ Builds and flashes zmk firmware via Docker.
 
 ![](./reference.png)
 
-## Building
+## Usage
 
 ```sh
-make technikable build # builds technikable.uf2
-make microdox build
-make chocofi build
+make <keyboard>       <action>
+     └┬───────┘       └┬─────┘
+      ├─ technikable   ├─ build
+      ├─ microdox      └─ flash
+      └─ chocofi
 ```
 
 ```bash
+# Examples:
+make technikable build # builds technikable.uf2
+make microdox build
+make chocofi build
+
 make technikable flash
 make microdox flash
 make microdox_right flash
 make chocofi flash
 make chocofi_right flash
-# ...only works on Linux and MacOS
+# ...flash only works on Linux and MacOS
 ```
 
 ...Alternatively, copy the generated `.uf2` file to the keyboard in bootloader mode.
