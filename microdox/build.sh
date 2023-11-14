@@ -1,14 +1,8 @@
 #!/usr/bin/env sh
-board="microdox"
-shield_l="microdox_left"
-shield_r="microdox_right"
 set -xe
 
-if [ ! -d zmk ]; then west update; fi # creates zmk/ zephyr/ modules/
-west zephyr-export # creates ~/.cmake/packages
+west build -b "nice_nano_v2" -d build/microdox_left zmk/app -- -DZMK_CONFIG="$(pwd)/config" -DSHIELD="microdox_left"
+cp build/microdox_left/zephyr/zmk.uf2 "microdox_left.uf2"
 
-west build --pristine -b "$board" zmk/app -- -DZMK_CONFIG="$(pwd)/config" -DSHIELD="$shield_l"
-cp build/zephyr/zmk.uf2 "$shield_l.uf2"
-
-west build --pristine -b "$board" zmk/app -- -DZMK_CONFIG="$(pwd)/config" -DSHIELD="$shield_r"
-cp build/zephyr/zmk.uf2 "$shield_r.uf2"
+west build -b "nice_nano_v2" -d build/microdox_right zmk/app -- -DZMK_CONFIG="$(pwd)/config" -DSHIELD="microdox_right"
+cp build/microdox_right/zephyr/zmk.uf2 "microdox_right.uf2"
