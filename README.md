@@ -8,13 +8,16 @@ Builds and flashes zmk firmware via Docker.
 
 ```sh
 make technikable build # builds technikable.uf2
-make microdox build    # builds microdox.uf2
+make microdox build
+make chocofi build
 ```
 
 ```bash
 make technikable flash
 make microdox flash
 make microdox_right flash
+make chocofi flash
+make chocofi_right flash
 # ...only works on Linux and MacOS
 ```
 

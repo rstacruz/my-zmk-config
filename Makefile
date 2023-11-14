@@ -5,6 +5,14 @@ docker := docker
 volume_label := TECHNIKABLE
 base_path = $(shell pwd)
 keeb_path = $(shell pwd)/${keeb}
+docker_run = ${docker} run -it --rm \
+	--name "zmk" \
+	-v "${base_path}/.cache:/keeb" \
+	-v "${keeb_path}:/keeb/config:ro" \
+	-v "${base_path}/base36:/keeb/base36:ro" \
+	-e HOST_UID="$(shell id -u)" \
+	-e HOST_GID="$(shell id -g)" \
+	"${docker_image}"
 
 help:
 	@echo "Usage: make {microdox|technikable} build"
@@ -13,26 +21,11 @@ help:
 	@echo
 
 build: ## Builds [alias: b]
-	${docker} run -it --rm \
-		--name "zmk" \
-		-v "${base_path}/.cache:/keeb" \
-		-v "${keeb_path}:/keeb/config:ro" \
-		-v "${base_path}/base36:/keeb/base36:ro" \
-		-e HOST_UID="$(shell id -u)" \
-		-e HOST_GID="$(shell id -g)" \
-		"${docker_image}" sh -c "cd /keeb; bash /keeb/base36/west_setup.sh && bash /keeb/config/build.sh"
-
+	${docker_run} sh -c "cd /keeb; bash /keeb/base36/west_setup.sh && bash /keeb/config/build.sh"
 	cp .cache/*.uf2 . || true
 
 sh: ## Opens a shell
-	${docker} run -it --rm \
-		--name "zmk" \
-		-v "${base_path}/.cache:/keeb" \
-		-v "${keeb_path}:/keeb/config:ro" \
-		-v "${base_path}/base36:/keeb/base36:ro" \
-		-e HOST_UID="$(shell id -u)" \
-		-e HOST_GID="$(shell id -g)" \
-		"${docker_image}" bash
+	${docker_run} bash
 
 update: ## Updates ZMK [alias: u]
 	${docker} pull "${docker_image}"
