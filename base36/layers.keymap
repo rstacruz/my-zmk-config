@@ -59,7 +59,7 @@ behaviors {
     #binding-cells = <0>;
     bindings = <&kp COMMA>, <&kp MINUS>; // [sft ,] ─› [_]
     mods = <(MOD_LSFT|MOD_RSFT)>;
-    keep_mods = <(MOD_LSFT|MOD_RSFT)>;
+    keep-mods = <(MOD_LSFT|MOD_RSFT)>;
   };
   mdot: mod_morph_dot {
     compatible = "zmk,behavior-mod-morph";
@@ -122,6 +122,7 @@ keymap {
   //         │ gui SYM ↑   ││ ──  NAV alt │
   //         └─────────────┘└─────────────┘
   default_layer {
+    label = "READY";
     bindings = < LAYOUT36(
       _CTLQ, _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   _ BSPC,
       _ A,   _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
@@ -131,6 +132,7 @@ keymap {
   };
 
   alt_layer {
+    label = "READY+";
     bindings = < LAYOUT36(
       &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
       &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
@@ -147,6 +149,7 @@ keymap {
   //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
   //         └─────────────┘└─────────────┘
   sym_layer {
+    label = "SYMBOL";
     bindings = < LAYOUT36(
       _ QUOT,       _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
       _ EXCL,       _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
@@ -163,6 +166,7 @@ keymap {
   //         │ ·   sym ·   ││ spc ▓▓  ralt│
   //         └─────────────┘└─────────────┘
   nav_layer {
+    label = "NAV";
     bindings = < LAYOUT36(
       _ RCTRL, _ RGUI, _ SFTAB, _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
       _ N1,    _ N2,   _ N3,    _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
@@ -179,6 +183,7 @@ keymap {
   //         │ .   .   .   ││ 0           │
   //         └─────────────┘└─────────────┘
   numpad_layer {
+    label = "NUMPAD";
     bindings = < LAYOUT36(
       &trans, &trans, &trans, &trans, &trans, /**/ _ COMMA, _ N1,  _ N2, _ N3, _ BSPC,
       &trans, &trans, &trans, &trans, &trans, /**/ _ MINUS, _ N4,  _ N5, _ N6, _ DOT,
@@ -195,6 +200,7 @@ keymap {
   //         │ ·   ·   ──  ││ ──  ▓▓  ·   │
   //         └─────────────┘└─────────────┘
   fun_layer { // Function
+    label = "FUNCTN";
     bindings = < LAYOUT36(
       _ F11, _ F12, _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,         __,
       _ F1,  _ F2,  _ F3,    _ F4,     _ F5,     /**/ _ C_VOL_DN, __,         __,         __,         __,
@@ -211,6 +217,7 @@ keymap {
   //         │ ·   ·   ▓▓  ││ tog bt  usb │ Adjust
   //         └─────────────┘└─────────────┘
   adj_layer {
+    label = "ADJUST";
     bindings = < LAYOUT36(
       &tog LOCK, &tog ALTL, __,     __,     &bootloader,  /**/ __,  __, __, __, __,
       &tog GAME, __,        BT_USB, BT_BLE, &out OUT_TOG, /**/ __,  __, __, __, __,
@@ -220,6 +227,7 @@ keymap {
   };
 
   ohflip_layer { // One-hand flip
+    label = "1H-FLIP";
     bindings = < LAYOUT36(
       &hm LCTL J,  &hm LALT L, _ U,     _ Y,     __,      /**/  _ J,     _ L,     _ U,     _ Y,   __,
       &lt OHNAV M, _ N,        _ E,     _ I,     _ O,     /**/  _ M,     _ N,     _ E,     _ I,   _ O,
@@ -229,6 +237,7 @@ keymap {
   };
 
   ohnav_layer {
+    label = "1H-NAV";
     bindings = < LAYOUT36(
       __, _ PGUP, _ UP,   _ PGDN,  _ BSPC, /**/ __, __, __, __, __,
       __, _ LEFT, _ DOWN, _ RIGHT, _ RET,  /**/ __, __, __, __, __,
@@ -255,6 +264,7 @@ keymap {
   //         └─────────────┘ └─────────────┘
 
   game_layer {
+    label = "GAME";
     bindings = < LAYOUT36(
       _ TAB,  _ Q,  _ W,  _ E,  _ R,  /**/ _ Y, _ U, _ I, _ O, _ P,
       _ LSFT, _ A,  _ S,  _ D,  _ F,  /**/ _ T, _ J, _ K, _ L, _ RET,
@@ -264,6 +274,7 @@ keymap {
   };
 
   game_x_layer {
+    label = "GAME X";
     bindings = < LAYOUT36(
       _ F1,    _ F2,    _ F3,    _ F4,    _ F5,       &none,     &none,     _ UP,    &none,     _ BSPC,
       _ N5,    _ N6,    _ N7,    _ G,     _ H,        &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
@@ -273,6 +284,7 @@ keymap {
   };
 
   game_y_layer {
+    label = "GAME Y";
     bindings = < LAYOUT36(
       _ Y, _ U, _ I,     _ O,   _ P,   &none,     &none,     _ UP,    &none,     _ BSPC,
       _ T, _ J, _ K,     _ L,   _ RET, &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
