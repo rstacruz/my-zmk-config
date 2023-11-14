@@ -1,3 +1,8 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
 // https://zmk.dev/docs/codes/keyboard-keypad
 #define ALTL   1
 #define SYM    2
@@ -35,268 +40,276 @@
 
 #define COMBO_TIMEOUT 30
 
-behaviors {
+/ {
+#ifdef TECHNIKABLE
+  chosen {
+     // zmk,matrix_transform = &dual_2u_transform;
+     zmk,matrix_transform = &ortho_transform;
+  };
+#endif
 
-  hm: homerow_mods { // Letter mods
-    compatible = "zmk,behavior-hold-tap";
-    label = "HOMEROW_MODS";
-    #binding-cells = <2>;
-    tapping_term_ms = <150>;
-    flavor = "tap-preferred";
-    bindings = <&kp>, <&kp>;
-  };
-  th: tap_hold { // Other mods (enter)
-    compatible = "zmk,behavior-hold-tap";
-    label = "TAP_HOLD";
-    #binding-cells = <2>;
-    tapping_term_ms = <150>;
-    flavor = "hold-preferred";
-    bindings = <&kp>, <&kp>;
-  };
-  mcomma: mod_morph_comma {
-    compatible = "zmk,behavior-mod-morph";
-    label = "MOD_MORPH_COMMA";
-    #binding-cells = <0>;
-    bindings = <&kp COMMA>, <&kp MINUS>; // [sft ,] ─› [_]
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-    keep-mods = <(MOD_LSFT|MOD_RSFT)>;
-  };
-  mdot: mod_morph_dot {
-    compatible = "zmk,behavior-mod-morph";
-    label = "MOD_MORPH_DOT";
-    #binding-cells = <0>;
-    bindings = <&kp DOT>, <&kp MINUS>; // [sft .] ─› [_]
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-    keep-mods = <(MOD_LSFT|MOD_RSFT)>;
-  };
-};
-
-combos {
-  compatible = "zmk,combos";
-  combo_h_comma {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB_H CB_COMMA>; // [ k h , . ^ ]
-    bindings = <&kp QUOT>; //               └─┴──› '
-    layers = <0 ALTL>;
-  };
-  combo_comma_dot {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB_COMMA CB_DOT>; // [ k h , . ^ ]
-    bindings = <&kp LA(TAB)>; //                └─┴──› alt-tab
-    layers = <0 ALTL>;
-  };
-  combo_h_dot {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB_H CB_DOT>; // [ k h , . ^ ]
-    bindings = <&kp MINUS>; //            └───┴──› hyphen
-    layers = <0 ALTL>;
-  };
-  combo_k_h {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB_K CB_H>; // [ k h , . ^ ]
-    bindings = <&kp ESC>; //          └─┴──› esc
-    layers = <0 ALTL>;
-  };
-};
-
-keymap {
-  compatible = "zmk,keymap";
-
-  // ┌─────────────────────┐┌─────────────────────┐
-  // │ q^  w   f   p   b   ││ j   l   u   y   bks │ Colemak DH
-  // │ a   r   s   t   g   ││ m   n   e   i   o   │
-  // │ z   x   c   d   v   ││ k   h   ,_  ._  ent^│ (ent-ctrl)
-  // └─────────────────────┤├─────────────────────┘
-  //         │ gui SYM ↑   ││ ──  NAV alt │
-  //         └─────────────┘└─────────────┘
-  default_layer {
-    label = "READY";
-    bindings = < LAYOUT36(
-      _CTLQ, _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   _ BSPC,
-      _ A,   _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
-      _ Z,   _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
-      /*,    */,  _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
-    ) >;
+  behaviors {
+    hm: homerow_mods { // Letter mods
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS";
+      #binding-cells = <2>;
+      tapping_term_ms = <150>;
+      flavor = "tap-preferred";
+      bindings = <&kp>, <&kp>;
+    };
+    th: tap_hold { // Other mods (enter)
+      compatible = "zmk,behavior-hold-tap";
+      label = "TAP_HOLD";
+      #binding-cells = <2>;
+      tapping_term_ms = <150>;
+      flavor = "hold-preferred";
+      bindings = <&kp>, <&kp>;
+    };
+    mcomma: mod_morph_comma {
+      compatible = "zmk,behavior-mod-morph";
+      label = "MOD_MORPH_COMMA";
+      #binding-cells = <0>;
+      bindings = <&kp COMMA>, <&kp MINUS>; // [sft ,] ─› [_]
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    mdot: mod_morph_dot {
+      compatible = "zmk,behavior-mod-morph";
+      label = "MOD_MORPH_DOT";
+      #binding-cells = <0>;
+      bindings = <&kp DOT>, <&kp MINUS>; // [sft .] ─› [_]
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
   };
 
-  alt_layer {
-    label = "READY+";
-    bindings = < LAYOUT36(
-      &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
-      &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
-      &hm LGUI Z, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &hm LGUI COMMA, &hm LALT DOT, &trans
-      /*,         */,     &trans, &trans, &trans, /**/ &trans, &trans, &trans
-    ) >;
+  combos {
+    compatible = "zmk,combos";
+    combo_h_comma {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <CB_H CB_COMMA>; // [ k h , . ^ ]
+      bindings = <&kp QUOT>; //               └─┴──› '
+      layers = <0 ALTL>;
+    };
+    combo_comma_dot {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <CB_COMMA CB_DOT>; // [ k h , . ^ ]
+      bindings = <&kp LA(TAB)>; //                └─┴──› alt-tab
+      layers = <0 ALTL>;
+    };
+    combo_h_dot {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <CB_H CB_DOT>; // [ k h , . ^ ]
+      bindings = <&kp MINUS>; //            └───┴──› hyphen
+      layers = <0 ALTL>;
+    };
+    combo_k_h {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <CB_K CB_H>; // [ k h , . ^ ]
+      bindings = <&kp ESC>; //          └─┴──› esc
+      layers = <0 ALTL>;
+    };
   };
 
-  // ┌─────────────────────┐┌─────────────────────┐
-  // │ '   "   ^   ?   `   ││ [   <   =   >   ]   │ Symbols
-  // │ !   @   #   $   %⁺  ││ {   (   :   )   }   │
-  // │ \⁺  ~   |   ;   &   ││ /   *   -   +   _   │ ⁺ = layer tap
-  // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
-  //         └─────────────┘└─────────────┘
-  sym_layer {
-    label = "SYMBOL";
-    bindings = < LAYOUT36(
-      _ QUOT,       _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-      _ EXCL,       _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
-      &lt ADJ BSLH, _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
-      /*,           */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
-    ) >;
-  };
+  keymap {
+    compatible = "zmk,keymap";
 
-  // ┌─────────────────────┐┌─────────────────────┐
-  // │ ctl gui ⇤   ⇥   alt ││ ,   hom ▲   end del │ navigation
-  // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
-  // │ 6   7   8   9   0   ││ ins p↑  p↓  esc ctl │
-  // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   sym ·   ││ spc ▓▓  ralt│
-  //         └─────────────┘└─────────────┘
-  nav_layer {
-    label = "NAV";
-    bindings = < LAYOUT36(
-      _ RCTRL, _ RGUI, _ SFTAB, _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
-      _ N1,    _ N2,   _ N3,    _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
-      _ N6,    _ N7,   _ N8,    _ N9,   _ N0,   /**/ _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
-      /*,      */,     &trans,  &trans, &trans, /**/ _ SPACE, &mo FUN,  _ RALT
-    ) >;
-  };
+    // ┌─────────────────────┐┌─────────────────────┐
+    // │ q^  w   f   p   b   ││ j   l   u   y   bks │ Colemak DH
+    // │ a   r   s   t   g   ││ m   n   e   i   o   │
+    // │ z   x   c   d   v   ││ k   h   ,_  ._  ent^│ (ent-ctrl)
+    // └─────────────────────┤├─────────────────────┘
+    //         │ gui SYM ↑   ││ ──  NAV alt │
+    //         └─────────────┘└─────────────┘
+    default_layer {
+      label = "READY";
+      bindings = < LAYOUT36(
+        _CTLQ, _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   _ BSPC,
+        _ A,   _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
+        _ Z,   _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
+        /*,    */,  _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
+      ) >;
+    };
 
-  // ┌─────────────────────┐┌─────────────────────┐
-  // │ .   .   .   .   .   ││ ,   1   2   3   bks │ navigation
-  // │ .   .   .   .   .   ││ -   4   5   6   .   │
-  // │ .   .   .   .   .   ││ :   7   8   9   ent │
-  // └───────┐─────────────││─────────────┌───────┘
-  //         │ .   .   .   ││ 0           │
-  //         └─────────────┘└─────────────┘
-  numpad_layer {
-    label = "NUMPAD";
-    bindings = < LAYOUT36(
-      &trans, &trans, &trans, &trans, &trans, /**/ _ COMMA, _ N1,  _ N2, _ N3, _ BSPC,
-      &trans, &trans, &trans, &trans, &trans, /**/ _ MINUS, _ N4,  _ N5, _ N6, _ DOT,
-      &trans, &trans, &trans, &trans, &trans, /**/ _ COLON, _ N7,  _ N8, _ N9, _ RET
-      /*,     */,     &trans, &trans, &trans, /**/ _ N0,    _ DOT, _ COMMA
-    ) >;
-  };
+    alt_layer {
+      label = "READY+";
+      bindings = < LAYOUT36(
+        &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
+        &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
+        &hm LGUI Z, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &hm LGUI COMMA, &hm LALT DOT, &trans
+        /*,         */,     &trans, &trans, &trans, /**/ &trans, &trans, &trans
+      ) >;
+    };
 
-  // ┌─────────────────────┐┌─────────────────────┐
-  // │ f11 f12 psc ply nxt ││ .   .   .   .   .   │ Function
-  // │ f1  f2  f3  f4  f5  ││ .   .   .   .   .   │
-  // │ f6  f7  f8  f9  f10 ││ cap v-  v+  b⁻  b⁺  │
-  // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   ·   ──  ││ ──  ▓▓  ·   │
-  //         └─────────────┘└─────────────┘
-  fun_layer { // Function
-    label = "FUNCTN";
-    bindings = < LAYOUT36(
-      _ F11, _ F12, _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,         __,
-      _ F1,  _ F2,  _ F3,    _ F4,     _ F5,     /**/ _ C_VOL_DN, __,         __,         __,         __,
-      _ F6,  _ F7,  _ F8,    _ F9,     _ F10,    /**/ _ CAPS,     _ C_VOL_DN, _ C_VOL_UP, _ C_BRI_DN, _ C_BRI_UP
-      /*,    */,    &trans,  &trans,   &trans,   /**/ &trans,     &trans,     &trans
-    ) >;
-  };
+    // ┌─────────────────────┐┌─────────────────────┐
+    // │ '   "   ^   ?   `   ││ [   <   =   >   ]   │ Symbols
+    // │ !   @   #   $   %⁺  ││ {   (   :   )   }   │
+    // │ \⁺  ~   |   ;   &   ││ /   *   -   +   _   │ ⁺ = layer tap
+    // └───────┐─────────────││─────────────┌───────┘
+    //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
+    //         └─────────────┘└─────────────┘
+    sym_layer {
+      label = "SYMBOL";
+      bindings = < LAYOUT36(
+        _ QUOT,       _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+        _ EXCL,       _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+        &lt ADJ BSLH, _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
+        /*,           */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
+      ) >;
+    };
 
-  // ┌─────────────────────┐┌─────────────────────┐
-  // │lock .   .   .   BOOT││ .   .   .   .   .   │
-  // │game .   usb bt  tog ││ .   .   .   .   .   │
-  // │.    b3  b2  b1  clr ││ .   .   .   .   .   │
-  // └───────┐─────────────││─────────────┌───────┘
-  //         │ ·   ·   ▓▓  ││ tog bt  usb │ Adjust
-  //         └─────────────┘└─────────────┘
-  adj_layer {
-    label = "ADJUST";
-    bindings = < LAYOUT36(
-      &tog LOCK, &tog ALTL, __,     __,     &bootloader,  /**/ __,  __, __, __, __,
-      &tog GAME, __,        BT_USB, BT_BLE, &out OUT_TOG, /**/ __,  __, __, __, __,
-      __,        BT(2),     BT(1),  BT(0),  &bt BT_CLR,   /**/ __,  __, __, __, __
-      /*,        */,        &trans, &trans, __,           /**/  __, __, __
-    ) >;
-  };
+    // ┌─────────────────────┐┌─────────────────────┐
+    // │ ctl gui ⇤   ⇥   alt ││ ,   hom ▲   end del │ navigation
+    // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
+    // │ 6   7   8   9   0   ││ ins p↑  p↓  esc ctl │
+    // └───────┐─────────────││─────────────┌───────┘
+    //         │ ·   sym ·   ││ spc ▓▓  ralt│
+    //         └─────────────┘└─────────────┘
+    nav_layer {
+      label = "NAV";
+      bindings = < LAYOUT36(
+        _ RCTRL, _ RGUI, _ SFTAB, _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
+        _ N1,    _ N2,   _ N3,    _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
+        _ N6,    _ N7,   _ N8,    _ N9,   _ N0,   /**/ _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
+        /*,      */,     &trans,  &trans, &trans, /**/ _ SPACE, &mo FUN,  _ RALT
+      ) >;
+    };
 
-  ohflip_layer { // One-hand flip
-    label = "1H-FLIP";
-    bindings = < LAYOUT36(
-      &hm LCTL J,  &hm LALT L, _ U,     _ Y,     __,      /**/  _ J,     _ L,     _ U,     _ Y,   __,
-      &lt OHNAV M, _ N,        _ E,     _ I,     _ O,     /**/  _ M,     _ N,     _ E,     _ I,   _ O,
-      _ K,         _ H,        _ COMMA, _ DOT,   _ COMMA, /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
-      /*,          */,         _ LGUI,  _ SPACE, _ LALT,  /**/  _ SPACE, &mo NAV, _ LALT
-    ) >;
-  };
+    // ┌─────────────────────┐┌─────────────────────┐
+    // │ .   .   .   .   .   ││ ,   1   2   3   bks │ navigation
+    // │ .   .   .   .   .   ││ -   4   5   6   .   │
+    // │ .   .   .   .   .   ││ :   7   8   9   ent │
+    // └───────┐─────────────││─────────────┌───────┘
+    //         │ .   .   .   ││ 0           │
+    //         └─────────────┘└─────────────┘
+    numpad_layer {
+      label = "NUMPAD";
+      bindings = < LAYOUT36(
+        &trans, &trans, &trans, &trans, &trans, /**/ _ COMMA, _ N1,  _ N2, _ N3, _ BSPC,
+        &trans, &trans, &trans, &trans, &trans, /**/ _ MINUS, _ N4,  _ N5, _ N6, _ DOT,
+        &trans, &trans, &trans, &trans, &trans, /**/ _ COLON, _ N7,  _ N8, _ N9, _ RET
+        /*,     */,     &trans, &trans, &trans, /**/ _ N0,    _ DOT, _ COMMA
+      ) >;
+    };
 
-  ohnav_layer {
-    label = "1H-NAV";
-    bindings = < LAYOUT36(
-      __, _ PGUP, _ UP,   _ PGDN,  _ BSPC, /**/ __, __, __, __, __,
-      __, _ LEFT, _ DOWN, _ RIGHT, _ RET,  /**/ __, __, __, __, __,
-      __, __,     __,     __,      __,     /**/ __, __, __, __, __
-      /*, */,     __,     __,      __,     /**/ __, __, __
-    ) >;
-  };
+    // ┌─────────────────────┐┌─────────────────────┐
+    // │ f11 f12 psc ply nxt ││ .   .   .   .   .   │ Function
+    // │ f1  f2  f3  f4  f5  ││ .   .   .   .   .   │
+    // │ f6  f7  f8  f9  f10 ││ cap v-  v+  b⁻  b⁺  │
+    // └───────┐─────────────││─────────────┌───────┘
+    //         │ ·   ·   ──  ││ ──  ▓▓  ·   │
+    //         └─────────────┘└─────────────┘
+    fun_layer { // Function
+      label = "FUNCTN";
+      bindings = < LAYOUT36(
+        _ F11, _ F12, _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,         __,
+        _ F1,  _ F2,  _ F3,    _ F4,     _ F5,     /**/ _ C_VOL_DN, __,         __,         __,         __,
+        _ F6,  _ F7,  _ F8,    _ F9,     _ F10,    /**/ _ CAPS,     _ C_VOL_DN, _ C_VOL_UP, _ C_BRI_DN, _ C_BRI_UP
+        /*,    */,    &trans,  &trans,   &trans,   /**/ &trans,     &trans,     &trans
+      ) >;
+    };
 
-  // ┌─────────────────────┐ ┌─────────────────────┐
-  // │ tab q   w   e   r   │ │ y   u   i   o   p   │ Game
-  // │ sft a   s   d   f   │ │ t   j   k   l   ent │
-  // │ ctl 1   2   3   4   │ │ n   m           esc │
-  // └───────┐ ▲Y  ▲X  spc │ │ spc XX exit ┌───────┘
-  // ┌─────────────────────┐ ┌─────────────────────┐
-  // │ f1  f2  f3  f4  f5  │ │         ↑       bs  │ X
-  // │ 5   6   7   g   h   │ │     ←   ↓   →   ent │
-  // │ z   x   c   v   b   │ │                 esc │
-  // └───────┐     ━━  alt │ │        exit ┌───────┘
-  // ┌─────────────────────┐ ┌─────────────────────┐
-  // │ y   u   i   o   p   │ │         ↑       bs  │ Y
-  // │ t   j   k   l   ent │ │     ←   ↓   →   ent │
-  // │ n   m   c   v   esc │ │                 esc │
-  // └───────┐ ━━          │ │        exit ┌───────┘
-  //         └─────────────┘ └─────────────┘
+    // ┌─────────────────────┐┌─────────────────────┐
+    // │lock .   .   .   BOOT││ .   .   .   .   .   │
+    // │game .   usb bt  tog ││ .   .   .   .   .   │
+    // │.    b3  b2  b1  clr ││ .   .   .   .   .   │
+    // └───────┐─────────────││─────────────┌───────┘
+    //         │ ·   ·   ▓▓  ││ tog bt  usb │ Adjust
+    //         └─────────────┘└─────────────┘
+    adj_layer {
+      label = "ADJUST";
+      bindings = < LAYOUT36(
+        &tog LOCK, &tog ALTL, __,     __,     &bootloader,  /**/ __,  __, __, __, __,
+        &tog GAME, __,        BT_USB, BT_BLE, &out OUT_TOG, /**/ __,  __, __, __, __,
+        __,        BT(2),     BT(1),  BT(0),  &bt BT_CLR,   /**/ __,  __, __, __, __
+        /*,        */,        &trans, &trans, __,           /**/  __, __, __
+      ) >;
+    };
 
-  game_layer {
-    label = "GAME";
-    bindings = < LAYOUT36(
-      _ TAB,  _ Q,  _ W,  _ E,  _ R,  /**/ _ Y, _ U, _ I, _ O, _ P,
-      _ LSFT, _ A,  _ S,  _ D,  _ F,  /**/ _ T, _ J, _ K, _ L, _ RET,
-      _ LCTL, _ N1, _ N2, _ N3, _ N4, /**/ _ N, _ M, __,  __,  _ ESC,
-      &mo GAMEY, &mo GAMEX, _ SPC,  /**/ _ SPC,   &mo GAMEX, &tog GAME
-    ) >;
-  };
+    ohflip_layer { // One-hand flip
+      label = "1H-FLIP";
+      bindings = < LAYOUT36(
+        &hm LCTL J,  &hm LALT L, _ U,     _ Y,     __,      /**/  _ J,     _ L,     _ U,     _ Y,   __,
+        &lt OHNAV M, _ N,        _ E,     _ I,     _ O,     /**/  _ M,     _ N,     _ E,     _ I,   _ O,
+        _ K,         _ H,        _ COMMA, _ DOT,   _ COMMA, /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
+        /*,          */,         _ LGUI,  _ SPACE, _ LALT,  /**/  _ SPACE, &mo NAV, _ LALT
+      ) >;
+    };
 
-  game_x_layer {
-    label = "GAME X";
-    bindings = < LAYOUT36(
-      _ F1,    _ F2,    _ F3,    _ F4,    _ F5,       &none,     &none,     _ UP,    &none,     _ BSPC,
-      _ N5,    _ N6,    _ N7,    _ G,     _ H,        &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
-      _ Z,     _ X,     _ C,     _ V,     _ B,        &none,     &none,     &none,     &none,     _ ESC,
-      /**/                &none,     &none,     &kp LALT,     &none,     &none,     &tog GAME
-    ) >;
-  };
+    ohnav_layer {
+      label = "1H-NAV";
+      bindings = < LAYOUT36(
+        __, _ PGUP, _ UP,   _ PGDN,  _ BSPC, /**/ __, __, __, __, __,
+        __, _ LEFT, _ DOWN, _ RIGHT, _ RET,  /**/ __, __, __, __, __,
+        __, __,     __,     __,      __,     /**/ __, __, __, __, __
+        /*, */,     __,     __,      __,     /**/ __, __, __
+      ) >;
+    };
 
-  game_y_layer {
-    label = "GAME Y";
-    bindings = < LAYOUT36(
-      _ Y, _ U, _ I,     _ O,   _ P,   &none,     &none,     _ UP,    &none,     _ BSPC,
-      _ T, _ J, _ K,     _ L,   _ RET, &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
-      _ N, _ M, _ COMMA, _ DOT, _ ESC, &none,     &none,     &none,     &none,     _ ESC,
-                    &none,     &none,   &none,   &none,     &none,     &tog GAME
-    ) >;
-  };
+    // ┌─────────────────────┐ ┌─────────────────────┐
+    // │ tab q   w   e   r   │ │ y   u   i   o   p   │ Game
+    // │ sft a   s   d   f   │ │ t   j   k   l   ent │
+    // │ ctl 1   2   3   4   │ │ n   m           esc │
+    // └───────┐ ▲Y  ▲X  spc │ │ spc XX exit ┌───────┘
+    // ┌─────────────────────┐ ┌─────────────────────┐
+    // │ f1  f2  f3  f4  f5  │ │         ↑       bs  │ X
+    // │ 5   6   7   g   h   │ │     ←   ↓   →   ent │
+    // │ z   x   c   v   b   │ │                 esc │
+    // └───────┐     ━━  alt │ │        exit ┌───────┘
+    // ┌─────────────────────┐ ┌─────────────────────┐
+    // │ y   u   i   o   p   │ │         ↑       bs  │ Y
+    // │ t   j   k   l   ent │ │     ←   ↓   →   ent │
+    // │ n   m   c   v   esc │ │                 esc │
+    // └───────┐ ━━          │ │        exit ┌───────┘
+    //         └─────────────┘ └─────────────┘
 
-  lock_layer { // Lock
-    bindings = < LAYOUT36(
-      __,       __, __, __, __, __, __, __, __, &tog LOCK,
-      __,       __, __, __, __, __, __, __, __, __,
-      &mo ULOC, __, __, __, __, __, __, __, __, __,
-      /**/ __, __, &mo ULOC, /**/ __, __, &tog LOCK
-    ) >;
-  };
+    game_layer {
+      label = "GAME";
+      bindings = < LAYOUT36(
+        _ TAB,  _ Q,  _ W,  _ E,  _ R,  /**/ _ Y, _ U, _ I, _ O, _ P,
+        _ LSFT, _ A,  _ S,  _ D,  _ F,  /**/ _ T, _ J, _ K, _ L, _ RET,
+        _ LCTL, _ N1, _ N2, _ N3, _ N4, /**/ _ N, _ M, __,  __,  _ ESC,
+        &mo GAMEY, &mo GAMEX, _ SPC,  /**/ _ SPC,   &mo GAMEX, &tog GAME
+      ) >;
+    };
 
-  unlock_layer { // Unlock
-    bindings = < LAYOUT36(
-      __,       __, __, __, __, __, __, __, __, __,
-      __,       __, __, __, __, __, __, __, __, __,
-      &tog LOCK, __, __, __, __, __, __, __, __, __,
-      /**/ __, __, &tog LOCK, /**/ __, __, __
-    ) >;
+    game_x_layer {
+      label = "GAME X";
+      bindings = < LAYOUT36(
+        _ F1,    _ F2,    _ F3,    _ F4,    _ F5,       &none,     &none,     _ UP,    &none,     _ BSPC,
+        _ N5,    _ N6,    _ N7,    _ G,     _ H,        &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
+        _ Z,     _ X,     _ C,     _ V,     _ B,        &none,     &none,     &none,     &none,     _ ESC,
+        /**/                &none,     &none,     &kp LALT,     &none,     &none,     &tog GAME
+      ) >;
+    };
+
+    game_y_layer {
+      label = "GAME Y";
+      bindings = < LAYOUT36(
+        _ Y, _ U, _ I,     _ O,   _ P,   &none,     &none,     _ UP,    &none,     _ BSPC,
+        _ T, _ J, _ K,     _ L,   _ RET, &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
+        _ N, _ M, _ COMMA, _ DOT, _ ESC, &none,     &none,     &none,     &none,     _ ESC,
+                      &none,     &none,   &none,   &none,     &none,     &tog GAME
+      ) >;
+    };
+
+    lock_layer { // Lock
+      bindings = < LAYOUT36(
+        __,       __, __, __, __, __, __, __, __, &tog LOCK,
+        __,       __, __, __, __, __, __, __, __, __,
+        &mo ULOC, __, __, __, __, __, __, __, __, __,
+        /**/ __, __, &mo ULOC, /**/ __, __, &tog LOCK
+      ) >;
+    };
+
+    unlock_layer { // Unlock
+      bindings = < LAYOUT36(
+        __,       __, __, __, __, __, __, __, __, __,
+        __,       __, __, __, __, __, __, __, __, __,
+        &tog LOCK, __, __, __, __, __, __, __, __, __,
+        /**/ __, __, &tog LOCK, /**/ __, __, __
+      ) >;
+    };
   };
 };
 
