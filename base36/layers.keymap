@@ -21,7 +21,6 @@
 #define BT_BLE &out OUT_BLE
 #define BT_USB &out OUT_USB
 #define BT_TOG &out OUT_TOG
-#define BT_TOG &out OUT_TOG
 
 /* Shorthand */
 #define _ &kp
