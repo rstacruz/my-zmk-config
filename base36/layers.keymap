@@ -97,18 +97,6 @@ combos {
     bindings = <&kp ESC>; //          └─┴──› esc
     layers = <0 ALTL>;
   };
-  combo_d_v {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB_D CB_V>;
-    bindings = <&sl OHFLIP>;
-    layers = <0 ALTL>;
-  };
-  combo_g_v {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB_G CB_V>;
-    bindings = <&sl OHFLIP>;
-    layers = <0 ALTL>;
-  };
 };
 
 keymap {

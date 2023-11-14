@@ -19,9 +19,6 @@
 #define CB_H 32
 #define CB_COMMA 33
 #define CB_DOT 34
-#define CB_G 16
-#define CB_D 27
-#define CB_V 28
 
 &sl {
 	release-after-ms = <500>; /* for frogv's flip button */

@@ -19,9 +19,6 @@
 #define CB_H 26
 #define CB_COMMA 27
 #define CB_DOT 28
-#define CB_G 14
-#define CB_D 23
-#define CB_V 24
 
 / {
   #include "../base36/layers.keymap"
