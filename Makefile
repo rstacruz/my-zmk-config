@@ -28,10 +28,11 @@ sh: ## Opens a shell
 	${docker} run -it --rm \
 		--name "zmk" \
 		-v "${base_path}/.cache:/keeb" \
-		-v "${base_path}/base36/west.yml:/keeb/config/west.yml:ro" \
+		-v "${keeb_path}:/keeb/config:ro" \
+		-v "${base_path}/base36:/keeb/base36:ro" \
 		-e HOST_UID="$(shell id -u)" \
 		-e HOST_GID="$(shell id -g)" \
-		"${docker_image}" sh
+		"${docker_image}" bash
 
 update: ## Updates ZMK [alias: u]
 	${docker} pull "${docker_image}"
