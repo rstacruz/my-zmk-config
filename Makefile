@@ -4,11 +4,11 @@ docker_image := zmkfirmware/zmk-build-arm:stable
 docker := docker
 volume_label := TECHNIKABLE
 base_path = $(shell pwd)
-keeb_path = $(shell pwd)/${keeb}
+config_path = $(shell pwd)/${keeb}
 docker_run = ${docker} run -it --rm \
 	--name "zmk" \
 	-v "${base_path}/.cache:/keeb" \
-	-v "${keeb_path}:/keeb/config:ro" \
+	-v "${config_path}:/keeb/config:ro" \
 	-v "${base_path}/base36:/keeb/base36:ro" \
 	-e HOST_UID="$(shell id -u)" \
 	-e HOST_GID="$(shell id -g)" \
