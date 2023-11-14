@@ -28,14 +28,7 @@ sh: ## Opens a shell
 	${docker_run} bash
 
 update: ## Updates ZMK [alias: u]
-	${docker} pull "${docker_image}"
-	${docker} run -it --rm \
-		--name "zmk" \
-		-v "${base_path}/.cache:/keeb" \
-		-v "${base_path}/base36/west.yml:/keeb/config/west.yml:ro" \
-		-e HOST_UID="$(shell id -u)" \
-		-e HOST_GID="$(shell id -g)" \
-		"${docker_image}" sh -c "cd /keeb; west update"
+	${docker_run} sh -c "cd /keeb; west update"
 
 technikable:
 	$(eval keeb := technikable)
