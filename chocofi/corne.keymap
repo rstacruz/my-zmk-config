@@ -14,17 +14,11 @@
 	&none c0 c1 c2 c3 c4 c5 c6 c7 c8 c9 &none \
 	      d2 d3 d4 d5 d6 d7
 
-// Combo key positions: lower-right combos
-#define CB1 25
-#define CB2 26
-#define CB3 27
-#define CB4 28
-
-// Combo key positions: upper-left combos
-#define CBL3 2
-#define CBL4 3
-
 // Combo keys
+#define CB_K 25
+#define CB_H 26
+#define CB_COMMA 27
+#define CB_DOT 28
 #define CB_G 14
 #define CB_D 23
 #define CB_V 24

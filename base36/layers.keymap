@@ -81,32 +81,26 @@ combos {
   compatible = "zmk,combos";
   combo_h_comma {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB2 CB3>; // [ k h , . ^ ]
-    bindings = <&kp QUOT>; //         └─┴──› '
+    key-positions = <CB_H CB_COMMA>; // [ k h , . ^ ]
+    bindings = <&kp QUOT>; //               └─┴──› '
     layers = <0 ALTL>;
   };
   combo_comma_dot {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB3 CB4>; // [ k h , . ^ ]
-    bindings = <&kp LA(TAB)>; //        └─┴──› alt-tab
+    key-positions = <CB_COMMA CB_DOT>; // [ k h , . ^ ]
+    bindings = <&kp LA(TAB)>; //                └─┴──› alt-tab
     layers = <0 ALTL>;
   };
   combo_h_dot {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB2 CB4>; // [ k h , . ^ ]
-    bindings = <&kp MINUS>; //        └───┴──› hyphen
-    layers = <0 ALTL>;
-  };
-  combo_h_comma_dot {
-    timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB2 CB3 CB4>; // [ k h , . ^ ]
-    bindings = <&kp LC(BSPC)>; //         └─┴─┴──› ctrl-backspace
+    key-positions = <CB_H CB_DOT>; // [ k h , . ^ ]
+    bindings = <&kp MINUS>; //            └───┴──› hyphen
     layers = <0 ALTL>;
   };
   combo_k_h {
     timeout-ms = <COMBO_TIMEOUT>;
-    key-positions = <CB1 CB2>; // [ k h , . ^ ]
-    bindings = <&kp ESC>; //        └─┴──› esc
+    key-positions = <CB_K CB_H>; // [ k h , . ^ ]
+    bindings = <&kp ESC>; //          └─┴──› esc
     layers = <0 ALTL>;
   };
   combo_d_v {
