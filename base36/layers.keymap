@@ -122,7 +122,7 @@
     //         │ gui SYM ↑   ││ ──  NAV alt │
     //         └─────────────┘└─────────────┘
     default_layer {
-      label = "READY";
+      label = "36 Key";
       bindings = < LAYOUT36(
         _CTLQ, _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   _ BSPC,
         _ A,   _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
@@ -132,7 +132,7 @@
     };
 
     alt_layer {
-      label = "READY+";
+      label = "34 Key";
       bindings = < LAYOUT36(
         &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
         &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
@@ -149,7 +149,7 @@
     //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
     //         └─────────────┘└─────────────┘
     sym_layer {
-      label = "SYMBOL";
+      label = "Symbol";
       bindings = < LAYOUT36(
         _ QUOT,       _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
         _ EXCL,       _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
@@ -166,7 +166,7 @@
     //         │ ·   sym ·   ││ spc ▓▓  ralt│
     //         └─────────────┘└─────────────┘
     nav_layer {
-      label = "NAV";
+      label = "Nav";
       bindings = < LAYOUT36(
         _ RCTRL, _ RGUI, _ SFTAB, _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
         _ N1,    _ N2,   _ N3,    _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
@@ -183,7 +183,7 @@
     //         │ .   .   .   ││ 0           │
     //         └─────────────┘└─────────────┘
     numpad_layer {
-      label = "NUMPAD";
+      label = "Numpad";
       bindings = < LAYOUT36(
         &trans, &trans, &trans, &trans, &trans, /**/ _ COMMA, _ N1,  _ N2, _ N3, _ BSPC,
         &trans, &trans, &trans, &trans, &trans, /**/ _ MINUS, _ N4,  _ N5, _ N6, _ DOT,
@@ -200,7 +200,7 @@
     //         │ ·   ·   ──  ││ ──  ▓▓  ·   │
     //         └─────────────┘└─────────────┘
     fun_layer { // Function
-      label = "FUNCTN";
+      label = "Function";
       bindings = < LAYOUT36(
         _ F11, _ F12, _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,         __,
         _ F1,  _ F2,  _ F3,    _ F4,     _ F5,     /**/ _ C_VOL_DN, __,         __,         __,         __,
@@ -217,7 +217,7 @@
     //         │ ·   ·   ▓▓  ││ tog bt  usb │ Adjust
     //         └─────────────┘└─────────────┘
     adj_layer {
-      label = "ADJUST";
+      label = "Adjust";
       bindings = < LAYOUT36(
         &tog LOCK, &tog ALTL, __,     __,     &bootloader,  /**/ __,  __, __, __, __,
         &tog GAME, __,        BT_USB, BT_BLE, &out OUT_TOG, /**/ __,  __, __, __, __,
@@ -294,6 +294,7 @@
     };
 
     lock_layer { // Lock
+      label = "Locked";
       bindings = < LAYOUT36(
         __,       __, __, __, __, __, __, __, __, &tog LOCK,
         __,       __, __, __, __, __, __, __, __, __,
@@ -303,6 +304,7 @@
     };
 
     unlock_layer { // Unlock
+      label = "Shift Z";
       bindings = < LAYOUT36(
         __,       __, __, __, __, __, __, __, __, __,
         __,       __, __, __, __, __, __, __, __, __,
