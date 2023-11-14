@@ -56,6 +56,12 @@ chocofi:
 	$(eval volume_label := NICENANO)
 	@true
 
+nice_nano_v2_reset:
+	$(eval keeb := nice_nano_v2_reset)
+	$(eval flash_file := nice_nano_v2_reset.uf2)
+	$(eval volume_label := NICENANO)
+	@true
+
 chocofi_right: chocofi
 	$(eval flash_file := chocofi_right.uf2)
 	@true
@@ -75,4 +81,4 @@ flash: ## Flash - only works for linux/macOS [alias: u]
 b: build
 u: update
 
-.PHONY: microdox technikable chocofi
+.PHONY: microdox technikable chocofi nice_nano_v2_reset
