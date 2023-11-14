@@ -71,10 +71,11 @@ clean: ## Clean cache to update zmk/zephyr
 		-v "${base_path}/.cache:/keeb" \
 		"${docker_image}" sh -c "rm -rf /keeb/*"
 
-flash: ## Flash - only works for linux/macOS [alias: u]
+flash: ## Flash - only works for linux/macOS [alias: f]
 	./flash.sh --label "${volume_label}" "./${flash_file}"
 
 b: build
 u: update
+f: flash
 
 .PHONY: microdox technikable chocofi nice_nano_v2_reset
