@@ -60,6 +60,7 @@ behaviors {
     #binding-cells = <0>;
     bindings = <&kp COMMA>, <&kp MINUS>; // [sft ,] ─› [_]
     mods = <(MOD_LSFT|MOD_RSFT)>;
+    keep_mods = <(MOD_LSFT|MOD_RSFT)>;
   };
   mdot: mod_morph_dot {
     compatible = "zmk,behavior-mod-morph";
@@ -67,6 +68,7 @@ behaviors {
     #binding-cells = <0>;
     bindings = <&kp DOT>, <&kp MINUS>; // [sft .] ─› [_]
     mods = <(MOD_LSFT|MOD_RSFT)>;
+    keep_mods = <(MOD_LSFT|MOD_RSFT)>;
   };
   mbspc: mod_morph_bspc {
     compatible = "zmk,behavior-mod-morph";
