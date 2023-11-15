@@ -109,6 +109,20 @@
       bindings = <&kp ESC>; //          └─┴──› esc
       layers = <0 ALTL>;
     };
+#ifdef CB_J
+    combo_j_m { // [ jm ] bluetooth
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <CB_J CB_M>;
+      bindings = <BT(0)>;
+      layers = <0 ALTL>;
+    };
+    combo_m_k { // [ jm ] bluetooth
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <CB_M CB_K>;
+      bindings = <BT(1)>;
+      layers = <0 ALTL>;
+    };
+#endif
   };
 
   keymap {
