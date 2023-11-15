@@ -14,6 +14,9 @@
 #define CB_H 31
 #define CB_COMMA 32
 #define CB_DOT 33
+#define CB_W 2
+#define CB_F 3
+#define CB_P 4
 #define CB_B 5
 #define CB_G 17
 #define CB_V 29

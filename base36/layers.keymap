@@ -108,20 +108,43 @@
       bindings = <&kp ESC>; //          └─┴──› esc
       layers = <0 ALTL>;
     };
-#ifdef CB_B
-    combo_b_g { // [bg] - bluetooth 1
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <CB_B CB_G>;
-      bindings = <BT(0)>;
-      layers = <0 ALTL>;
-    };
-    combo_g_v { // [gv] - bluetooth 2
-      timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <CB_G CB_V>;
-      bindings = <BT(1)>;
-      layers = <0 ALTL>;
-    };
-#endif
+    #ifdef CB_F
+      combo_w_f { // [wf] - f14 / XF86Launch5 (mouse click)
+        timeout-ms = <COMBO_TIMEOUT>;
+        key-positions = <CB_W CB_F>;
+        bindings = <&kp F13>;
+        layers = <0 ALTL>;
+      };
+
+      combo_f_p { // [fp] - f13 / XF86Tools (mouse click)
+        timeout-ms = <COMBO_TIMEOUT>;
+        key-positions = <CB_F CB_P>;
+        bindings = <&kp F14>;
+        layers = <0 ALTL>;
+      };
+
+      combo_p_b { // [pb] - f15 / XF86Launch6 (mouse click)
+        timeout-ms = <COMBO_TIMEOUT>;
+        key-positions = <CB_P CB_B>;
+        bindings = <&kp F15>;
+        layers = <0 ALTL>;
+      };
+
+    #endif
+    #ifdef CB_B
+      combo_b_g { // [bg] - bluetooth 1
+        timeout-ms = <COMBO_TIMEOUT>;
+        key-positions = <CB_B CB_G>;
+        bindings = <BT(0)>;
+        layers = <0 ALTL>;
+      };
+      combo_g_v { // [gv] - bluetooth 2
+        timeout-ms = <COMBO_TIMEOUT>;
+        key-positions = <CB_G CB_V>;
+        bindings = <BT(1)>;
+        layers = <0 ALTL>;
+      };
+    #endif
   };
 
   keymap {
@@ -242,20 +265,20 @@
     ohnum_layer { // One-hand number [Q]
       label = "Left number";
       bindings = < LAYOUT36(
-        __, _ N1, _ N2, _ N3, _ MINUS, /**/  _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
-        __, _ N4, _ N5, _ N6, _ N0,    /**/  _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
-        __, _ N7, _ N8, _ N9, _ DOT,   /**/  _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
-        /*, */,   __,   __,   __,      /**/ __,       __,       __
+        __, _ N1, _ N2, _ N3, _ MINUS, /**/  _ F14, _ HOME, _ UP,   _ END,   _ DEL,
+        __, _ N4, _ N5, _ N6, _ N0,    /**/  _ F15, _ LEFT, _ DOWN, _ RIGHT, _ RET,
+        __, _ N7, _ N8, _ N9, _ DOT,   /**/  _ F13, _ PGUP, _ PGDN, _ ESC,   _ LCTL
+        /*, */,   __,   __,   __,      /**/ __,     __,     __
       ) >;
     };
 
     ohnav_layer { // One-hand nav [A]
       label = "Left nav";
       bindings = < LAYOUT36(
-        __, _ LC(PGUP), _ UP,   _ LC(PGDN), _ BSPC, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
-        __, _ LEFT,     _ DOWN, _ RIGHT,    _ RET,  /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
-        __, __,         _ PGUP, _ PGDN,     __,     /**/ _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
-        /*, */,         __,     _ LCTL,     __,     /**/ __,      __,       __
+        __, _ LC(PGUP), _ UP,   _ LC(PGDN), _ BSPC, /**/ _ F13, _ HOME, _ UP,   _ END,   _ DEL,
+        __, _ LEFT,     _ DOWN, _ RIGHT,    _ RET,  /**/ _ F15, _ LEFT, _ DOWN, _ RIGHT, _ RET,
+        __, __,         _ PGUP, _ PGDN,     __,     /**/ _ F14, _ PGUP, _ PGDN, _ ESC,   _ LCTL
+        /*, */,         __,     _ LCTL,     __,     /**/ _ F15, _ F14,    _ F13
       ) >;
     };
 
