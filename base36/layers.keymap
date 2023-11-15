@@ -10,7 +10,7 @@
 #define NPAD   4
 #define FUN    5
 #define ADJ    6
-#define OHFLIP 7
+#define OHNUM  7
 #define OHNAV  8
 #define GAME   9
 #define GAMEX  10
@@ -35,7 +35,6 @@
 #define _CTLQ &hm LCTL Q /* Q (tap), ctrl (hold) */
 #define _CENT &th LCTL RET /* Enter (tap), ctrl (hold) */
 #define _HASH &lt NPAD HASH /* # (tap), NPAD (hold) */
-#define _DLLR &lt NAV DLLR /* $ (tap), NAV (hold) */
 #define _BSLH &lt ADJ BSLH /* \ (tap), ADJ (hold) */
 
 #define COMBO_TIMEOUT 30
@@ -53,7 +52,7 @@
       compatible = "zmk,behavior-hold-tap";
       label = "HOMEROW_MODS";
       #binding-cells = <2>;
-      tapping_term_ms = <150>;
+      tapping-term-ms = <150>;
       flavor = "tap-preferred";
       bindings = <&kp>, <&kp>;
     };
@@ -61,7 +60,7 @@
       compatible = "zmk,behavior-hold-tap";
       label = "TAP_HOLD";
       #binding-cells = <2>;
-      tapping_term_ms = <150>;
+      tapping-term-ms = <150>;
       flavor = "hold-preferred";
       bindings = <&kp>, <&kp>;
     };
@@ -109,16 +108,16 @@
       bindings = <&kp ESC>; //          └─┴──› esc
       layers = <0 ALTL>;
     };
-#ifdef CB_J
-    combo_j_m { // [ jm ] bluetooth
+#ifdef CB_B
+    combo_b_g { // [bg] - bluetooth 1
       timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <CB_J CB_M>;
+      key-positions = <CB_B CB_G>;
       bindings = <BT(0)>;
       layers = <0 ALTL>;
     };
-    combo_m_k { // [ jm ] bluetooth
+    combo_g_v { // [gv] - bluetooth 2
       timeout-ms = <COMBO_TIMEOUT>;
-      key-positions = <CB_M CB_K>;
+      key-positions = <CB_G CB_V>;
       bindings = <BT(1)>;
       layers = <0 ALTL>;
     };
@@ -156,8 +155,8 @@
     };
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │ '   "   ^   ?   `   ││ [   <   =   >   ]   │ Symbols
-    // │ !   @   #   $   %⁺  ││ {   (   :   )   }   │
+    // │ '⁺  "   ^   ?   `   ││ [   <   =   >   ]   │ Symbols
+    // │ !⁺  @   #   $⁺  %   ││ {   (   :   )   }   │
     // │ \⁺  ~   |   ;   &   ││ /   *   -   +   _   │ ⁺ = layer tap
     // └───────┐─────────────││─────────────┌───────┘
     //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
@@ -165,10 +164,10 @@
     sym_layer {
       label = "Symbol";
       bindings = < LAYOUT36(
-        _ QUOT,       _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-        _ EXCL,       _ AT,    _HASH,   _DLLR,   _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
-        &lt ADJ BSLH, _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
-        /*,           */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
+        &lt OHNUM QUOT, _ DQT,   _ CARET, _ QMARK,        _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+        &lt OHNAV EXCL, _ AT,    _HASH,   &lt OHNAV DLLR, _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+        &lt ADJ BSLH,   _ TILDE, _ PIPE,  _ SEMI,         _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
+        /*,             */,      &trans,  &mo FUN,        &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
       ) >;
     };
 
@@ -240,23 +239,23 @@
       ) >;
     };
 
-    ohflip_layer { // One-hand flip
-      label = "1H-FLIP";
+    ohnum_layer { // One-hand number [Q]
+      label = "Left number";
       bindings = < LAYOUT36(
-        &hm LCTL J,  &hm LALT L, _ U,     _ Y,     __,      /**/  _ J,     _ L,     _ U,     _ Y,   __,
-        &lt OHNAV M, _ N,        _ E,     _ I,     _ O,     /**/  _ M,     _ N,     _ E,     _ I,   _ O,
-        _ K,         _ H,        _ COMMA, _ DOT,   _ COMMA, /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
-        /*,          */,         _ LGUI,  _ SPACE, _ LALT,  /**/  _ SPACE, &mo NAV, _ LALT
+        __, _ N1, _ N2, _ N3, _ MINUS, /**/  _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
+        __, _ N4, _ N5, _ N6, _ N0,    /**/  _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
+        __, _ N7, _ N8, _ N9, _ DOT,   /**/  _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
+        /*, */,   __,   __,   __,      /**/ __,       __,       __
       ) >;
     };
 
-    ohnav_layer {
-      label = "1H-NAV";
+    ohnav_layer { // One-hand nav [A]
+      label = "Left nav";
       bindings = < LAYOUT36(
-        __, _ PGUP, _ UP,   _ PGDN,  _ BSPC, /**/ __, __, __, __, __,
-        __, _ LEFT, _ DOWN, _ RIGHT, _ RET,  /**/ __, __, __, __, __,
-        __, __,     __,     __,      __,     /**/ __, __, __, __, __
-        /*, */,     __,     __,      __,     /**/ __, __, __
+        __, _ LC(PGUP), _ UP,   _ LC(PGDN), _ BSPC, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
+        __, _ LEFT,     _ DOWN, _ RIGHT,    _ RET,  /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
+        __, __,         _ PGUP, _ PGDN,     __,     /**/ _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
+        /*, */,         __,     _ LCTL,     __,     /**/ __,      __,       __
       ) >;
     };
 
@@ -280,20 +279,20 @@
     game_layer {
       label = "GAME";
       bindings = < LAYOUT36(
-        _ TAB,  _ Q,  _ W,  _ E,  _ R,  /**/ _ Y, _ U, _ I, _ O, _ P,
-        _ LSFT, _ A,  _ S,  _ D,  _ F,  /**/ _ T, _ J, _ K, _ L, _ RET,
-        _ LCTL, _ N1, _ N2, _ N3, _ N4, /**/ _ N, _ M, __,  __,  _ ESC,
-        &mo GAMEY, &mo GAMEX, _ SPC,  /**/ _ SPC,   &mo GAMEX, &tog GAME
+        _ TAB,     _ Q,       _ W,   _ E,        _ R,       /**/ _ Y, _ U, _ I, _ O, _ P,
+        _ LSFT,    _ A,       _ S,   _ D,        _ F,       /**/ _ T, _ J, _ K, _ L, _ RET,
+        _ LCTL,    _ N1,      _ N2,  _ N3,       _ N4,      /**/ _ N, _ M, __,  __,  _ ESC,
+        &mo GAMEY, &mo GAMEX, _ SPC, /**/ _ SPC, &mo GAMEX, &tog GAME
       ) >;
     };
 
     game_x_layer {
       label = "GAME X";
       bindings = < LAYOUT36(
-        _ F1,    _ F2,    _ F3,    _ F4,    _ F5,       &none,     &none,     _ UP,    &none,     _ BSPC,
-        _ N5,    _ N6,    _ N7,    _ G,     _ H,        &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
-        _ Z,     _ X,     _ C,     _ V,     _ B,        &none,     &none,     &none,     &none,     _ ESC,
-        /**/                &none,     &none,     &kp LALT,     &none,     &none,     &tog GAME
+        _ F1, _ F2, _ F3,  _ F4,  _ F5,     &none, &none,  _ UP,   &none,   _ BSPC,
+        _ N5, _ N6, _ N7,  _ G,   _ H,      &none, _ LEFT, _ DOWN, _ RIGHT, _ RET,
+        _ Z,  _ X,  _ C,   _ V,   _ B,      &none, &none,  &none,  &none,   _ ESC
+        /*,   */,   &none, &none, &kp LALT, &none, &none,  &tog GAME
       ) >;
     };
 

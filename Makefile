@@ -1,10 +1,10 @@
-keeb := technikable
+target := technikable
 flash_file := technikable.uf2
 docker_image := zmkfirmware/zmk-build-arm:stable
 docker := docker
 volume_label := TECHNIKABLE
 base_path = $(shell pwd)
-config_path = $(shell pwd)/${keeb}
+config_path = $(shell pwd)/${target}
 docker_run = ${docker} run -it --rm \
 	--name "zmk" \
 	-v "${base_path}/.cache:/keeb" \
@@ -21,7 +21,7 @@ help:
 	@echo
 
 build: ## Builds [alias: b]
-	${docker_run} sh -c "cd /keeb; bash /keeb/base36/west_setup.sh && bash /keeb/config/build.sh"
+	${docker_run} sh -c "cd /keeb; bash /keeb/base36/west_setup.sh && bash /keeb/config/build.sh ${target}"
 	cp .cache/*.uf2 . || true
 
 sh: ## Opens a shell
@@ -31,13 +31,13 @@ update: ## Updates ZMK [alias: u]
 	${docker_run} sh -c "cd /keeb; west update"
 
 technikable:
-	$(eval keeb := technikable)
+	$(eval target := technikable)
 	$(eval flash_file := technikable.uf2)
 	$(eval volume_label := TECHNIKABLE)
 	@true
 
 microdox:
-	$(eval keeb := microdox)
+	$(eval target := microdox)
 	$(eval flash_file := microdox_left.uf2)
 	$(eval volume_label := NICENANO)
 	@true
@@ -47,13 +47,13 @@ microdox_right: microdox
 	@true
 
 chocofi:
-	$(eval keeb := chocofi)
+	$(eval target := chocofi)
 	$(eval flash_file := chocofi_left.uf2)
 	$(eval volume_label := NICENANO)
 	@true
 
 nice_nano_v2_reset:
-	$(eval keeb := nice_nano_v2_reset)
+	$(eval target := nice_nano_v2_reset)
 	$(eval flash_file := nice_nano_v2_reset.uf2)
 	$(eval volume_label := NICENANO)
 	@true
