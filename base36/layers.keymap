@@ -158,22 +158,22 @@
     //         │ gui SYM ↑   ││ ──  NAV alt │
     //         └─────────────┘└─────────────┘
     default_layer {
-      label = "36 Key";
+      label = "34 Key";
       bindings = < LAYOUT36(
-        _CTLQ, _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   _ BSPC,
-        _ A,   _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
-        _ Z,   _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
-        /*,    */,  _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
+        _CTLQ,      _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,            _ Y,          _ BSPC,
+        _ A,        _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,            _ I,          _ O,
+        &hm LGUI Z, _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &hm LGUI COMMA, &hm LALT DOT, _CENT
+        /*,         */,  _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
       ) >;
     };
 
     alt_layer {
-      label = "34 Key";
+      label = "36 Key";
       bindings = < LAYOUT36(
-        &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
-        &trans,     &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,         &trans,       &trans,
-        &hm LGUI Z, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &hm LGUI COMMA, &hm LALT DOT, &trans
-        /*,         */,     &trans, &trans, &trans, /**/ &trans, &trans, &trans
+        &trans, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,  &trans, &trans,
+        &trans, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,  &trans, &trans,
+        _ Z,    &trans, &trans, &trans, &trans, /**/ &trans, &trans, &mcomma, &mdot,  &trans
+        /*,     */,     &trans, &trans, &trans, /**/ &trans, &trans, &trans
       ) >;
     };
 
@@ -273,12 +273,18 @@
     };
 
     ohnav_layer { // One-hand nav [A]
+      // ┌─────────────────────┐ ┌─────────────────────┐
+      // │ .   pu  U   pd  bs  │ │                     │
+      // │ ━━  L   D   R   ent │ │                     │
+      // │ .   sft gui alt ctl │ │                     │
+      // └───────┐ .   .   spc │ │             ┌───────┘
+      //         └─────────────┘ └─────────────┘
       label = "Left nav";
       bindings = < LAYOUT36(
-        __, _ LC(PGUP), _ UP,   _ LC(PGDN), _ BSPC, /**/ _ F13, _ HOME, _ UP,   _ END,   _ DEL,
-        __, _ LEFT,     _ DOWN, _ RIGHT,    _ RET,  /**/ _ F15, _ LEFT, _ DOWN, _ RIGHT, _ RET,
-        __, __,         _ PGUP, _ PGDN,     __,     /**/ _ F14, _ PGUP, _ PGDN, _ ESC,   _ LCTL
-        /*, */,         __,     _ LCTL,     __,     /**/ _ F15, _ F14,    _ F13
+        __, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ _ F13, _ HOME, _ UP,   _ END,   _ DEL,
+        __, _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ _ F15, _ LEFT, _ DOWN, _ RIGHT, _ RET,
+        __, _ LSFT, _ LGUI, _ LALT,  _ LCTL,  /**/ _ F14, _ PGUP, _ PGDN, _ ESC,   _ LCTL
+        /*, */,     __,     __,      _ SPACE, /**/ _ F15, _ F14,  _ F13
       ) >;
     };
 
