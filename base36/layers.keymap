@@ -246,8 +246,8 @@
     };
 
     // ┌─────────────────────┐┌─────────────────────┐
-    // │lock .   .   .   BOOT││ .   .   .   .   .   │
-    // │game .   usb bt  tog ││ .   .   .   .   .   │
+    // │lock alt b5  b4  BOOT││ .   .   .   .   .   │
+    // │game tog usb bt  .   ││ .   .   .   .   .   │
     // │.    b3  b2  b1  clr ││ .   .   .   .   .   │
     // └───────┐─────────────││─────────────┌───────┘
     //         │ ·   ·   ▓▓  ││ tog bt  usb │ Adjust
@@ -255,10 +255,10 @@
     adj_layer {
       label = "Adjust";
       bindings = < LAYOUT36(
-        &tog LOCK, &tog ALTL, __,     __,     &bootloader,  /**/ __,  __, __, __, __,
-        &tog GAME, __,        BT_USB, BT_BLE, &out OUT_TOG, /**/ __,  __, __, __, __,
-        __,        BT(2),     BT(1),  BT(0),  &bt BT_CLR,   /**/ __,  __, __, __, __
-        /*,        */,        &trans, &trans, __,           /**/  __, __, __
+        &tog LOCK, &tog ALTL,    BT(4),  BT(3),  &bootloader, /**/ __,  __, __, __, __,
+        &tog GAME, &out OUT_TOG, BT_USB, BT_BLE, __,          /**/ __,  __, __, __, __,
+        __,        BT(2),        BT(1),  BT(0),  &bt BT_CLR,  /**/ __,  __, __, __, __
+        /*,        */,           &trans, &trans, __,          /**/  __, __, __
       ) >;
     };
 
