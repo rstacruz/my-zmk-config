@@ -108,40 +108,29 @@
       bindings = <&kp ESC>; //          └─┴──› esc
       layers = <0 ALTL>;
     };
-    #ifdef CB_F
+    #if defined(CB_W) && defined(CB_F)
       combo_w_f { // [wf] - f14 / XF86Launch5 (mouse click)
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_W CB_F>;
         bindings = <&kp F13>;
         layers = <0 ALTL>;
       };
+    #endif
 
+    #if defined(CB_F) && defined(CB_P)
       combo_f_p { // [fp] - f13 / XF86Tools (mouse click)
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_F CB_P>;
         bindings = <&kp F14>;
         layers = <0 ALTL>;
       };
+    #endif
 
+    #if defined(CB_P) && defined(CB_B)
       combo_p_b { // [pb] - f15 / XF86Launch6 (mouse click)
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_P CB_B>;
         bindings = <&kp F15>;
-        layers = <0 ALTL>;
-      };
-
-    #endif
-    #ifdef CB_B
-      combo_b_g { // [bg] - bluetooth 1
-        timeout-ms = <COMBO_TIMEOUT>;
-        key-positions = <CB_B CB_G>;
-        bindings = <BT(0)>;
-        layers = <0 ALTL>;
-      };
-      combo_g_v { // [gv] - bluetooth 2
-        timeout-ms = <COMBO_TIMEOUT>;
-        key-positions = <CB_G CB_V>;
-        bindings = <BT(1)>;
         layers = <0 ALTL>;
       };
     #endif
@@ -242,19 +231,19 @@
       ) >;
     };
 
-    adj_layer {
+    adjust_layer {
       label = "Adjust";
       // ┌─────────────────────┐┌─────────────────────┐
       // │lock alt b5  b4  BOOT││ .   .   .   .   .   │
-      // │game tog usb bt  .   ││ .   .   .   .   .   │
-      // │.    b3  b2  b1  clr ││ .   .   .   .   .   │
+      // │game b3  b2  b1  .   ││ .   b3  b2  b1  .   │
+      // │━━   tog usb bt  clr ││ .   tog usb bt  .   │
       // └───────┐ ·   ·   ▓▓  ││ tog bt  usb ┌───────┘
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
-        &tog LOCK, &tog ALTL,    BT(4),  BT(3),  &bootloader, /**/ __,  __, __, __, __,
-        &tog GAME, &out OUT_TOG, BT_USB, BT_BLE, __,          /**/ __,  __, __, __, __,
-        __,        BT(2),        BT(1),  BT(0),  &bt BT_CLR,  /**/ __,  __, __, __, __
-        /*,        */,           &trans, &trans, __,          /**/  __, __, __
+        &tog LOCK, &tog ALTL,    BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
+        &tog GAME, BT(2),        BT(1),  BT(0),  __,          /**/ __,  BT(2),        BT(1),  BT(0),  __,
+        __,        &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,  &out OUT_TOG, BT_USB, BT_BLE, __
+        /*,        */,           &trans, &trans, __,          /**/  __, __,           __
       ) >;
     };
 
