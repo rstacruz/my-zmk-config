@@ -10,8 +10,8 @@
 #define NPAD   4
 #define FUN    5
 #define ADJ    6
-#define OHNUM  7
-#define OHNAV  8
+#define OHNAV  7
+#define OHNUM  8
 #define GAME   9
 #define GAMEX  10
 #define GAMEY  11
@@ -233,17 +233,33 @@
 
     adjust_layer {
       label = "Adjust";
-      // ┌─────────────────────┐┌─────────────────────┐
-      // │lock alt b5  b4  BOOT││ .   .   .   .   .   │
-      // │game b3  b2  b1  .   ││ .   b3  b2  b1  .   │
-      // │━━   tog usb bt  clr ││ .   tog usb bt  .   │
-      // └───────┐ ·   ·   ▓▓  ││ tog bt  usb ┌───────┘
-      //         └─────────────┘└─────────────┘
+      // ┌─────────────────────┐ ┌─────────────────────┐
+      // │lock alt b5  b4  BOOT│ │ .   .   .   .   .   │
+      // │game b3  b2  b1  .   │ │ .   b3  b2  b1  .   │
+      // │━━   tog usb bt  clr │ │ .   tog usb bt  .   │
+      // └───────┐ ·   ·   ▓▓  │ │ tog bt  usb ┌───────┘
+      //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
         &tog LOCK, &tog ALTL,    BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
         &tog GAME, BT(2),        BT(1),  BT(0),  __,          /**/ __,  BT(2),        BT(1),  BT(0),  __,
         __,        &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,  &out OUT_TOG, BT_USB, BT_BLE, __
         /*,        */,           &trans, &trans, __,          /**/  __, __,           __
+      ) >;
+    };
+
+    ohnav_layer { // One-hand nav [A]
+      label = "Left nav";
+      // ┌─────────────────────┐ ┌─────────────────────┐
+      // │ NUM pu  U   pd  bs  │ │ .   .   .   .   off │
+      // │ ━━  L   D   R   ent │ │ .   .   .   .   .   │
+      // │ .   .   alt ctl .   │ │ .   .   .   .   on  │
+      // └───────┐ gui sft spc │ │ .   .   .   ┌───────┘
+      //         └─────────────┘ └─────────────┘
+      bindings = < LAYOUT36(
+        &mo OHNUM, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ __, __, __, __, &to 0,
+        __,        _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ __, __, __, __, __,
+        __,        _ LSFT, _ LALT, _ LCTL,  __,      /**/ __, __, __, __, &to OHNAV
+        /*,        */,     _ LGUI, _ LSFT,  _ SPACE, /**/ __, __, __
       ) >;
     };
 
@@ -260,22 +276,6 @@
         __, _ N4, _ N5, _ N6, _ RET,   /**/  _ F15, _ LEFT, _ DOWN, _ RIGHT, _ RET,
         __, _ N7, _ N8, _ N9, _ N0,    /**/  _ F13, _ PGUP, _ PGDN, _ ESC,   _ LCTL
         /*, */,   __,   __,   _ N0,    /**/ __,     __,     __
-      ) >;
-    };
-
-    ohnav_layer { // One-hand nav [A]
-      label = "Left nav";
-      // ┌─────────────────────┐ ┌─────────────────────┐
-      // │ .   pu  U   pd  bs  │ │                     │
-      // │ ━━  L   D   R   ent │ │                     │
-      // │ .   sft gui alt ctl │ │                     │
-      // └───────┐ .   .   spc │ │             ┌───────┘
-      //         └─────────────┘ └─────────────┘
-      bindings = < LAYOUT36(
-        __, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ _ F13, _ HOME, _ UP,   _ END,   _ DEL,
-        __, _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ _ F15, _ LEFT, _ DOWN, _ RIGHT, _ RET,
-        __, _ LSFT, _ LGUI, _ LALT,  _ LCTL,  /**/ _ F14, _ PGUP, _ PGDN, _ ESC,   _ LCTL
-        /*, */,     __,     __,      _ SPACE, /**/ _ F15, _ F14,  _ F13
       ) >;
     };
 
@@ -319,10 +319,10 @@
     game_y_layer {
       label = "GAME Y";
       bindings = < LAYOUT36(
-        _ Y, _ U, _ I,     _ O,   _ P,   &none,     &none,     _ UP,    &none,     _ BSPC,
-        _ T, _ J, _ K,     _ L,   _ RET, &none,     _ LEFT,  _ DOWN,  _ RIGHT, _ RET,
-        _ N, _ M, _ COMMA, _ DOT, _ ESC, &none,     &none,     &none,     &none,     _ ESC,
-                      &none,     &none,   &none,   &none,     &none,     &tog GAME
+        _ Y, _ U, _ I,     _ O,   _ P,   &none, &none,  _ UP,   &none,   _ BSPC,
+        _ T, _ J, _ K,     _ L,   _ RET, &none, _ LEFT, _ DOWN, _ RIGHT, _ RET,
+        _ N, _ M, _ COMMA, _ DOT, _ ESC, &none, &none,  &none,  &none,   _ ESC
+        /*,  */,  &none,   &none, &none, &none, &none,  &tog GAME
       ) >;
     };
 
