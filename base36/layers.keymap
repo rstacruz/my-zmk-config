@@ -259,16 +259,16 @@
     ohnav_layer { // One-hand nav [A]
       label = "Left nav";
       // ┌─────────────────────┐ ┌─────────────────────┐
-      // │ NUM pu  U   pd  bs  │ │ .   .   .   .   .   │
-      // │ ━━  L   D   R   ent │ │ .   .   .   .   .   │
-      // │ .   .   alt ctl .   │ │ .   .   .   .   off │
+      // │ NUM pu  U   pd  bs  │ │ .   .   U   .   .   │
+      // │ ━━  L   D   R   ent │ │ .   L   D   R   .   │
+      // │ .   .   alt ctl .   │ │ .   pu  pd  .   off │
       // └───────┐ gui sft spc │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        &mo OHNUM, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ __, __, __, __, __,
-        __,        _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ __, __, __, __, __,
-        __,        _ LSFT, _ LALT, _ LCTL,  __,      /**/ __, __, __, __, &tog OHNAV
-        /*,        */,     _ LGUI, _ LSFT,  _ SPACE, /**/ __, __, __
+        &mo OHNUM, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ __, __,     _ UP,   __,      __,
+        __,        _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
+        __,        _ LSFT, _ LALT, _ LCTL,  __,      /**/ __, _ PGUP, _ PGDN, __,      &tog OHNAV
+        /*,        */,     _ LGUI, _ LSFT,  _ SPACE, /**/ __, __,     __
       ) >;
     };
 
