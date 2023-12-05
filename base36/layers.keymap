@@ -134,6 +134,15 @@
         layers = <0 ALTL>;
       };
     #endif
+
+    #if defined(CB_W) && defined(CB_F) && defined(CB_P)
+      combo_f_p_b { // [wfp] - toggle one-hand
+        timeout-ms = <COMBO_TIMEOUT>;
+        key-positions = <CB_W CB_F CB_P>;
+        bindings = <&tog OHNAV>;
+        layers = <0 ALTL OHNAV>;
+      };
+    #endif
   };
 
   keymap {
@@ -242,7 +251,7 @@
       bindings = < LAYOUT36(
         &tog LOCK, &tog ALTL,    BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
         &tog GAME, BT(2),        BT(1),  BT(0),  __,          /**/ __,  BT(2),        BT(1),  BT(0),  __,
-        __,        &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,  &out OUT_TOG, BT_USB, BT_BLE, __
+        __,        &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,  &out OUT_TOG, BT_USB, BT_BLE, &to OHNAV
         /*,        */,           &trans, &trans, __,          /**/  __, __,           __
       ) >;
     };
@@ -250,15 +259,15 @@
     ohnav_layer { // One-hand nav [A]
       label = "Left nav";
       // ┌─────────────────────┐ ┌─────────────────────┐
-      // │ NUM pu  U   pd  bs  │ │ .   .   .   .   off │
+      // │ NUM pu  U   pd  bs  │ │ .   .   .   .   .   │
       // │ ━━  L   D   R   ent │ │ .   .   .   .   .   │
-      // │ .   .   alt ctl .   │ │ .   .   .   .   on  │
+      // │ .   .   alt ctl .   │ │ .   .   .   .   off │
       // └───────┐ gui sft spc │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        &mo OHNUM, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ __, __, __, __, &to 0,
+        &mo OHNUM, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ __, __, __, __, __,
         __,        _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ __, __, __, __, __,
-        __,        _ LSFT, _ LALT, _ LCTL,  __,      /**/ __, __, __, __, &to OHNAV
+        __,        _ LSFT, _ LALT, _ LCTL,  __,      /**/ __, __, __, __, &tog OHNAV
         /*,        */,     _ LGUI, _ LSFT,  _ SPACE, /**/ __, __, __
       ) >;
     };
