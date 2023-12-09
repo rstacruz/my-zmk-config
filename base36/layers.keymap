@@ -99,7 +99,7 @@
     combo_h_dot {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <CB_H CB_DOT>; // [ k h , . ^ ]
-      bindings = <&kp MINUS>; //            └───┴──› hyphen
+      bindings = <&kp ESC>; //              └───┴──› esc
       layers = <0 ALTL>;
     };
     combo_k_h {
@@ -261,14 +261,14 @@
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │ NUM pu  U   pd  bs  │ │ .   .   U   .   .   │
       // │ ━━  L   D   R   ent │ │ .   L   D   R   .   │
-      // │ .   .   alt ctl .   │ │ .   pu  pd  .   off │
-      // └───────┐ gui sft spc │ │ .   .   .   ┌───────┘
+      // │ .   .   alt gui .   │ │ .   pu  pd  .   off │
+      // └───────┐ ctl sft spc │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
         &mo OHNUM, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ __, __,     _ UP,   __,      __,
         __,        _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
-        __,        _ LSFT, _ LALT, _ LCTL,  __,      /**/ __, _ PGUP, _ PGDN, __,      &tog OHNAV
-        /*,        */,     _ LGUI, _ LSFT,  _ SPACE, /**/ __, __,     __
+        __,        _ LSFT, _ LALT, _ LGUI,  __,      /**/ __, _ PGUP, _ PGDN, __,      &tog OHNAV
+        /*,        */,     _ LCTL, _ LSFT,  _ SPACE, /**/ __, __,     __
       ) >;
     };
 
