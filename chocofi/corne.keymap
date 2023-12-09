@@ -18,6 +18,8 @@
 #define CB_F 3
 #define CB_P 4
 #define CB_B 5
+#define CB_Y 9
+#define CB_BSPC 10
 
 #include "../base36/layers.keymap"
 

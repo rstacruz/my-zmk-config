@@ -135,6 +135,15 @@
       };
     #endif
 
+    #if defined(CB_Y) && defined(CB_BSPC)
+      combo_y_bspc {
+        timeout-ms = <COMBO_TIMEOUT>;
+        key-positions = <CB_Y CB_BSPC>;
+        bindings = <&kp LA(BSPC)>;
+        layers = <0 ALTL>;
+      };
+    #endif
+
     #if defined(CB_W) && defined(CB_F) && defined(CB_P)
       combo_f_p_b { // [wfp] - toggle one-hand
         timeout-ms = <COMBO_TIMEOUT>;
