@@ -10,13 +10,14 @@
 #define NPAD   4
 #define FUN    5
 #define ADJ    6
-#define OHNAV  7
-#define OHNUM  8
-#define GAME   9
-#define GAMEX  10
-#define GAMEY  11
-#define LOCK   12
-#define ULOC   13
+#define OHFLIP 7
+#define OHNAV  8
+#define OHNUM  9
+#define GAME   10
+#define GAMEX  11
+#define GAMEY  12
+#define LOCK   13
+#define ULOC   14
 
 #define NTAB LC(PGDN) /* Next tab */
 #define PTAB LC(PGUP) /* Previous tab */
@@ -167,10 +168,10 @@
       //         │ gui SYM ↑   ││ ──  NAV alt │
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
-        _CTLQ,      _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,            _ Y,          _ BSPC,
-        _ A,        _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,            _ I,          _ O,
-        &hm LGUI Z, _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &hm LGUI COMMA, &hm LALT DOT, _CENT
-        /*,         */,  _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
+        _CTLQ,        _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,            _ Y,          _ BSPC,
+        _ A,          _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,            _ I,          _ O,
+        &lt OHFLIP Z, _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &hm LGUI COMMA, &hm LALT DOT, _CENT
+        /*,           */,  _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
       ) >;
     };
 
@@ -265,19 +266,35 @@
       ) >;
     };
 
+    ohflip_layer { // One-hand flip
+      label = "Flip";
+      // ┌─────────────────────┐ ┌─────────────────────┐
+      // │ j   l   u   y   bks │ │ .   .   U   .   .   │
+      // │ m   n   e   i   o   │ │ .   L   D   R   .   │
+      // │ ━━  h   ,⁺  .⁺  k   │ │ .   pu  pd  .   .   │
+      // └───────┐ ctl nav spc │ │ .   .   .   ┌───────┘
+      //         └─────────────┘ └─────────────┘
+      bindings = < LAYOUT36(
+        _ J, _ L, _ U,            _ Y,          _ BSPC,  /**/ __, __,     _ UP,   __,      __,
+        _ M, _ N, _ E,            _ I,          _ O,     /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
+        __,  _ H, &hm LALT COMMA, &hm LGUI DOT, _ K,     /**/ __, _ PGUP, _ PGDN, __,      __
+        /*,  */,  _ LCTL,         &mo OHNAV,    _ SPACE, /**/ __, __,     __
+      ) >;
+    };
+
     ohnav_layer { // One-hand nav [A]
       label = "Left nav";
       // ┌─────────────────────┐ ┌─────────────────────┐
-      // │ NUM pu  U   pd  bs  │ │ .   .   U   .   .   │
-      // │ ━━  L   D   R   ent │ │ .   L   D   R   .   │
+      // │ ctl pu  U   pd  bs  │ │ .   .   U   .   .   │
+      // │ .   L   D   R   ent │ │ .   L   D   R   .   │
       // │ .   sft alt gui esc │ │ .   pu  pd  .   off │
-      // └───────┐ .   ctl spc │ │ .   .   .   ┌───────┘
+      // └───────┐ .   ━━  spc │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        &mo OHNUM, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ __, __,     _ UP,   __,      __,
-        __,        _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
-        __,        _ LSFT, _ LALT, _ LGUI,  _ ESC,   /**/ __, _ PGUP, _ PGDN, __,      &tog OHNAV
-        /*,        */,     __,     _ LCTL,  _ SPACE, /**/ __, __,     __
+        _ LCTL, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ __, __,     _ UP,   __,      __,
+        __,     _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
+        _ LCTL, _ LSFT, _ LALT, _ LGUI,  _ ESC,   /**/ __, _ PGUP, _ PGDN, __,      &tog OHNAV
+        /*,     */,     __,     __,      _ SPACE, /**/ __, __,     __
       ) >;
     };
 
