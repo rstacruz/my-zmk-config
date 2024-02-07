@@ -7,17 +7,16 @@
 #define ALTL   1
 #define SYM    2
 #define NAV    3
-#define NPAD   4
-#define FUN    5
-#define ADJ    6
-#define OHFLIP 7
-#define OHNAV  8
-#define OHNUM  9
-#define GAME   10
-#define GAMEX  11
-#define GAMEY  12
-#define LOCK   13
-#define ULOC   14
+#define FUN    4
+#define ADJ    5
+#define OHFLIP 6
+#define OHNAV  7
+#define OHNUM  8
+#define GAME   9
+#define GAMEX  10
+#define GAMEY  11
+#define LOCK   12
+#define ULOC   13
 
 #define NTAB LC(PGDN) /* Next tab */
 #define PTAB LC(PGUP) /* Previous tab */
@@ -35,7 +34,6 @@
 /* Complex keys */
 #define _CTLQ &hm LCTL Q /* Q (tap), ctrl (hold) */
 #define _CENT &th LCTL RET /* Enter (tap), ctrl (hold) */
-#define _HASH &lt NPAD HASH /* # (tap), NPAD (hold) */
 #define _BSLH &lt ADJ BSLH /* \ (tap), ADJ (hold) */
 
 #define COMBO_TIMEOUT 30
@@ -196,7 +194,7 @@
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
         &lt OHNUM QUOT, _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-        &lt OHNAV EXCL, _ AT,    _HASH,   _ DLLR,  _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+        &lt OHNAV EXCL, _ AT,    _ HASH,  _ DLLR,  _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
         &lt ADJ BSLH,   _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
         /*,             */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
       ) >;
@@ -215,22 +213,6 @@
         _ N1,    _ N2,   _ N3,    _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
         _ N6,    _ N7,   _ N8,    _ N9,   _ N0,   /**/ _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
         /*,      */,     &trans,  &trans, &trans, /**/ _ SPACE, &mo FUN,  _ RALT
-      ) >;
-    };
-
-    numpad_layer {
-      label = "Numpad";
-      // ┌─────────────────────┐┌─────────────────────┐
-      // │ .   .   .   .   .   ││ ,   1   2   3   bks │
-      // │ .   .   .   .   .   ││ -   4   5   6   .   │
-      // │ .   .   .   .   .   ││ :   7   8   9   ent │
-      // └───────┐ .   .   .   ││ 0           ┌───────┘
-      //         └─────────────┘└─────────────┘
-      bindings = < LAYOUT36(
-        &trans, &trans, &trans, &trans, &trans, /**/ _ COMMA, _ N1,  _ N2, _ N3, _ BSPC,
-        &trans, &trans, &trans, &trans, &trans, /**/ _ MINUS, _ N4,  _ N5, _ N6, _ DOT,
-        &trans, &trans, &trans, &trans, &trans, /**/ _ COLON, _ N7,  _ N8, _ N9, _ RET
-        /*,     */,     &trans, &trans, &trans, /**/ _ N0,    _ DOT, _ COMMA
       ) >;
     };
 
