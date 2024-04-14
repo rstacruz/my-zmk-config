@@ -236,13 +236,13 @@
       label = "Adjust";
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │lock alt b5  b4  BOOT│ │ .   .   .   .   .   │
-      // │game b3  b2  b1  .   │ │ .   b3  b2  b1  .   │
+      // │game b3  b2  b1  rset│ │ .   b3  b2  b1  .   │
       // │━━   tog usb bt  clr │ │ .   tog usb bt  .   │
       // └───────┐ ·   ·   ▓▓  │ │ tog bt  usb ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
         &tog LOCK, &tog ALTL,    BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
-        &tog GAME, BT(2),        BT(1),  BT(0),  __,          /**/ __,  BT(2),        BT(1),  BT(0),  __,
+        &tog GAME, BT(2),        BT(1),  BT(0),  &sys_reset,  /**/ __,  BT(2),        BT(1),  BT(0),  __,
         __,        &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,  &out OUT_TOG, BT_USB, BT_BLE, &to OHNAV
         /*,        */,           &trans, &trans, __,          /**/  __, __,           __
       ) >;
@@ -253,14 +253,14 @@
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │ j   l   u   y   bks │ │ .   .   U   .   .   │
       // │ m   n   e   i   o   │ │ .   L   D   R   .   │
-      // │ ━━  h   ,⁺  .⁺  k   │ │ .   pu  pd  .   .   │
+      // │ ━━  h  ent⁺ .⁺  k   │ │ .   pu  pd  .   .   │
       // └───────┐ ctl nav spc │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        _ J, _ L, _ U,            _ Y,          _ BSPC,  /**/ __, __,     _ UP,   __,      __,
-        _ M, _ N, _ E,            _ I,          _ O,     /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
-        __,  _ H, &hm LALT COMMA, &hm LGUI DOT, _ K,     /**/ __, _ PGUP, _ PGDN, __,      __
-        /*,  */,  _ LCTL,         &mo OHNAV,    _ SPACE, /**/ __, __,     __
+        _ J, _ L, _ U,          _ Y,          _ BSPC,  /**/ __, __,     _ UP,   __,      __,
+        _ M, _ N, _ E,          _ I,          _ O,     /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
+        __,  _ H, &hm LALT RET, &hm LGUI DOT, _ K,     /**/ __, _ PGUP, _ PGDN, __,      __
+        /*,  */,  _ LCTL,       &mo OHNAV,    _ SPACE, /**/ __, __,     __
       ) >;
     };
 
