@@ -15,7 +15,7 @@
 #define CB_COMMA 27
 #define CB_DOT 28
 
-#include "../base36/layers.keymap"
+#include "./base.keymap"
 
 // vim:ft=c:fdm=indent
 // https://zmk.dev/docs/codes/

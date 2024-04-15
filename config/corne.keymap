@@ -21,7 +21,7 @@
 #define CB_Y 9
 #define CB_BSPC 10
 
-#include "../base36/layers.keymap"
+#include "./base.keymap"
 
 // vim:ft=c:fdm=indent
 // https://zmk.dev/docs/codes/

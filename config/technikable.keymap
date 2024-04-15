@@ -15,13 +15,9 @@
 #define CB_COMMA 33
 #define CB_DOT 34
 
-// &sl {
-// 	release-after-ms = <500>; /* for frogv's flip button */
-// };
-
 #define TECHNIKABLE
 
-#include "../base36/layers.keymap"
+#include "./base.keymap"
 
 // vim:ft=c:fdm=indent
 // https://zmk.dev/docs/codes/

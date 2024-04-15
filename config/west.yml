@@ -1,3 +1,4 @@
+# https://github.com/zmkfirmware/unified-zmk-config-template/blob/main/config/west.yml
 manifest:
   remotes:
     - name: zmkfirmware

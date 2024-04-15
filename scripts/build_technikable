@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+west build \
+	--source zmk/app \
+	--board technikable \
+	-- \
+	-DZMK_CONFIG=/root/config
+
+mv build/zephyr/zmk.uf2 /root/dist/technikable.uf2
+ls -la /root/dist/technikable.uf2

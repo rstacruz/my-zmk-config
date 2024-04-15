@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+SIDE="$1"
+west build \
+	--source zmk/app \
+	--board nice_nano_v2 \
+	-- \
+	-DSHIELD="corne_${SIDE} nice_view_adapter nice_view" \
+	-DZMK_CONFIG=/root/config
+
+mv build/zephyr/zmk.uf2 /root/dist/corne_${SIDE}.uf2
+ls -la /root/dist/corne_${SIDE}.uf2
