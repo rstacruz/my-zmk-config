@@ -50,5 +50,5 @@ clean: ## Remove built files
 prune: clean ## Remove Docker images
 	docker rmi rstacruz/zmk-config
 
-update: clean ## Update zmk
-	docker build --pull . -t rstacruz/zmk-config
+update: ## Update zmk
+	docker build --pull --no-cache . -t rstacruz/zmk-config
