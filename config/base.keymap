@@ -83,30 +83,43 @@
 
   combos {
     compatible = "zmk,combos";
+
+    #if defined(CB_H) && defined(CB_COMMA)
     combo_h_comma {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <CB_H CB_COMMA>; // [ k h , . ^ ]
       bindings = <&kp QUOT>; //               └─┴──› '
       layers = <0 ALTL>;
     };
+    #endif
+
+    #if defined(CB_COMMA) && defined(CB_DOT)
     combo_comma_dot {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <CB_COMMA CB_DOT>; // [ k h , . ^ ]
       bindings = <&kp LA(TAB)>; //                └─┴──› alt-tab
       layers = <0 ALTL>;
     };
+    #endif
+
+    #if defined(CB_H) && defined(CB_DOT)
     combo_h_dot {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <CB_H CB_DOT>; // [ k h , . ^ ]
       bindings = <&kp ESC>; //              └───┴──› esc
       layers = <0 ALTL>;
     };
+    #endif
+
+    #if defined(CB_K) && defined(CB_H)
     combo_k_h {
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <CB_K CB_H>; // [ k h , . ^ ]
       bindings = <&kp ESC>; //          └─┴──› esc
       layers = <0 ALTL>;
     };
+    #endif
+
     #if defined(CB_W) && defined(CB_F)
       combo_w_f { // [wf] - f14 / XF86Launch5 (mouse click)
         timeout-ms = <COMBO_TIMEOUT>;
@@ -208,6 +221,7 @@
       // │ 6   7   8   9   0   ││ ins p↑  p↓  esc ctl │
       // └───────┐ ·   sym ·   ││ spc ▓▓  ralt┌───────┘
       //         └─────────────┘└─────────────┘
+/5/ /snyk-config.yaml
       bindings = < LAYOUT36(
         _ RCTRL, _ RGUI, _ SFTAB, _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
         _ N1,    _ N2,   _ N3,    _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
@@ -222,7 +236,7 @@
       // │ f11 f12 psc ply nxt ││ .   .   .   .   .   │
       // │ f1  f2  f3  f4  f5  ││ .   .   .   .   .   │
       // │ f6  f7  f8  f9  f10 ││ cap v-  v+  b⁻  b⁺  │
-      // └───────┐ ·   ·   ──  ││ ──  ▓▓  ·   ┌───────┘
+      // └───────┐ ·   ·   ·   ││  .  ▓▓  ·   ┌───────┘
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
         _ F11, _ F12, _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_VOL_UP, __,         __,         __,         __,
@@ -237,8 +251,8 @@
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │lock alt b5  b4  BOOT│ │ .   .   .   .   .   │
       // │game b3  b2  b1  rset│ │ .   b3  b2  b1  .   │
-      // │━━   tog usb bt  clr │ │ .   tog usb bt  .   │
-      // └───────┐ ·   ·   ▓▓  │ │ tog bt  usb ┌───────┘
+      // │▓▓   tog usb bt  clr │ │ .   tog usb bt  .   │
+      // └───────┐ ·   ·   ·   │ │ tog bt  usb ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
         &tog LOCK, &tog ALTL,    BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
