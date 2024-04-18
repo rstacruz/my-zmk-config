@@ -36,11 +36,11 @@ main() {
 		# MacOS
 		flash-by-cp "/Volumes/$label" "$file"
 	else
-		echo '━━› Sorry, your platform is unsupported'
+		echo '──› Sorry, your platform is unsupported'
 		exit 1
 	fi
 
-	echo '━━› Done!'
+	echo '──› Done!'
 }
 
 # flash-by-mount "/dev/disk/by-label/NICENANO" "file.uf2"
@@ -48,41 +48,40 @@ flash-by-mount() {
 	local device="$1"
 	local file="$2"
 	echo ""
-	echo -n "━━› Waiting for $device"
+	echo -n "──› Waiting for $device... "
 	sudo true
 	while true; do
 		if [[ -e "$device" ]]; then break; fi
 		sleep 0.2
-		echo -n '.'
 	done
-	echo ' ✓'
-	echo -n '━━› Mounting...'
+
+	echo '✓'
+	echo -n '──› Mounting... '
 	mkdir -p /tmp/flashmnt
 	sudo mount "$device" /tmp/flashmnt
-	echo ' ✓'
+	echo '✓'
 
-	echo -n "━━› Sending $file..."
+	echo -n "──› Sending $file... "
 	sudo cp "$file" /tmp/flashmnt
 	sync
 	sudo umount -R /tmp/flashmnt
-	echo ' ✓'
+	echo '✓'
 }
 
 # flash-by-cp "/Volumes/NICENANO" "file.uf2"
 flash-by-cp() {
 	local dest="$1"
 	local file="$2"
-	echo -n "━━› Waiting for $dest"
+	echo -n "──› Waiting for $dest... "
 	while true; do
 		if [[ -e "$dest/CURRENT.UF2" ]]; then break; fi
 		sleep 0.2
-		echo -n '.'
 	done
-	echo ' ✓'
+	echo '✓'
 
-	echo -n "━━› Sending $file..."
+	echo -n "──› Sending $file... "
 	cp "$file" "$dest/"
-	echo ' ✓'
+	echo '✓'
 }
 
 main "$@"
