@@ -121,28 +121,28 @@
     #endif
 
     #if defined(CB_W) && defined(CB_F)
-      combo_w_f { // [wf] - f14 / XF86Launch5 (mouse click)
+      combo_w_f { // [wf] - bt2
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_W CB_F>;
-        bindings = <&kp F13>;
+        bindings = <BT(1)>;
         layers = <0 ALTL>;
       };
     #endif
 
     #if defined(CB_F) && defined(CB_P)
-      combo_f_p { // [fp] - f13 / XF86Tools (mouse click)
+      combo_f_p { // [fp] - bt1
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_F CB_P>;
-        bindings = <&kp F14>;
+        bindings = <BT(0)>;
         layers = <0 ALTL>;
       };
     #endif
 
     #if defined(CB_P) && defined(CB_B)
-      combo_p_b { // [pb] - f15 / XF86Launch6 (mouse click)
+      combo_p_b { // [pb] - out tog
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_P CB_B>;
-        bindings = <&kp F15>;
+        bindings = <&out OUT_TOG>;
         layers = <0 ALTL>;
       };
     #endif
@@ -153,15 +153,6 @@
         key-positions = <CB_Y CB_BSPC>;
         bindings = <&kp LA(BSPC)>;
         layers = <0 ALTL>;
-      };
-    #endif
-
-    #if defined(CB_W) && defined(CB_F) && defined(CB_P)
-      combo_f_p_b { // [wfp] - toggle one-hand
-        timeout-ms = <COMBO_TIMEOUT>;
-        key-positions = <CB_W CB_F CB_P>;
-        bindings = <&tog OHNAV>;
-        layers = <0 ALTL OHNAV>;
       };
     #endif
   };
@@ -221,7 +212,7 @@
       // │ 6   7   8   9   0   ││ ins p↑  p↓  esc ctl │
       // └───────┐ ·   sym ·   ││ spc ▓▓  ralt┌───────┘
       //         └─────────────┘└─────────────┘
-/5/ /snyk-config.yaml
+
       bindings = < LAYOUT36(
         _ RCTRL, _ RGUI, _ SFTAB, _ TAB,  _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
         _ N1,    _ N2,   _ N3,    _ N4,   _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
