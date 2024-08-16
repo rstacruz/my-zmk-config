@@ -1,5 +1,6 @@
-docker_volumes := -v ./config:/root/config -v ./dist:/root/dist
-docker_run := docker run --rm ${docker_volumes} rstacruz/zmk-config
+docker = docker
+docker_volumes = -v ./config:/root/config -v ./dist:/root/dist
+docker_run = ${docker} run --rm ${docker_volumes} rstacruz/zmk-config
 
 help:
 	@echo "Usage:"
@@ -7,12 +8,16 @@ help:
 	@grep -E '^[a-zA-Z_-].*?: .*?## .*$$' Makefile | sed 's#\\:#:#g' | awk 'BEGIN {FS = ": .*?## "}; {printf "\033[36m  %-20s\033[0m %s\n", $$1, $$2}'
 	@echo
 
+nerdctl:
+	$(eval docker := nerdctl)
+	@echo "Using 'nerdctl' instead of 'docker'"
+
 prebuild:
-	docker build . -t rstacruz/zmk-config
+	${docker} build . -t rstacruz/zmk-config
 	mkdir -p dist
 
 shell: prebuild
-	docker run --rm -it ${docker_volumes} rstacruz/zmk-config bash
+	${docker} run --rm -it ${docker_volumes} rstacruz/zmk-config bash
 
 technikable: prebuild ## Build
 	${docker_run} bash scripts/build_technikable
@@ -52,3 +57,4 @@ prune: clean ## Remove Docker images
 
 update: ## Update zmk
 	docker build --pull --no-cache . -t rstacruz/zmk-config
+

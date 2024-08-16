@@ -10,5 +10,7 @@ supports linux and macos.
 make corne_left # builds firmware
 make flash_corne_left # flashes firmware
 
+make nerdctl microdox_left # use nerdctl/containerd
+
 make # show all supported keyboards
 ```
