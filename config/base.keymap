@@ -39,7 +39,7 @@
 #define COMBO_TIMEOUT 30
 
 #ifdef  MOUSE_KEYS
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 2500  // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 10    // 10
 
 #include <dt-bindings/zmk/mouse.h>
@@ -299,16 +299,16 @@
     ohnav_layer { // One-hand nav [A]
       label = "Left nav";
       // ┌─────────────────────┐ ┌─────────────────────┐
-      // │ ctl pu  U   pd  bs  │ │ .   .   U   .   .   │
+      // │ ctl pu  U   pd  bs  │ │ .   ml  U   mr  .   │
       // │ .   L   D   R   ent │ │ .   L   D   R   .   │
-      // │ .   sft alt gui esc │ │ .   pu  pd  .   off │
-      // └───────┐ .   ━━  spc │ │ .   .   .   ┌───────┘
+      // │ .   sft alt gui esc │ │ .   wd  wu  .   off │
+      // └───────┐ mc  lc  rc  │ │ ml  .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        _ LCTL, _ PGUP, _ UP,   _ PGDN,  _ BSPC,  /**/ __, __,     _ UP,   __,      __,
-        __,     _ LEFT, _ DOWN, _ RIGHT, _ RET,   /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
-        _ LCTL, _ LSFT, _ LALT, _ LGUI,  _ ESC,   /**/ __, _ PGUP, _ PGDN, __,      &tog OHNAV
-        /*,     */,     __,     __,      _ SPACE, /**/ __, __,     __
+        _ LCTL, _ PGUP, _ UP,     _ PGDN,   _ BSPC,   /**/ __,       _MLCLICK, _MUP,   _MRCLICK, __,
+        __,     _ LEFT, _ DOWN,   _ RIGHT,  _ RET,    /**/ __,       _MLEFT,   _MDOWN, _MRIGHT,  __,
+        _ LCTL, _ LSFT, _ LALT,   _ LGUI,   _ ESC,    /**/ __,       _MWDOWN,  _MWUP,  __,       __
+        /*,     */,     _MMCLICK, _MLCLICK, _MRCLICK, /**/ _MLCLICK, __,       __
       ) >;
     };
 
