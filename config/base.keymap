@@ -2,7 +2,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/mouse.h>
 
 // https://zmk.dev/docs/codes/keyboard-keypad
 #define ALTL   1
@@ -40,12 +39,31 @@
 #define COMBO_TIMEOUT 30
 
 #ifdef  MOUSE_KEYS
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1500  // 600
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 10    // 10
+
+#include <dt-bindings/zmk/mouse.h>
+
+&mmv {
+    acceleration-exponent = <1>;      // 1
+    time-to-max-speed-ms = <500>;     // 300
+    delay-ms = <0>;                   // 0
+};
+
+&msc {
+    acceleration-exponent = <1>;      // 0
+    time-to-max-speed-ms = <200>;     // 300
+    delay-ms = <0>;                   // 0
+};
 #define _MLEFT   &mmv MOVE_LEFT
 #define _MUP     &mmv MOVE_UP
 #define _MDOWN   &mmv MOVE_DOWN
 #define _MRIGHT  &mmv MOVE_RIGHT
+#define _MWUP    &msc MOVE_UP
+#define _MWDOWN  &msc MOVE_DOWN
 #define _MLCLICK &mkp LCLK
 #define _MRCLICK &mkp RCLK
+#define _MMCLICK &mkp MCLK
 #else
 #define _MLEFT  &none
 #define _MUP    &none
@@ -53,6 +71,7 @@
 #define _MRIGHT &none
 #define _MLCLICK  &none
 #define _MRCLICK  &none
+#define _MMCLICK  &none
 #endif
 
 / {
@@ -163,15 +182,6 @@
         layers = <0 ALTL>;
       };
     #endif
-
-    #if defined(CB_Y) && defined(CB_BSPC)
-      combo_y_bspc {
-        timeout-ms = <COMBO_TIMEOUT>;
-        key-positions = <CB_Y CB_BSPC>;
-        bindings = <&kp LA(BSPC)>;
-        layers = <0 ALTL>;
-      };
-    #endif
   };
 
   keymap {
@@ -239,18 +249,18 @@
     };
 
     function_layer {
-      label = "Function";
+      label = "Func + Mouse";
       // ┌─────────────────────┐┌─────────────────────┐
-      // │ f11 f12 psc ply nxt ││ b+  7   8   9   v+  │
-      // │ f1  f2  f3  f4  f5  ││ b-  4   5   6   v-  │
-      // │ f6  f7  f8  f9  f10 ││ cap 1   2   3   .   │
-      // └───────┐ ·   ▓▓  ·   ││  .  0   num ┌───────┘
+      // │ f11 f12 psc ply nxt ││ b+  L   ↑   R   v+  │
+      // │ f1  f2  f3  f4  f5  ││ b-  ←   ↓   →   v-  │
+      // │ f6  f7  f8  f9  f10 ││ cap wd  wu  .   .   │
+      // └───────┐ M   L   ·   ││  L  .   R   ┌───────┘
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
-        _ F11, _ F12, _ PSCRN, _ C_PLAY, _ C_NEXT, /**/ _ C_BRI_UP, __,     _MUP,   __,      _ C_VOL_UP,
-        _ F1,  _ F2,  _ F3,    _ F4,     _ F5,     /**/ _ C_BRI_DN, _MLEFT, _MDOWN, _MRIGHT, _ C_VOL_DN,
-        _ F6,  _ F7,  _ F8,    _ F9,     _ F10,    /**/ _ CAPS,     __,     __,     __,      _ C_BRI_UP
-        /*,    */,    &trans,  _MLCLICK, &trans,   /**/ &trans,     __,     _MRCLICK
+        _ F11, _ F12, _ PSCRN,  _ C_PLAY, _ C_NEXT, /**/ _ C_BRI_UP, _MLCLICK, _MUP,   _MRCLICK, _ C_VOL_UP,
+        _ F1,  _ F2,  _ F3,     _ F4,     _ F5,     /**/ _ C_BRI_DN, _MLEFT,   _MDOWN, _MRIGHT,  _ C_VOL_DN,
+        _ F6,  _ F7,  _ F8,     _ F9,     _ F10,    /**/ _ CAPS,     _MWDOWN,  _MWUP,  __,       _ C_BRI_UP
+        /*,    */,    _MMCLICK, _MLCLICK, &trans,   /**/ _MLCLICK,   __,       _MRCLICK
       ) >;
     };
 
