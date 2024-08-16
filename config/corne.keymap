@@ -21,6 +21,8 @@
 #define CB_Y 9
 #define CB_BSPC 10
 
+#define MOUSE_KEYS
+
 #include "./base.keymap"
 
 // vim:ft=c:fdm=indent
