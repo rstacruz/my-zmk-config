@@ -6,6 +6,8 @@ manifest:
     - name: petejohanson
       url-base: https://github.com/petejohanson
   projects:
+    # https://github.com/zmkfirmware/zmk/pull/2027
+    # https://github.com/petejohanson/zmk/tree/feat/pointers-move-scroll
     - name: zmk
       remote: petejohanson
       revision: feat/pointers-move-scroll
