@@ -16,6 +16,7 @@
 #define CB_DOT 34
 
 #define TECHNIKABLE
+#define MOUSE_KEYS
 
 #include "./base.keymap"
 

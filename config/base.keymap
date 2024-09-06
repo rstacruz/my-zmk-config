@@ -39,8 +39,11 @@
 #define COMBO_TIMEOUT 30
 
 #ifdef  MOUSE_KEYS
-#define ZMK_MOUSE_DEFAULT_MOVE_VAL 2500  // 600
-#define ZMK_MOUSE_DEFAULT_SCRL_VAL 10    // 10
+// https://github.com/zmkfirmware/zmk/pull/2027
+// https://github.com/petejohanson/zmk/tree/feat/pointers-move-scroll
+// https://github.com/petejohanson/zmk/blob/feat/pointers-move-scroll/docs/docs/behaviors/mouse-emulation.md
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 2500 // 600
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 1    // 10
 
 #include <dt-bindings/zmk/mouse.h>
 
@@ -52,9 +55,10 @@
 
 &msc {
     acceleration-exponent = <1>;      // 0
-    time-to-max-speed-ms = <200>;     // 300
+    time-to-max-speed-ms = <500>;     // 300
     delay-ms = <0>;                   // 0
 };
+
 #define _MLEFT   &mmv MOVE_LEFT
 #define _MUP     &mmv MOVE_UP
 #define _MDOWN   &mmv MOVE_DOWN
