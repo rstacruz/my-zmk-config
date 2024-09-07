@@ -12,11 +12,12 @@
 #define OHFLIP 6
 #define OHNAV  7
 #define OHNUM  8
-#define GAME   9
-#define GAMEX  10
-#define GAMEY  11
-#define LOCK   12
-#define ULOC   13
+#define OHMOUS 9
+#define GAME   10
+#define GAMEX  11
+#define GAMEY  12
+#define LOCK   13
+#define ULOC   14
 
 #define NTAB  LC(PGDN) /* Next tab */
 #define PTAB  LC(PGUP) /* Previous tab */
@@ -228,10 +229,10 @@
       //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
-        &lt OHNUM QUOT, _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-        &lt OHNAV EXCL, _ AT,    _ HASH,  _ DLLR,  _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
-        &lt ADJ BSLH,   _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
-        /*,             */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
+        &lt OHNUM QUOT, _ DQT,   _ CARET, _ QMARK, _ GRAVE,    /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+        &lt OHNAV EXCL, _ AT,    _ HASH,  _ DLLR,  _ PRCNT,    /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+        &lt ADJ BSLH,   _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,     /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
+        /*,             */,      &trans,  &mo FUN, &mo OHMOUS, /**/ _ SPACE, &mo FUN, _ RALT
       ) >;
     };
 
@@ -321,14 +322,30 @@
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │ ━━  1   2   3   bks │ │                     │
       // │ .   4   5   6   ret │ │                     │
-      // │ .   7   8   9   .   │ │                     │
-      // └───────┐ .   .   .   │ │             ┌───────┘
+      // │ .   7   8   9   0   │ │                     │
+      // └───────┐ .   .   0   │ │             ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
         __, _ N1, _ N2, _ N3, _ BSPC,  /**/  _ F14, _ HOME, _ UP,   _ END,   _ DEL,
         __, _ N4, _ N5, _ N6, _ RET,   /**/  _ F15, _ LEFT, _ DOWN, _ RIGHT, _ RET,
         __, _ N7, _ N8, _ N9, _ N0,    /**/  _ F13, _ PGUP, _ PGDN, _ ESC,   _ LCTL
         /*, */,   __,   __,   _ N0,    /**/ __,     __,     __
+      ) >;
+    };
+
+    ohmouse_layer { // One-handed mouse [sft]
+      label = "Left mouse";
+      // ┌─────────────────────┐┌─────────────────────┐
+      // │ .   L   ↑   R   M   ││ .   .   .   .   .   │
+      // │ .   ←   ↓   →   at  ││ .   .   .   .   .   │
+      // │ .   .   .   .   .   ││ .   .   .   .   .   │
+      // └───────┐ .   .   ━━  ││ .   .   .   ┌───────┘
+      //         └─────────────┘└─────────────┘
+      bindings = < LAYOUT36(
+        __, _MLCLICK, _MUP,   _MRCLICK, _MMCLICK,    /**/ __, __, __, __, __,
+        __, _MLEFT,   _MDOWN, _MRIGHT,  &kp LA(TAB), /**/ __, __, __, __, __,
+        __, __,       __,     __,       __,          /**/ __, __, __, __, __
+        /*, */,       __,     __,       __,          /**/ __, __, __
       ) >;
     };
 
