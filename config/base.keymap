@@ -229,10 +229,10 @@
       //         │ ·   ▓▓  ADJ ││ ·   FUN ralt│
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
-        &lt OHNUM QUOT, _ DQT,   _ CARET, _ QMARK, _ GRAVE,    /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
-        &lt OHNAV EXCL, _ AT,    _ HASH,  _ DLLR,  _ PRCNT,    /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
-        &lt ADJ BSLH,   _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,     /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
-        /*,             */,      &trans,  &mo FUN, &mo OHMOUS, /**/ _ SPACE, &mo FUN, _ RALT
+        &lt OHNUM QUOT,  _ DQT,   _ CARET, _ QMARK, _ GRAVE, /**/ _ LBKT,  _ LT,    _ EQUAL, _ GT,   _ RBKT,
+        &lt OHNAV EXCL,  _ AT,    _ HASH,  _ DLLR,  _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
+        &lt OHMOUS BSLH, _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
+        /*,              */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
       ) >;
     };
 
@@ -274,8 +274,8 @@
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │lock alt b5  b4  BOOT│ │ .   .   .   .   .   │
       // │game b3  b2  b1  rset│ │ .   b3  b2  b1  .   │
-      // │▓▓   tog usb bt  clr │ │ .   tog usb bt  .   │
-      // └───────┐ ·   ·   ·   │ │ tog bt  usb ┌───────┘
+      // │.    tog usb bt  clr │ │ .   tog usb bt  .   │
+      // └───────┐ ·   ·   ━━  │ │ tog bt  usb ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
         &tog LOCK, &tog ALTL,    BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
@@ -285,39 +285,39 @@
       ) >;
     };
 
-    ohflip_layer { // One-hand flip
+    ohflip_layer { // One-hand flip [z]
       label = "Flip";
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │ j   l   u   y   bks │ │ .   .   U   .   .   │
       // │ m   n   e   i   o   │ │ .   L   D   R   .   │
-      // │ ━━  h  ent⁺ .⁺  k   │ │ .   pu  pd  .   .   │
+      // │ ━━  h   ,   .⁺  k   │ │ .   pu  pd  .   .   │
       // └───────┐ ctl nav spc │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        _ J, _ L, _ U,          _ Y,          _ BSPC,  /**/ __, __,     _ UP,   __,      __,
-        _ M, _ N, _ E,          _ I,          _ O,     /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
-        __,  _ H, &hm LALT RET, &hm LGUI DOT, _ K,     /**/ __, _ PGUP, _ PGDN, __,      __
-        /*,  */,  _ LCTL,       &mo OHNAV,    _ SPACE, /**/ __, __,     __
+        _ J, _ L, _ U,     _ Y,          _ BSPC,  /**/ __, __,     _ UP,   __,      __,
+        _ M, _ N, _ E,     _ I,          _ O,     /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
+        __,  _ H, _ COMMA, &hm LGUI DOT, _ K,     /**/ __, _ PGUP, _ PGDN, __,      __
+        /*,  */,  _ LCTL,  &mo OHNAV,    _ SPACE, /**/ __, __,     __
       ) >;
     };
 
-    ohnav_layer { // One-hand nav [A]
+    ohnav_layer { // One-hand nav [sym-a]
       label = "Left nav";
       // ┌─────────────────────┐ ┌─────────────────────┐
-      // │ ctl pu  U   pd  bs  │ │ .   ml  U   mr  .   │
-      // │ .   L   D   R   ent │ │ .   L   D   R   .   │
-      // │ .   sft alt gui esc │ │ .   wd  wu  .   off │
-      // └───────┐ mc  lc  rc  │ │ ml  .   .   ┌───────┘
+      // │ ctl pu  U   pd  bs  │ │                     │
+      // │ .   L   D   R   ent │ │                     │
+      // │ ctl sft alt gui esc │ │                     │
+      // └───────┐ .   .   tab │ │             ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        _ LCTL, _ PGUP, _ UP,     _ PGDN,   _ BSPC,   /**/ __,       _MLCLICK, _MUP,   _MRCLICK, __,
-        __,     _ LEFT, _ DOWN,   _ RIGHT,  _ RET,    /**/ __,       _MLEFT,   _MDOWN, _MRIGHT,  __,
-        _ LCTL, _ LSFT, _ LALT,   _ LGUI,   _ ESC,    /**/ __,       _MWDOWN,  _MWUP,  __,       __
-        /*,     */,     _MMCLICK, _MLCLICK, _MRCLICK, /**/ _MLCLICK, __,       __
+        _ LCTL, _ PGUP, _ UP,     _ PGDN,   _ BSPC, /**/ __, __, __, __, __,
+        __,     _ LEFT, _ DOWN,   _ RIGHT,  _ RET,  /**/ __, __, __, __, __,
+        _ LCTL, _ LSFT, _ LALT,   _ LGUI,   _ ESC,  /**/ __, __, __, __, __
+        /*,     */,     _MMCLICK, _MLCLICK, _ TAB,  /**/ __, __, __
       ) >;
     };
 
-    ohnum_layer { // One-hand number [Q]
+    ohnum_layer { // One-hand number [sym-q]
       label = "Left number";
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │ ━━  1   2   3   bks │ │                     │
@@ -333,19 +333,19 @@
       ) >;
     };
 
-    ohmouse_layer { // One-handed mouse [sft]
+    ohmous_layer { // One-handed mouse [sym-z]
       label = "Left mouse";
       // ┌─────────────────────┐┌─────────────────────┐
-      // │ .   L   ↑   R   M   ││ .   .   .   .   .   │
-      // │ .   ←   ↓   →   at  ││ .   .   .   .   .   │
-      // │ .   .   .   .   .   ││ .   .   .   .   .   │
-      // └───────┐ .   .   ━━  ││ .   .   .   ┌───────┘
+      // │ .   L   ↑   R   M   ││ M   L   ↑   R   .   │
+      // │ .   ←   ↓   →   .   ││ .   ←   ↓   →   .   │
+      // │ ━━  .   wu  wd  .   ││ .   wd  wu  .   .   │
+      // └───────┐ .   .   .   ││ .   .   .   ┌───────┘
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
-        __, _MLCLICK, _MUP,   _MRCLICK, _MMCLICK,    /**/ __, __, __, __, __,
-        __, _MLEFT,   _MDOWN, _MRIGHT,  &kp LA(TAB), /**/ __, __, __, __, __,
-        __, __,       __,     __,       __,          /**/ __, __, __, __, __
-        /*, */,       __,     __,       __,          /**/ __, __, __
+        __, _MLCLICK, _MUP,   _MRCLICK, _MMCLICK, /**/  _MMCLICK, _MLCLICK, _MUP,   _MRCLICK, __,
+        __, _MLEFT,   _MDOWN, _MRIGHT,  __,       /**/  __,       _MLEFT,   _MDOWN, _MRIGHT,  __,
+        __, __,       _MWUP,  _MWDOWN,  __,       /**/  __,       _MWDOWN,  _MWUP,  __,       __
+        /*, */,       __,     __,       __,       /**/ __,        __,       __
       ) >;
     };
 
