@@ -4,20 +4,19 @@
 #include <dt-bindings/zmk/outputs.h>
 
 // https://zmk.dev/docs/codes/keyboard-keypad
-#define ALTL   1
+#define NAV    1
 #define SYM    2
-#define NAV    3
-#define FUN    4
-#define ADJ    5
-#define OHFLIP 6
-#define OHNAV  7
-#define OHNUM  8
-#define OHMOUS 9
-#define GAME   10
-#define GAMEX  11
-#define GAMEY  12
-#define LOCK   13
-#define ULOC   14
+#define FUN    3
+#define ADJ    4
+#define OHFLIP 5
+#define OHNAV  6
+#define OHNUM  7
+#define OHMOUS 8
+#define GAME   9
+#define GAMEX  10
+#define GAMEY  11
+#define LOCK   12
+#define ULOC   13
 
 #define NTAB  LC(PGDN) /* Next tab */
 #define PTAB  LC(PGUP) /* Previous tab */
@@ -130,7 +129,7 @@
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <CB_H CB_COMMA>; // [ k h , . ^ ]
       bindings = <&kp QUOT>; //               └─┴──› '
-      layers = <0 ALTL>;
+      layers = <0>;
     };
     #endif
 
@@ -139,7 +138,7 @@
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <CB_COMMA CB_DOT>; // [ k h , . ^ ]
       bindings = <&kp LA(TAB)>; //                └─┴──› alt-tab
-      layers = <0 ALTL>;
+      layers = <0>;
     };
     #endif
 
@@ -148,7 +147,7 @@
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <CB_H CB_DOT>; // [ k h , . ^ ]
       bindings = <&kp ESC>; //              └───┴──› esc
-      layers = <0 ALTL>;
+      layers = <0>;
     };
     #endif
 
@@ -157,7 +156,7 @@
       timeout-ms = <COMBO_TIMEOUT>;
       key-positions = <CB_K CB_H>; // [ k h , . ^ ]
       bindings = <&kp ESC>; //          └─┴──› esc
-      layers = <0 ALTL>;
+      layers = <0>;
     };
     #endif
 
@@ -166,7 +165,7 @@
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_W CB_F>;
         bindings = <BT(1)>;
-        layers = <0 ALTL>;
+        layers = <0>;
       };
     #endif
 
@@ -175,7 +174,7 @@
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_F CB_P>;
         bindings = <BT(0)>;
-        layers = <0 ALTL>;
+        layers = <0>;
       };
     #endif
 
@@ -184,7 +183,7 @@
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_P CB_B>;
         bindings = <&out OUT_TOG>;
-        layers = <0 ALTL>;
+        layers = <0>;
       };
     #endif
   };
@@ -193,29 +192,36 @@
     compatible = "zmk,keymap";
 
     default_layer {
-      label = "34 Key";
+      label = "36 Key";
       // ┌─────────────────────┐┌─────────────────────┐
       // │ q^  w   f   p   b   ││ j   l   u   y   bks │ Colemak DH
       // │ a   r   s   t   g   ││ m   n   e   i   o   │
-      // │ z   x   c   d   v   ││ k   h   ,_  ._  ent^│ (ent-ctrl)
+      // │ z   x   c   d   v   ││ k   h   ,_  .   ent^│ (ent-ctrl)
       // └─────────────────────┤├─────────────────────┘
       //         │ gui SYM ↑   ││ ──  NAV alt │
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
-        _CTLQ,        _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,            _ Y,          _ BSPC,
-        _ A,          _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,            _ I,          _ O,
-        &lt OHFLIP Z, _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &hm LGUI COMMA, &hm LALT DOT, _CENT
+        _CTLQ,        _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   _ BSPC,
+        _ A,          _ R, _ S,    _ T,     _ G,    /**/  _ M,     _ N,     _ E,     _ I,   _ O,
+        &lt OHFLIP Z, _ X, _ C,    _ D,     _ V,    /**/  _ K,     _ H,     &mcomma, &mdot, _CENT
         /*,           */,  _ LGUI, &mo SYM, _ LSFT, /**/  _ SPACE, &mo NAV, _ LALT
       ) >;
     };
 
-    alt_layer {
-      label = "36 Key";
+    nav_layer {
+      label = "Nav";
+      // ┌─────────────────────┐┌─────────────────────┐
+      // │ ctl gui ⇤   ⇥   alt ││ ,   hme ▲   end del │
+      // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
+      // │ 6   7   8   9   0   ││ ins p↑  p↓  esc ctl │
+      // └───────┐ ·   SYM ·   ││ spc ━━  ralt┌───────┘
+      //         └─────────────┘└─────────────┘
+
       bindings = < LAYOUT36(
-        &trans, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,  &trans, &trans,
-        &trans, &trans, &trans, &trans, &trans, /**/ &trans, &trans, &trans,  &trans, &trans,
-        _ Z,    &trans, &trans, &trans, &trans, /**/ &trans, &trans, &mcomma, &mdot,  &trans
-        /*,     */,     &trans, &trans, &trans, /**/ &trans, &trans, &trans
+        _ RCTRL, _ RGUI, _ SFTAB, _ TAB,   _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
+        _ N1,    _ N2,   _ N3,    _ N4,    _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
+        _ N6,    _ N7,   _ N8,    _ N9,    _ N0,   /**/ _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
+        /*,      */,     &trans,  &mo SYM, &trans, /**/ _ SPACE, __,       _ RALT
       ) >;
     };
 
@@ -233,23 +239,6 @@
         &lt OHNAV EXCL,  _ AT,    _ HASH,  _ DLLR,  _ PRCNT, /**/ _ LBRC,  _ LPAR,  _ COLON, _ RPAR, _ RBRC,
         &lt OHMOUS BSLH, _ TILDE, _ PIPE,  _ SEMI,  _ AMPS,  /**/ _ SLASH, _ STAR,  _ MINUS, _ PLUS, _ UNDER
         /*,              */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
-      ) >;
-    };
-
-    nav_layer {
-      label = "Nav";
-      // ┌─────────────────────┐┌─────────────────────┐
-      // │ ctl gui ⇤   ⇥   alt ││ ,   hom ▲   end del │
-      // │ 1   2   3   4   5   ││ .   ◀   ▼   ▶   ent │
-      // │ 6   7   8   9   0   ││ ins p↑  p↓  esc ctl │
-      // └───────┐ ·   fun ·   ││ spc ▓▓  ralt┌───────┘
-      //         └─────────────┘└─────────────┘
-
-      bindings = < LAYOUT36(
-        _ RCTRL, _ RGUI, _ SFTAB, _ TAB,   _ LALT, /**/ _ COMMA, _   HOME, _ UP,   _ END,   _ DEL,
-        _ N1,    _ N2,   _ N3,    _ N4,    _ N5,   /**/ _ DOT,   _   LEFT, _ DOWN, _ RIGHT, _ RET,
-        _ N6,    _ N7,   _ N8,    _ N9,    _ N0,   /**/ _ INS,   _   PGUP, _ PGDN, _ ESC,   _ LCTL
-        /*,      */,     &trans,  &mo FUN, &trans, /**/ _ SPACE, &mo FUN,  _ RALT
       ) >;
     };
 
@@ -272,13 +261,13 @@
     adjust_layer {
       label = "Adjust";
       // ┌─────────────────────┐ ┌─────────────────────┐
-      // │lock alt b5  b4  BOOT│ │ .   .   .   .   .   │
+      // │lock .   b5  b4  BOOT│ │ .   .   .   .   .   │
       // │game b3  b2  b1  rset│ │ .   b3  b2  b1  .   │
       // │.    tog usb bt  clr │ │ .   tog usb bt  .   │
       // └───────┐ ·   ·   ━━  │ │ tog bt  usb ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        &tog LOCK, &tog ALTL,    BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
+        &tog LOCK, __,           BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
         &tog GAME, BT(2),        BT(1),  BT(0),  &sys_reset,  /**/ __,  BT(2),        BT(1),  BT(0),  __,
         __,        &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,  &out OUT_TOG, BT_USB, BT_BLE, &to OHNAV
         /*,        */,           &trans, &trans, __,          /**/  __, __,           __
