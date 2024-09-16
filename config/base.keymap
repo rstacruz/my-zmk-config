@@ -279,14 +279,14 @@
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │ j   l   u   y   bks │ │ .   .   U   .   .   │
       // │ m   n   e   i   o   │ │ .   L   D   R   .   │
-      // │ ━━  h   ,   .⁺  k   │ │ .   pu  pd  .   .   │
+      // │ ━━  h   ,⁺  .⁺  k   │ │ .   pu  pd  .   .   │
       // └───────┐ ctl nav spc │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        _ J, _ L, _ U,     _ Y,          _ BSPC,  /**/ __, __,     _ UP,   __,      __,
-        _ M, _ N, _ E,     _ I,          _ O,     /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
-        __,  _ H, _ COMMA, &hm LGUI DOT, _ K,     /**/ __, _ PGUP, _ PGDN, __,      __
-        /*,  */,  _ LCTL,  &mo OHNAV,    _ SPACE, /**/ __, __,     __
+        _ J, _ L, _ U,            _ Y,          _ BSPC,  /**/ __, __,     _ UP,   __,      __,
+        _ M, _ N, _ E,            _ I,          _ O,     /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
+        __,  _ H, &hm LALT COMMA, &hm LGUI DOT, _ K,     /**/ __, _ PGUP, _ PGDN, __,      __
+        /*,  */,  _ LCTL,         &mo OHNAV,    _ SPACE, /**/ __, __,     __
       ) >;
     };
 
