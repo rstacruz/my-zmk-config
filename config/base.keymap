@@ -45,6 +45,12 @@
 #define ZMK_MOUSE_DEFAULT_MOVE_VAL 2500 // 600
 #define ZMK_MOUSE_DEFAULT_SCRL_VAL 1    // 10
 
+#if CONFIG_ZMK_PM_SOFT_OFF
+#define _SOFF &soft_off
+#else
+#define _SOFF &none
+#endif
+
 #include <dt-bindings/zmk/mouse.h>
 
 &mmv {
@@ -269,7 +275,7 @@
       bindings = < LAYOUT36(
         &tog LOCK, __,           BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
         &tog GAME, BT(2),        BT(1),  BT(0),  &sys_reset,  /**/ __,  BT(2),        BT(1),  BT(0),  __,
-        __,        &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,  &out OUT_TOG, BT_USB, BT_BLE, &to OHNAV
+        _SOFF,     &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,  &out OUT_TOG, BT_USB, BT_BLE, &to OHNAV
         /*,        */,           &trans, &trans, __,          /**/  __, __,           __
       ) >;
     };
