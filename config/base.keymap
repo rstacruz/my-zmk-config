@@ -267,16 +267,16 @@
     adjust_layer {
       label = "Adjust";
       // ┌─────────────────────┐ ┌─────────────────────┐
-      // │lock .   b5  b4  BOOT│ │ .   .   .   .   .   │
-      // │game b3  b2  b1  rset│ │ .   b3  b2  b1  .   │
-      // │.    tog usb bt  clr │ │ .   tog usb bt  .   │
-      // └───────┐ ·   ·   ━━  │ │ tog bt  usb ┌───────┘
+      // │lock .   b5  b4  BOOT│ │ pow slp lof loc .   │
+      // │game b3  b2  b1  rset│ │ pow slp .   .   .   │
+      // │.    tog usb bt  clr │ │ .   .   .   .   .   │
+      // └───────┐ ·   ·   ━━  │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        &tog LOCK, __,           BT(4),  BT(3),  &bootloader, /**/ __,  __,           __,     __,     __,
-        &tog GAME, BT(2),        BT(1),  BT(0),  &sys_reset,  /**/ __,  BT(2),        BT(1),  BT(0),  __,
-        _SOFF,     &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,  &out OUT_TOG, BT_USB, BT_BLE, &to OHNAV
-        /*,        */,           &trans, &trans, __,          /**/  __, __,           __
+        &tog LOCK, __,           BT(4),  BT(3),  &bootloader, /**/ _ C_POWER, _ C_SLEEP, _ C_AL_LOGOFF, _ C_LA_LOCK, __,
+        &tog GAME, BT(2),        BT(1),  BT(0),  &sys_reset,  /**/ _ K_POWER, _ K_SLEEP, __,            __,          __,
+        _SOFF,     &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,        __,        __,            __,          __
+        /*,        */,           &trans, &trans, __,          /**/ __,        __,        __
       ) >;
     };
 
