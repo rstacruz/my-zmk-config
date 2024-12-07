@@ -273,9 +273,9 @@
       // └───────┐ ·   ·   ━━  │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
-        &tog LOCK, __,           BT(4),  BT(3),  &bootloader, /**/ _ C_POWER, _ C_SLEEP, _ C_AL_LOGOFF, _ C_LA_LOCK, __,
-        &tog GAME, BT(2),        BT(1),  BT(0),  &sys_reset,  /**/ _ K_POWER, _ K_SLEEP, __,            __,          __,
-        _SOFF,     &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,        __,        __,            __,          __
+        &tog LOCK, __,           BT(4),  BT(3),  &bootloader, /**/ _ C_POWER, _ C_SLEEP, __, __, __,
+        &tog GAME, BT(2),        BT(1),  BT(0),  &sys_reset,  /**/ _ K_POWER, _ K_SLEEP, __, __, __,
+        _SOFF,     &out OUT_TOG, BT_USB, BT_BLE, &bt BT_CLR,  /**/ __,        __,        __, __, __
         /*,        */,           &trans, &trans, __,          /**/ __,        __,        __
       ) >;
     };
@@ -318,13 +318,13 @@
       // │ ━━  1   2   3   bks │ │                     │
       // │ .   4   5   6   ret │ │                     │
       // │ .   7   8   9   0   │ │                     │
-      // └───────┐ .   .   0   │ │             ┌───────┘
+      // └───────┐ .   .   spc │ │             ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
         __, _ N1, _ N2, _ N3, _ BSPC,  /**/  _ F14, _ HOME, _ UP,   _ END,   _ DEL,
         __, _ N4, _ N5, _ N6, _ RET,   /**/  _ F15, _ LEFT, _ DOWN, _ RIGHT, _ RET,
         __, _ N7, _ N8, _ N9, _ N0,    /**/  _ F13, _ PGUP, _ PGDN, _ ESC,   _ LCTL
-        /*, */,   __,   __,   _ N0,    /**/ __,     __,     __
+        /*, */,   __,   __,   _ SPACE, /**/ __,     __,     __
       ) >;
     };
 
