@@ -137,6 +137,12 @@
       bindings = <&kp QUOT>; //               └─┴──› '
       layers = <0>;
     };
+    combo_h_comma_sym {
+      timeout-ms = <COMBO_TIMEOUT>;
+      key-positions = <CB_H CB_COMMA>; // [ k h , . ^ ]
+      bindings = <&kp INS>; //                └─┴──› ins (compose key)
+      layers = <SYM>;
+    };
     #endif
 
     #if defined(CB_COMMA) && defined(CB_DOT)
@@ -156,6 +162,7 @@
       layers = <0>;
     };
     #endif
+
 
     #if defined(CB_K) && defined(CB_H)
     combo_k_h {
@@ -203,8 +210,7 @@
       // │ q^  w   f   p   b   ││ j   l   u   y   bks │ Colemak DH
       // │ a   r   s   t   g   ││ m   n   e   i   o   │
       // │ z   x   c   d   v   ││ k   h   ,_  .   ent^│ (ent-ctrl)
-      // └─────────────────────┤├─────────────────────┘
-      //         │ gui SYM ↑   ││ ──  NAV alt │
+      // └───────┐ gui SYM ↑   ││ ──  NAV alt ┌───────┘
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
         _CTLQ,        _ W, _ F,    _ P,     _ B,    /**/  _ J,     _ L,     _ U,     _ Y,   _ BSPC,
@@ -331,16 +337,16 @@
     ohmous_layer { // One-handed mouse [sym-z]
       label = "Left mouse";
       // ┌─────────────────────┐┌─────────────────────┐
-      // │ .   L   ↑   R   M   ││ M   L   ↑   R   .   │
-      // │ .   ←   ↓   →   .   ││ .   ←   ↓   →   .   │
-      // │ ━━  .   wu  wd  .   ││ .   wd  wu  .   .   │
-      // └───────┐ .   .   .   ││ L   M   R   ┌───────┘
+      // │ .   L   ↑   R   M   ││ .   .   .   .   .   │
+      // │ .   ←   ↓   →   .   ││ .   L   M   R   .   │
+      // │ ━━  .   wu  wd  .   ││ sft WD  WU  alt ctl │
+      // └───────┐ gui .   .   ││ .   .   .   ┌───────┘
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
-        __, _MLCLICK, _MUP,   _MRCLICK, _MMCLICK, /**/  _MMCLICK, _MLCLICK, _MUP,   _MRCLICK, __,
-        __, _MLEFT,   _MDOWN, _MRIGHT,  __,       /**/  __,       _MLEFT,   _MDOWN, _MRIGHT,  __,
-        __, __,       _MWUP,  _MWDOWN,  __,       /**/  __,       _MWDOWN,  _MWUP,  __,       __
-        /*, */,       __,     __,       __,       /**/ _MLCLICK,  _MMCLICK, _MRCLICK
+        __, _MLCLICK, _MUP,   _MRCLICK, _MMCLICK, /**/ __,      __,       __,       __,       __,
+        __, _MLEFT,   _MDOWN, _MRIGHT,  __,       /**/ __,      _MLCLICK, _MMCLICK, _MRCLICK, __,
+        __, __,       _MWUP,  _MWDOWN,  __,       /**/ _ LSFT,  _MWDOWN,  _MWUP,    _ LALT,   _ LCTL
+        /*, */,       _ LGUI, __,       _ LSFT,   /**/ __,      __,       __
       ) >;
     };
 
