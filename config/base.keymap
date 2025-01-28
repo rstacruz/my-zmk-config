@@ -334,13 +334,13 @@
       // │ .   L   ↑   R   M   ││ M   L   ↑   R   .   │
       // │ .   ←   ↓   →   .   ││ .   ←   ↓   →   .   │
       // │ ━━  .   wu  wd  .   ││ .   wd  wu  .   .   │
-      // └───────┐ .   .   .   ││ .   .   .   ┌───────┘
+      // └───────┐ .   .   .   ││ L   M   R   ┌───────┘
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
         __, _MLCLICK, _MUP,   _MRCLICK, _MMCLICK, /**/  _MMCLICK, _MLCLICK, _MUP,   _MRCLICK, __,
         __, _MLEFT,   _MDOWN, _MRIGHT,  __,       /**/  __,       _MLEFT,   _MDOWN, _MRIGHT,  __,
         __, __,       _MWUP,  _MWDOWN,  __,       /**/  __,       _MWDOWN,  _MWUP,  __,       __
-        /*, */,       __,     __,       __,       /**/ __,        __,       __
+        /*, */,       __,     __,       __,       /**/ _MLCLICK,  _MMCLICK, _MRCLICK
       ) >;
     };
 
