@@ -253,8 +253,8 @@
         /*,              */,      &trans,  &mo FUN, &mo ADJ, /**/ _ SPACE, &mo FUN, _ RALT
       ) >;
     };
-    function_layer {
 
+    function_layer {
       label = "Func + Mouse";
       // ┌─────────────────────┐┌─────────────────────┐
       // │ f11 f12 psc ply nxt ││ b+  L   ↑   R   v+  │
@@ -292,13 +292,13 @@
       // │ j   l   u   y   bks │ │ .   .   U   .   .   │
       // │ m   n   e   i   o   │ │ .   L   D   R   .   │
       // │ ━━  h   ,⁺  .⁺  k   │ │ .   pu  pd  .   .   │
-      // └───────┐ ctl nav spc │ │ .   .   .   ┌───────┘
+      // └───────┐ RC  LC  spc │ │ .   .   .   ┌───────┘
       //         └─────────────┘ └─────────────┘
       bindings = < LAYOUT36(
         _ J, _ L, _ U,            _ Y,          _ BSPC,  /**/ __, __,     _ UP,   __,      __,
         _ M, _ N, _ E,            _ I,          _ O,     /**/ __, _ LEFT, _ DOWN, _ RIGHT, __,
         __,  _ H, &hm LALT COMMA, &hm LGUI DOT, _ K,     /**/ __, _ PGUP, _ PGDN, __,      __
-        /*,  */,  _ LCTL,         &mo OHMOUS,   _ SPACE, /**/ __, __,     __
+        /*,  */,  _MRCLICK,       _MLCLICK,     _ SPACE, /**/ __, __,     __
       ) >;
     };
 
@@ -306,7 +306,7 @@
       label = "Left nav";
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │ ctl pu  U   pd  bs  │ │                     │
-      // │ .   L   D   R   ent │ │                     │
+      // │ ━━  L   D   R   ent │ │                     │
       // │ ctl sft alt gui esc │ │                     │
       // └───────┐ .   .   tab │ │             ┌───────┘
       //         └─────────────┘ └─────────────┘
@@ -337,15 +337,15 @@
     ohmous_layer { // One-handed mouse [sym-z]
       label = "Left mouse";
       // ┌─────────────────────┐┌─────────────────────┐
-      // │ .   .   u   d   .   ││ .   L   ↑   R   .   │
+      // │ .   «   mu  md  »   ││ .   L   ↑   R   .   │
       // │ .   R   M   L   .   ││ .   ←   ↓   →   .   │
-      // │ ━━  R   M   L   .   ││ sft WD  WU  alt ctl │
+      // │ ━━  ←   ↑   ↓   →   ││ sft WD  WU  alt ctl │
       // └───────┐ gui ━━  .   ││ .   .   .   ┌───────┘
       //         └─────────────┘└─────────────┘
       bindings = < LAYOUT36(
-        __, __,       _MWUP,    _MWDOWN,  __,       /**/ __,      _MLCLICK, _MUP,     _MRCLICK, __,
+        __, _ PTAB,   _MWUP,    _MWDOWN,  _ NTAB,   /**/ __,      _MLCLICK, _MUP,     _MRCLICK, __,
         __, _MRCLICK, _MMCLICK, _MLCLICK, __,       /**/ __,      _MLEFT,   _MDOWN,   _MRIGHT,  __,
-        __, _MRCLICK, _MMCLICK, _MLCLICK, __,       /**/ _ LSFT,  _MWDOWN,  _MWUP,    _ LALT,   _ LCTL
+        __, _ LEFT,   _ UP,     _ DOWN,   _ RIGHT,  /**/ _ LSFT,  _MWDOWN,  _MWUP,    _ LALT,   _ LCTL
         /*, */,       _ LGUI,   __,       _ LSFT,   /**/ __,      __,       __
       ) >;
     };
@@ -365,7 +365,7 @@
       // ┌─────────────────────┐ ┌─────────────────────┐
       // │ y   u   i   o   p   │ │         ↑       bs  │ Y
       // │ t   j   k   l   ent │ │     ←   ↓   →   ent │
-      // │ n   m   c   v   esc │ │                 esc │
+      // │ n   m   ,   .   esc │ │                 esc │
       // └───────┐ ━━          │ │        exit ┌───────┘
       //         └─────────────┘ └─────────────┘
 
