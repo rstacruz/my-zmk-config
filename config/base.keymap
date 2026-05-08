@@ -174,19 +174,28 @@
     #endif
 
     #if defined(CB_W) && defined(CB_F)
-      combo_w_f { // [wf] - bt2
+      combo_w_f { // [wf] - alt+f11
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_W CB_F>;
-        bindings = <BT(1)>;
+        bindings = <&kp LA(F11)>;
+        layers = <0>;
+      };
+    #endif
+
+    #if defined(CB_W) && defined(CB_P)
+      combo_w_p { // [wp] - alt+f10
+        timeout-ms = <COMBO_TIMEOUT>;
+        key-positions = <CB_W CB_P>;
+        bindings = <&kp LA(F10)>;
         layers = <0>;
       };
     #endif
 
     #if defined(CB_F) && defined(CB_P)
-      combo_f_p { // [fp] - bt1
+      combo_f_p { // [fp] - alt+f12
         timeout-ms = <COMBO_TIMEOUT>;
         key-positions = <CB_F CB_P>;
-        bindings = <BT(0)>;
+        bindings = <&kp LA(F12)>;
         layers = <0>;
       };
     #endif
